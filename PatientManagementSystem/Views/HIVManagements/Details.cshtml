@@ -1,0 +1,87 @@
+﻿@model PatientManagementSystem.Models.HIVManagement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>HIV Management Records</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Visit.VisitDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Visit.VisitDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Visit.DiagnosisCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Visit.DiagnosisCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Problem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Problem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ICD10)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ICD10)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicationStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicationStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medication)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medication)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiagnosisCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiagnosisCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HIVManagmentId })
+</p>

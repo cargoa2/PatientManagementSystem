@@ -1,0 +1,111 @@
+﻿@model PatientManagementSystem.Models.OtherManagement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Patient Other Management Details</h2>
+
+<div>    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Visit.VisitDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Visit.VisitDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TCell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TCell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ViralLoad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ViralLoad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WhiteBloodCell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WhiteBloodCell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hemoglobin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hemoglobin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlasmaIronTurnover)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlasmaIronTurnover)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Triglycerides)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Triglycerides)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCholesterol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCholesterol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherLab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherLab)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OtherId }) 
+</p>

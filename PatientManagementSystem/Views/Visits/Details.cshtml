@@ -1,0 +1,365 @@
+﻿@model PatientManagementSystem.Models.Visits
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Visit Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.patient.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.patient.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Initial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Initial)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DiagnosisCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiagnosisCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoPay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoPay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPaid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPaid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReferralReason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReferralReason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.History)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.History)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PastHistory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PastHistory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Epidemiology)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Epidemiology)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FamilyHistory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FamilyHistory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SocialHistory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SocialHistory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RosGeneral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RosGeneral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RosHeent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RosHeent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Respiratory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Respiratory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cardiovascular)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cardiovascular)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gastrointestinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gastrointestinal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genitourniary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genitourniary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RosNeurological)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RosNeurological)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.psychosocial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.psychosocial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medications)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medications)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PeGeneral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PeGeneral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BloodPressure)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BloodPressure)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HeartRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeartRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tempurature)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tempurature)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PeHeent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PeHeent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Neck)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Neck)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Skin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Skin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lungs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lungs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Heart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Heart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Abdomen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abdomen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Musculoskeletal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Musculoskeletal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PeNeurological)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PeNeurological)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Additional)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Additional)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Laboratory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Laboratory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Assessment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Assessment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsHIVManagement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsHIVManagement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOtherManagement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOtherManagement)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VisitId }) |
+</p>

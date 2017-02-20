@@ -1,0 +1,220 @@
+﻿@model PatientManagementSystem.Models.Patient
+
+@{
+    ViewBag.Title = "Details";
+}
+<style>
+    h4{text-align:Left;}
+    h5{text-align:Left;}
+    td {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;  
+        border-right: 1px solid black;
+        border-left: 1px solid black;
+    }
+</style>
+<h4>KENTUCKIANA INFECTIOUS DISEASE CONSULTANCTS, PSC</h4>
+<h5>Barbara Wojda, M.D</h5>
+<h5>125 Fairfax Avenue, Louisville, KY 40207</h5>
+<h5>Phone (502) 895-6155 Fax (502) 895-6156</h5>
+<br/>
+<div>
+    <h5><b><u>PATIENT INFORMATION</u></b></h5>
+    <table>
+        <colgroup>
+            <col width="300" />
+            <col width="300" />
+            <col width="200"/>
+        </colgroup>
+        <tr>
+            <td>
+                Last Name: @Html.DisplayFor(model => model.LastName)
+            </td>
+            <td>
+                First Name: @Html.DisplayFor(model => model.FirstName) 
+            </td>
+            <td>
+                Middle Initial:  @Html.DisplayFor(model => model.MiddleInitial)
+            </td>
+            
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td width="800">
+                Address:  @Html.DisplayFor(model => model.StreetAddress)
+            </td>
+        </tr>
+    </table> 
+    <table>
+        <colgroup>
+            <col width="350" />
+            <col width="100" />
+            <col width="350" />
+        </colgroup>
+        <tr>
+            <td>
+                City:  @Html.DisplayFor(model => model.City)
+            </td>
+            <td>
+                State: @Html.DisplayFor(model => model.State)
+            </td>
+            <td>
+                Zip: @Html.DisplayFor(model => model.PostalCode)
+            </td>
+        </tr>
+    </table>
+    <table>
+        <colgroup>
+            <col width="200" />
+            <col width="200" />
+            <col width="200" />
+            <col width="200" />
+        </colgroup>
+            <tr>
+            <td>
+                Phone Type: @Html.DisplayFor(model => model.PatientPhoneType)                
+            </td>
+            <td>
+                Phone: @Html.DisplayFor(model => model.PatientPhone)
+            </td>
+            <td>
+                Phone Type: @Html.DisplayFor(model => model.OtherPhoneType)             
+            </td>
+            <td>
+                Phone: @Html.DisplayFor(model => model.OtherPatientPhone)
+            </td>
+        </tr>
+        </table>
+    <table>
+        <colgroup>
+            <col width="200" />
+            <col width="200" />
+            <col width="200" />
+            <col width="200" />
+        </colgroup>
+        <tr>
+            <td>Date of Birth: @Html.DisplayFor(model => model.BirthDate)</td>
+            <td>Age:  @Html.DisplayFor(model => model.Age)</td>
+            <td>SSN: @Html.DisplayFor(model => model.SOC)</td>
+            <td>Gender: @Html.DisplayFor(model => model.Gender)</td>
+        </tr>
+    </table> 
+    @{ var emp = Model.Employed; }
+    <table>
+        <colgroup>
+            <col width="100" />
+            <col width="100" />
+            <col width="400" />
+            <col width="200" />
+        </colgroup>
+        <tr>
+            <td>Status: @Html.DisplayFor(model => model.Status) </td>
+            <td>Employed: @{if (emp == false)
+                                    { Write("No"); }
+                                    else { Write("Yes"); }
+                               }                          
+            </td>
+            <td>Employer Name: @Html.DisplayFor(model => model.EmployerName) </td>
+            <td>Employer Phone: @Html.DisplayFor(model => model.EmployerPhone)</td>
+        </tr>
+    </table>
+    <table>
+        <colgroup>
+            <col width="600" />
+            <col width="200" />
+        </colgroup>
+        <tr>
+            <td>
+                Refering Physician:  @Html.DisplayFor(model => model.ReferingPhysician)
+            </td>
+            <td>
+                Phone:  @Html.DisplayFor(model => model.ReferingPhysicianPhone)
+            </td>
+        </tr>
+    </table>
+    <h5><b><u>INSURANCE SUBSCRIBER INFO(if other than patient)</u></b></h5>
+    <table>
+        <colgroup>
+            <col width="125" />
+            <col width="250" />
+            <col width="250" />
+            <col width="175" />
+        </colgroup>
+        <tr>
+            <td> Relation: @Html.DisplayFor(model => model.Relation)</td>
+            <td>
+                Subscriber Last Name: @Html.DisplayFor(model => model.SubscriberLastName)
+            </td>
+            <td>
+                First Name: @Html.DisplayFor(model => model.SubscriberFirstName)
+            </td>
+            <td>
+                Middle:  @Html.DisplayFor(model => model.SubscriberMiddleInitial)
+            </td>
+        </tr>
+     </table>
+    <table>
+        <colgroup>
+            <col width="200" />
+            <col width="100" />
+            <col width="300" />
+            <col width="200" />
+        </colgroup>
+            <tr>
+            <td>
+                Date of Birth:  @Html.DisplayFor(model => model.SubscriberBirthDate)
+            </td>
+            <td> Age:  @Html.DisplayFor(model => model.SubscriberAge)</td>
+            <td>
+                SSN#:  @Html.DisplayFor(model => model.SubscriberSOC)
+            </td>
+            <td>
+                Gender:  @Html.DisplayFor(model => model.SubscriberGender)
+            </td>
+        </tr>
+    </table>
+    <h5><b><u>EMERGENCY CONTACT(if other than patient)</u></b></h5>
+    <table>
+        <colgroup>
+            <col width="600" />
+            <col width="200" />
+        </colgroup>
+        <tr>
+            <td>
+                Name of Nearest Relative or Friend not living with you:  @Html.DisplayFor(model => model.EmergencyContact)
+            </td>
+            <td>
+                Phone:  @Html.DisplayFor(model => model.EmergencyPhone)
+            </td>
+        </tr>
+    </table>
+    <h5><b><u>INSURANCE INFORMATION</u></b></h5>
+    <table>
+        <colgroup>
+            <col width="800" />
+        </colgroup>
+        <tr>
+            <td>Primary Insurance:  @Html.DisplayFor(model => model.PrimaryInsurance)</td>            
+        </tr>
+        <tr>
+            <td>Secondary Insurnace:  @Html.DisplayFor(model => model.SecondaryInsurance)</td>
+        </tr>
+    </table>
+</div>
+<br />
+<div>
+<P style="width:800px">
+    I hearby assign and direct to pay all benefits for medical services under this claim directly to Barbara Wojda, M.D. I
+    hearby authorize the release of any medical information request by the insurance companies with the assignment.  I
+    understand that Barbara Wojda, M.D. will bill my Primary Insurance as a courtesy to me.  I will be reponsible for
+    secondary payment(if applicable) at the time of service.  If payment is not received withing 30 days from the date of the
+    billing, <u><b>I will be financially rsponsible for payment in full</u></b> for all services rendered to myself and/or dependdents by
+    Barbara Wojda, M.D.  I also agree to pay any and all collection cost, attorney costs and court costs(if applicable).
+
+    <b>I authorize Dr. Barbara Wojda to use and release my health information for research purposes and publications.</b>
+</P>
+    <h5>PATIENT RESPONSIBLE PARTY</h5> 
+    <h5>SIGNATURE______________________________________________________DATE_________________________________</h5>     
+</div>
+

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PatientManagementSystem.Models.LabFiles>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lab File Path List</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Visit.patient.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Visit.patient.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileName)
+        </td>
+        <td>
+            @Html.ActionLink("Open File", "GetPdf", new { id = item.LabFileId })
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LabFileId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LabFileId })
+        </td>
+    </tr>
+}
+
+</table>

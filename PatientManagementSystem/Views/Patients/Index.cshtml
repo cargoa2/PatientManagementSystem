@@ -1,0 +1,91 @@
+﻿@model IEnumerable<PatientManagementSystem.Models.Patient>
+
+@{
+    ViewBag.Title = "Patients";
+}
+<h2>Patient List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Search", "Patients"))
+{
+    @Html.Editor("SearchBox")
+    <input type="submit" value="Search" />    
+}
+
+<table class="table">
+    <tr> 
+        <th></th>      
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MiddleInitial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SOC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>Patient Level - Group Levels</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.HiddenFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MiddleInitial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SOC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+       
+        <td>            
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Visits", "PatientIndex", "Visits", new { id = item.Id }, null) |
+           
+            @Html.ActionLink("Labs", "PatientLabs", "LabFiles", new { id = item.Id}, null) |
+            @if (item.IsOtherManagement(item.Id))
+            {
+                @Html.ActionLink("Other Management", "PatientOtherManagement", "OtherManagements", new { id = item.Id }, null)
+            }
+            else if (item.IsHIVManagement(item.Id))
+            {
+                @Html.ActionLink("HIV Management", "PatientHIVManagement", "HIVManagements", new { id = item.Id }, null)
+            } 
+            else{                
+                @Html.Encode("Add management type on the visit level")
+            }
+            | @Html.ActionLink("Delete", "Delete", new { id = item.Id })           
+             
+                    
+        </td>
+    </tr>
+}
+
+</table>

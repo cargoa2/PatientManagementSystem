@@ -1,0 +1,102 @@
+﻿@model PatientManagementSystem.Models.OtherManagement
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Other Managemnt Record</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TCell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TCell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ViralLoad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ViralLoad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WhiteBloodCell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WhiteBloodCell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hemoglobin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hemoglobin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlasmaIronTurnover)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlasmaIronTurnover)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Triglycerides)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Triglycerides)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCholesterol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCholesterol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherLab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherLab)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />             
+        </div>
+    }
+</div>

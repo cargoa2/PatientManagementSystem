@@ -1,0 +1,96 @@
+﻿@model IEnumerable<PatientManagementSystem.Models.OtherManagement>
+
+@{
+    ViewBag.Title = "Patient Other Management Records";
+}
+
+<h2>Patient Other Management Records</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VisitId)
+        </th> 
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.FullName)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.Visit.VisitDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TCell)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ViralLoad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WhiteBloodCell)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hemoglobin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlasmaIronTurnover)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Triglycerides)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalCholesterol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherLab)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VisitId)          
+        </td> 
+        <td>
+            @Html.DisplayFor(modelitem => item.Visit.patient.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Visit.VisitDate)
+        </td>       
+        <td>
+            @Html.DisplayFor(modelItem => item.TCell)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ViralLoad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WhiteBloodCell)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hemoglobin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlasmaIronTurnover)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Triglycerides)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalCholesterol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherLab)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OtherId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OtherId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OtherId })
+        </td>
+    </tr>
+}
+
+</table>
