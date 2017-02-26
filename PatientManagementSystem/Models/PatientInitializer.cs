@@ -158,7 +158,7 @@ namespace PatientManagementSystem.Models
                                 Initial = true,
                                 VisitType = VisitTypes.N99201,
                                 DiagnosisCode = "B20",
-                                VisitDate = DateTime.Now,
+                                VisitDate = Convert.ToDateTime("1/15/2017"),
                                 ReferralReason = "This is an initial consultation referral reason.",
                                 History = "Patient has had HIV for 4 years.",
                                 PastHistory = "Patient was healthy.",
