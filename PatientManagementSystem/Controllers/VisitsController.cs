@@ -86,12 +86,29 @@ namespace PatientManagementSystem.Controllers
         // GET: Visits/Create
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Create(int id)
-        {               
-                var patient = db.Patients.Find(id);
+        {
+            List<Visits> visits = db.Visits.ToList();
+
+            var listVisits = visits.Where(v => v.PatientId == id).OrderByDescending(v => v.VisitDate);
+
+            var patient = db.Patients.Find(id);
                 Visits visit = new Visits();
                 visit.PatientId = Convert.ToInt32(id);
                 visit.FullName = patient.FullName;
                 visit.VisitDate = DateTime.Now;
+
+            if (listVisits.Count() > 0)
+            {                
+                Visits lastVisit = visits.Where(v => v.PatientId == id).OrderByDescending(v => v.VisitDate).FirstOrDefault();
+
+                visit.History = lastVisit.History;
+                visit.PastHistory = lastVisit.PastHistory;
+                visit.Epidemiology = lastVisit.Epidemiology;
+                visit.FamilyHistory = lastVisit.FamilyHistory;
+                visit.SocialHistory = lastVisit.SocialHistory;
+                visit.MedicalAllergy = lastVisit.MedicalAllergy;
+                visit.Medications = lastVisit.Medications;
+            }           
 
             if (CheckVisits(id) == true)
             {
@@ -117,7 +134,7 @@ namespace PatientManagementSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AcceptVerbs("Post")]
-        public ActionResult Create([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,ReferralReason,History,PastHistory,Epidemiology,FamilyHitory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Laboratory,LabFiles,Assessment,Plan,IsHIVManagement,IsOtherManagement")] Visits visit)
+        public ActionResult Create([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,MedicalAllergy,ReferralReason,History,PastHistory,Epidemiology,FamilyHitory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Laboratory,LabFiles,Assessment,Plan,IsHIVManagement,IsOtherManagement")] Visits visit)
         {
             if (ModelState.IsValid)
             {
@@ -148,7 +165,7 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,ReferralReason,History,PastHistory,Epidemiology,FamilyHitory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Laboratory,LabFiles,Assessment,Plan,IsHIVManagement,IsOtherManagement")] Visits visit)
+        public ActionResult Edit([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,MedicalAllergy,ReferralReason,History,PastHistory,Epidemiology,FamilyHitory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Laboratory,LabFiles,Assessment,Plan,IsHIVManagement,IsOtherManagement")] Visits visit)
         {
             if (ModelState.IsValid)
             {   
