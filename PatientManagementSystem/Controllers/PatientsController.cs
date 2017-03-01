@@ -88,7 +88,7 @@ namespace PatientManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,LastName,FirstName,MiddleInitial,StreetAddress,City,State,PostalCode,PatientPhone,PatientPhoneType,OtherPatientPhone, OtherPhoneType," +
             " BirthDate,SOC,Gender,Status,Employed,EmployerName,EmployerPhone,Relation,SubscriberLastName,SubscriberFirstName,SubscriberMiddleInitial,SubscriberBirthDate,SubscriberSOC, " +
-            " SubscriberGender,ReferingPhysician,ReferingPhysicianPhone,EmergencyContact,EmergencyPhone,PrimaryInsurance,SecondaryInsurance,PharmacyPhone,MedicalAllergy,HIVDiagnosisDate,TCellAtDiagnosis,ViralLoadAtDiagnosis,Signature,DateSigned")] Patient patient)
+            " SubscriberGender,ReferingPhysician,ReferingPhysicianPhone,EmergencyContact,EmergencyPhone,PrimaryInsurance,SecondaryInsurance,PharmacyPhone,HIVDiagnosisDate,TCellAtDiagnosis,ViralLoadAtDiagnosis,Signature,DateSigned")] Patient patient)
         {
             if (ModelState.IsValid)
             {
@@ -122,7 +122,7 @@ namespace PatientManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,LastName,FirstName,MiddleInitial,StreetAddress,City,State,PostalCode,PatientPhone,PatientPhoneType,OtherPatientPhone,OtherPhoneType," +
                                         "BirthDate,SOC,Gender,Status,Employed,EmployerName,EmployerPhone,Relation,SubscriberLastName,SubscriberMiddleInitial,SubscriberBirthDate,SubscriberSOC," +
-                                        "SubscriberGender,ReferingPhysician,ReferingPhysicianPhone,EmergencyContact,EmergencyPhone,PrimaryInsurance,SecondaryInsurance,PharmacyPhone,MedicalAllergy,HIVDiagnosisDate,TCellAtDiagnosis,ViralLoadAtDiagnosis,Signature,DateSigned")] Patient patient)
+                                        "SubscriberGender,ReferingPhysician,ReferingPhysicianPhone,EmergencyContact,EmergencyPhone,PrimaryInsurance,SecondaryInsurance,PharmacyPhone,HIVDiagnosisDate,TCellAtDiagnosis,ViralLoadAtDiagnosis,Signature,DateSigned")] Patient patient)
         {
             if (ModelState.IsValid)
             {
