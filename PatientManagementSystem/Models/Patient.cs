@@ -196,11 +196,7 @@ namespace PatientManagementSystem.Models
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
         [MaxLength(10, ErrorMessage = "Please enter the phone number without symbols.")]
         [Display(Name = "Pharmacy Phone")]
-        public string PharmacyPhone { get; set; }
-
-        [Display(Name = "Medical Allergy")]
-        [DataType(DataType.MultilineText)]
-        public string MedicalAllergy { get; set; }      
+        public string PharmacyPhone { get; set; }           
 
         public virtual List<Visits> Visits { get; set; }
         public virtual List<HIVManagement> hivManagement { get; set; }

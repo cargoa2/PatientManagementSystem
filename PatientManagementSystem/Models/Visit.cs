@@ -48,7 +48,11 @@ namespace PatientManagementSystem.Models
         public string CheckNumber { get; set; }
 
         [Display(Name = "Total Paid Today")]
-        public decimal TotalPaid { get; set; }        
+        public decimal TotalPaid { get; set; }
+
+        [Display(Name = "Medical Allergy")]
+        [DataType(DataType.MultilineText)]
+        public string MedicalAllergy { get; set; }
 
         [Display(Name = "Referral Reason")]
         [DataType(DataType.MultilineText)]
