@@ -51,8 +51,8 @@ namespace PatientManagementSystem.Models
         [Display(Name = "T-Cholesterol")]
         public int TotalCholesterol { get; set; }
 
-        [Display(Name = "Other Important Lab Results")]
-        public string OtherLab { get; set; }
+        [Display(Name = "Other Important Documents Results")]
+        public string OtherDocuments { get; set; }
 
         public virtual Visits Visit { get; set; }
 

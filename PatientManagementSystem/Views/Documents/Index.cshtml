@@ -1,0 +1,62 @@
+﻿@model IEnumerable<PatientManagementSystem.Models.Documents>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@{ int? paid = 0; }
+@{ foreach (var p in Model)
+    {
+        paid = p.PatientId;
+    }}
+<h2>Documents File Path List</h2>
+<p>
+    @Html.ActionLink("Add New Documents File", "Create", new { id = paid })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FilePath)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FilePath)
+        </td>
+        <td>
+            @Html.ActionLink("Open", "GetDocFile","Documents", new { id=item.DocFileId }, null) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.DocFileId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DocFileId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DocFileId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -61,8 +61,7 @@
         <td>               
             @Html.ActionLink("Edit", "Edit", new { id=item.VisitId }) |
             @Html.ActionLink("Details", "Details", new { id=item.VisitId }) | 
-            @Html.ActionLink("Billing Details", "BillingDetails", new { id = item.VisitId}) |
-            @Html.ActionLink("Lab Files", "LabFileIndex", "LabFiles", new { id = item.VisitId }, null) |       
+            @Html.ActionLink("Billing Details", "BillingDetails", new { id = item.VisitId}) |                   
             @if (item.IsHIVManagement)
             {
                 @Html.ActionLink("Add or Edit HIV Management", "HIVIndex", "HIVManagements", new { id = item.VisitId }, null)

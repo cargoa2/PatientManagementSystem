@@ -24,7 +24,7 @@
             @{ Phone = item.Visit.patient.PatientPhone; }
             @{ PharmacyPhone = item.Visit.patient.PharmacyPhone; }
             @{ BirthDate = Convert.ToDateTime(item.Visit.patient.BirthDate).ToString("MM/dd/yyyy"); }
-            @{ Allergies = item.Visit.patient.MedicalAllergy; }
+            @{ Allergies = item.Visit.MedicalAllergy; }
             @{ DateOfDiag = Convert.ToDateTime(item.Visit.patient.HIVDiagnosisDate).ToString("MM/dd/yyyy"); }
             @{ TCell = Convert.ToInt32(item.Visit.patient.TCellAtDiagnosis); }
             @{ ViralLoad = Convert.ToInt32(item.Visit.patient.ViralLoadAtDiagnosis); }

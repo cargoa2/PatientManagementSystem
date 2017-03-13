@@ -167,10 +167,10 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\HIVManagementsController.cs" />
     <Compile Include="Controllers\HIVManagementsController_bkup.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LabFilesController.cs" />
     <Compile Include="Controllers\OtherManagementsController.cs" />
     <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Controllers\VisitsController.cs" />
@@ -178,14 +178,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Communication.cs" />
     <Compile Include="Models\HIVManagement.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Immunizations.cs" />
+    <Compile Include="Models\InsuranceCards.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OtherManagement.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\PatientContext.cs" />
     <Compile Include="Models\PatientInitializer.cs" />
-    <Compile Include="Models\LabFiles.cs" />
+    <Compile Include="Models\Documents.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Models\Visit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -263,13 +266,12 @@
     <Content Include="Views\HIVManagements\Index.cshtml" />
     <Content Include="Views\HIVManagements\PatientHIVIndex.cshtml" />
     <Content Include="Views\Visits\BillingDetails.cshtml" />
-    <Content Include="Views\LabFiles\Create.cshtml" />
-    <Content Include="Views\LabFiles\Delete.cshtml" />
-    <Content Include="Views\LabFiles\Details.cshtml" />
-    <Content Include="Views\LabFiles\Edit.cshtml" />
-    <Content Include="Views\LabFiles\Index.cshtml" />
-    <Content Include="Views\LabFiles\LabFileIndex.cshtml" />
     <Content Include="Views\Visits\PatientVisits.cshtml" />
+    <Content Include="Views\Documents\Create.cshtml" />
+    <Content Include="Views\Documents\Delete.cshtml" />
+    <Content Include="Views\Documents\Details.cshtml" />
+    <Content Include="Views\Documents\Edit.cshtml" />
+    <Content Include="Views\Documents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

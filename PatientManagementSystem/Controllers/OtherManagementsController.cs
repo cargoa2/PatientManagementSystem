@@ -99,7 +99,7 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OtherId,VisitId,TCell,ViralLoad,WhiteBloodCell,Hemoglobin,PlasmaIronTurnover,OtherWeight,Triglycerides,TotalCholesterol,OtherLab")] OtherManagement otherManagement)
+        public ActionResult Create([Bind(Include = "OtherId,VisitId,TCell,ViralLoad,WhiteBloodCell,Hemoglobin,PlasmaIronTurnover,OtherWeight,Triglycerides,TotalCholesterol,OtherDocuments")] OtherManagement otherManagement)
         {
             if (ModelState.IsValid)
             {
@@ -131,7 +131,7 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OtherId,VisitId,TCell,ViralLoad,WhiteBloodCell,Hemoglobin,PlasmaIronTurnover,OtherWeight,Triglycerides,TotalCholesterol,OtherLab")] OtherManagement otherManagement)
+        public ActionResult Edit([Bind(Include = "OtherId,VisitId,TCell,ViralLoad,WhiteBloodCell,Hemoglobin,PlasmaIronTurnover,OtherWeight,Triglycerides,TotalCholesterol,OtherDocuments")] OtherManagement otherManagement)
         {
             if (ModelState.IsValid)
             {

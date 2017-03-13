@@ -67,7 +67,7 @@ namespace PatientManagementSystem.Models
         public string PastHistory { get; set; }
 
         [DataType(DataType.MultilineText)]
-        public string Epidemiology { get; set; }  // Could be a list and that list could be added to if not available in the list.  Check on that.
+        public string Epidemiology { get; set; }  // Could be a list and that list could be added to if not avaiDocumentsle in the list.  Check on that.
 
         [DataType(DataType.MultilineText)]
         [Display(Name = "Fhx")]
@@ -162,7 +162,7 @@ namespace PatientManagementSystem.Models
 
         #endregion
         [DataType(DataType.MultilineText)]
-        public string Laboratory { get; set; }
+        public string Documentsoratory { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Assessment { get; set; }
@@ -180,7 +180,6 @@ namespace PatientManagementSystem.Models
         [Display(Name = "Other Management")]
         public bool IsOtherManagement { get; set; }
 
-        public virtual ICollection<LabFiles> Files { get; set; }
 
     }
 

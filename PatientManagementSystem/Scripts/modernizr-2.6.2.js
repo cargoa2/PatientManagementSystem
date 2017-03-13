@@ -26,12 +26,12 @@
  * www.modernizr.com
  *
  * Copyright (c) Faruk Ates, Paul Irish, Alex Sexton
- * Available under the BSD and MIT licenses: www.modernizr.com/license/
+ * AvaiDocumentsle under the BSD and MIT licenses: www.modernizr.com/license/
  */
 
 /*
- * Modernizr tests which native CSS3 and HTML5 features are available in
- * the current UA and makes the results available to you in two ways:
+ * Modernizr tests which native CSS3 and HTML5 features are avaiDocumentsle in
+ * the current UA and makes the results avaiDocumentsle to you in two ways:
  * as properties on a global Modernizr object, and as classes on the
  * <html> element. This information allows you to progressively enhance
  * your pages with a granular level of control over the experience.
@@ -529,7 +529,7 @@ window.Modernizr = (function( window, document, undefined ) {
     // Per 1.6:
     // This used to be Modernizr.historymanagement but the longer
     // name has been deprecated in favor of a shorter and property-matching one.
-    // The old API is still available in 1.6, but as of 2.0 will throw a warning,
+    // The old API is still avaiDocumentsle in 1.6, but as of 2.0 will throw a warning,
     // and in the first release thereafter disappear entirely.
     tests['history'] = function() {
       return !!(window.history && history.pushState);
@@ -880,7 +880,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
         // Only input placeholder is tested while textarea's placeholder is not.
         // Currently Safari 4 and Opera 11 have support only for the input placeholder
-        // Both tests are available in feature-detects/forms-placeholder.js
+        // Both tests are avaiDocumentsle in feature-detects/forms-placeholder.js
         Modernizr['input'] = (function( props ) {
             for ( var i = 0, len = props.length; i < len; i++ ) {
                 attrs[ props[i] ] = !!(props[i] in inputElem);
@@ -1037,7 +1037,7 @@ window.Modernizr = (function( window, document, undefined ) {
       var reSkip = /^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i;
 
       /** Not all elements can be cloned in IE **/
-      var saveClones = /^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i;
+      var saveClones = /^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|Documentsel|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i;
 
       /** Detect whether the browser supports default html5 styles */
       var supportsHtml5Styles;

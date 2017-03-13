@@ -14,13 +14,12 @@ namespace PatientManagementSystem.Models
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Visits> Visits { get; set; }
 
+        public DbSet<Communication> Communication { get; set; }
         public DbSet<HIVManagement> HIVManegements { get; set; }
-
         public DbSet<OtherManagement> OtherManagements { get; set; }
-        public DbSet<LabFiles> LabFiles { get; set; }
-        //public DbSet<UserAccount> UserAccount { get; set; }
-
-
+        public DbSet<Documents> Documents { get; set; }
+        public DbSet<Immunizations> Immunizations { get; set; }
+       
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

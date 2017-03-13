@@ -201,7 +201,11 @@ namespace PatientManagementSystem.Models
         public virtual List<Visits> Visits { get; set; }
         public virtual List<HIVManagement> hivManagement { get; set; }
 
-        public virtual ICollection<LabFiles> Files { get; set; }
+        public virtual List<Documents> Documents { get; set; }
+
+        public virtual List<Immunizations> Immunizations { get; set; }
+
+        public virtual List<InsuranceCards> InsuranceCards { get; set; }
 
         [ReadOnly(true)]
         public bool IsOtherManagement(int? id)

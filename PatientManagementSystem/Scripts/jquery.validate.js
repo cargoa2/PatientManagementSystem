@@ -231,17 +231,17 @@ $.extend($.validator, {
 		rules: {},
 		errorClass: "error",
 		validClass: "valid",
-		errorElement: "label",
+		errorElement: "Documentsel",
 		focusInvalid: true,
 		errorContainer: $([]),
-		errorLabelContainer: $([]),
+		errorDocumentselContainer: $([]),
 		onsubmit: true,
 		ignore: ":hidden",
 		ignoreTitle: false,
 		onfocusin: function( element, event ) {
 			this.lastActive = element;
 
-			// hide error label and remove error class on focus if enabled
+			// hide error Documentsel and remove error class on focus if enabled
 			if ( this.settings.focusCleanup && !this.blockFocusCleanup ) {
 				if ( this.settings.unhighlight ) {
 					this.settings.unhighlight.call( this, element, this.settings.errorClass, this.settings.validClass );
@@ -316,9 +316,9 @@ $.extend($.validator, {
 	prototype: {
 
 		init: function() {
-			this.labelContainer = $(this.settings.errorLabelContainer);
-			this.errorContext = this.labelContainer.length && this.labelContainer || $(this.currentForm);
-			this.containers = $(this.settings.errorContainer).add( this.settings.errorLabelContainer );
+			this.DocumentselContainer = $(this.settings.errorDocumentselContainer);
+			this.errorContext = this.DocumentselContainer.length && this.DocumentselContainer || $(this.currentForm);
+			this.containers = $(this.settings.errorContainer).add( this.settings.errorDocumentselContainer );
 			this.submitted = {};
 			this.valueCache = {};
 			this.pendingRequest = 0;
@@ -659,14 +659,14 @@ $.extend($.validator, {
 				if ( this.settings.highlight ) {
 					this.settings.highlight.call( this, error.element, this.settings.errorClass, this.settings.validClass );
 				}
-				this.showLabel( error.element, error.message );
+				this.showDocumentsel( error.element, error.message );
 			}
 			if ( this.errorList.length ) {
 				this.toShow = this.toShow.add( this.containers );
 			}
 			if ( this.settings.success ) {
 				for ( i = 0; this.successList[i]; i++ ) {
-					this.showLabel( this.successList[i] );
+					this.showDocumentsel( this.successList[i] );
 				}
 			}
 			if ( this.settings.unhighlight ) {
@@ -689,41 +689,41 @@ $.extend($.validator, {
 			});
 		},
 
-		showLabel: function( element, message ) {
-			var label = this.errorsFor( element );
-			if ( label.length ) {
+		showDocumentsel: function( element, message ) {
+			var Documentsel = this.errorsFor( element );
+			if ( Documentsel.length ) {
 				// refresh error/success class
-				label.removeClass( this.settings.validClass ).addClass( this.settings.errorClass );
-				// replace message on existing label
-				label.html(message);
+				Documentsel.removeClass( this.settings.validClass ).addClass( this.settings.errorClass );
+				// replace message on existing Documentsel
+				Documentsel.html(message);
 			} else {
-				// create label
-				label = $("<" + this.settings.errorElement + ">")
+				// create Documentsel
+				Documentsel = $("<" + this.settings.errorElement + ">")
 					.attr("for", this.idOrName(element))
 					.addClass(this.settings.errorClass)
 					.html(message || "");
 				if ( this.settings.wrapper ) {
 					// make sure the element is visible, even in IE
 					// actually showing the wrapped element is handled elsewhere
-					label = label.hide().show().wrap("<" + this.settings.wrapper + "/>").parent();
+					Documentsel = Documentsel.hide().show().wrap("<" + this.settings.wrapper + "/>").parent();
 				}
-				if ( !this.labelContainer.append(label).length ) {
+				if ( !this.DocumentselContainer.append(Documentsel).length ) {
 					if ( this.settings.errorPlacement ) {
-						this.settings.errorPlacement(label, $(element) );
+						this.settings.errorPlacement(Documentsel, $(element) );
 					} else {
-						label.insertAfter(element);
+						Documentsel.insertAfter(element);
 					}
 				}
 			}
 			if ( !message && this.settings.success ) {
-				label.text("");
+				Documentsel.text("");
 				if ( typeof this.settings.success === "string" ) {
-					label.addClass( this.settings.success );
+					Documentsel.addClass( this.settings.success );
 				} else {
-					this.settings.success( label, element );
+					this.settings.success( Documentsel, element );
 				}
 			}
-			this.toShow = this.toShow.add(label);
+			this.toShow = this.toShow.add(Documentsel);
 		},
 
 		errorsFor: function( element ) {
@@ -1200,7 +1200,7 @@ $.format = $.validator.format;
 // if mode:"abort" is used, the previous request on that port (port can be undefined) is aborted via XMLHttpRequest.abort()
 (function($) {
 	var pendingRequests = {};
-	// Use a prefilter if available (1.5+)
+	// Use a prefilter if avaiDocumentsle (1.5+)
 	if ( $.ajaxPrefilter ) {
 		$.ajaxPrefilter(function( settings, _, xhr ) {
 			var port = settings.port;

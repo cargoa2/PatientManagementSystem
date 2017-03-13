@@ -68,8 +68,7 @@
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Visits", "PatientIndex", "Visits", new { id = item.Id }, null) |
-           
-            @Html.ActionLink("Labs", "PatientLabs", "LabFiles", new { id = item.Id}, null) |
+            @Html.ActionLink("Documents", "DocFileIndex", "Documents", new { id = item.Id}, null) |            
             @if (item.IsOtherManagement(item.Id))
             {
                 @Html.ActionLink("Other Management", "PatientOtherManagement", "OtherManagements", new { id = item.Id }, null)

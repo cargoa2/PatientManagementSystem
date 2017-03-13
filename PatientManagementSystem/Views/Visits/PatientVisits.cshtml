@@ -36,6 +36,9 @@
             @Html.DisplayNameFor(model => model.TotalPaid)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.MedicalAllergy)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ReferralReason)
         </th>
         <th>
@@ -123,7 +126,7 @@
             @Html.DisplayNameFor(model => model.Additional)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Laboratory)
+            @Html.DisplayNameFor(model => model.Documentsoratory)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Assessment)
@@ -163,8 +166,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.CheckNumber)
         </td>
-        <td>
+        <td> 
             @Html.DisplayFor(modelItem => item.TotalPaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedicalAllergy)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ReferralReason)
@@ -254,7 +260,7 @@
             @Html.DisplayFor(modelItem => item.Additional)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Laboratory)
+            @Html.DisplayFor(modelItem => item.Documentsoratory)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Assessment)
