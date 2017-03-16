@@ -1,8 +1,9 @@
-﻿@model PatientManagementSystem.Models.Documents
+﻿@model PatientManagementSystem.Models.Immunizations
 
 @{
     ViewBag.Title = "Delete";
 }
+
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -17,18 +18,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DocDate)
+            @Html.DisplayNameFor(model => model.ImmDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DocDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DocType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DocType)
+            @Html.DisplayFor(model => model.ImmDate)
         </dd>
 
         <dt>

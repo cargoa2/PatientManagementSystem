@@ -13,7 +13,6 @@ namespace PatientManagementSystem.Models
     {
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Visits> Visits { get; set; }
-
         public DbSet<Communication> Communication { get; set; }
         public DbSet<HIVManagement> HIVManegements { get; set; }
         public DbSet<OtherManagement> OtherManagements { get; set; }

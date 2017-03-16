@@ -1,0 +1,58 @@
+﻿@model IEnumerable<PatientManagementSystem.Models.Immunizations>
+
+@{
+    ViewBag.Title = "Index";
+}
+@{ int? paid = 0; }
+@{ foreach (var p in Model)
+    {
+        paid = p.PatientId;
+    }}
+
+
+<h2>Immunizations List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { id = paid })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImmDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FilePath)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImmDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FilePath)
+        </td>
+        <td>
+            @Html.ActionLink("Open", "GetImmFile", "Immunizations", new { id = item.ImmId }, null) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.ImmId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ImmId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ImmId })
+        </td>
+    </tr>
+}
+
+</table>

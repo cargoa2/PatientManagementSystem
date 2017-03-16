@@ -1,4 +1,4 @@
-﻿@model PatientManagementSystem.Models.Documents
+﻿@model PatientManagementSystem.Models.Communication
 
 @{
     ViewBag.Title = "Delete";
@@ -17,18 +17,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DocDate)
+            @Html.DisplayNameFor(model => model.Type)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DocDate)
+            @Html.DisplayFor(model => model.Type)
         </dd>
+
         <dt>
-            @Html.DisplayNameFor(model => model.DocType)
+            @Html.DisplayNameFor(model => model.CommDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DocType)
+            @Html.DisplayFor(model => model.CommDate)
         </dd>
 
         <dt>
@@ -53,7 +54,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
+            <input type="submit" value="Delete" class="btn btn-default" /> 
         </div>
     }
 </div>

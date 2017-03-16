@@ -205,8 +205,6 @@ namespace PatientManagementSystem.Models
 
         public virtual List<Immunizations> Immunizations { get; set; }
 
-        public virtual List<InsuranceCards> InsuranceCards { get; set; }
-
         [ReadOnly(true)]
         public bool IsOtherManagement(int? id)
         {

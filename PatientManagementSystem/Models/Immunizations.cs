@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,6 +11,13 @@ namespace PatientManagementSystem.Models
     {
         [Key]
         public int ImmId { get; set; }
+
+        public int PatientId { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Patient Name")]
+        public string FullName { get; set; }
+
         [Display(Name = "Immunization Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "You must enter the date of Immunization")]
@@ -20,6 +28,8 @@ namespace PatientManagementSystem.Models
 
         [Display(Name = "File Path")]
         public string FilePath { get; set; }
+
+        public virtual Patient Patient { get; set; }
 
     }
 }
