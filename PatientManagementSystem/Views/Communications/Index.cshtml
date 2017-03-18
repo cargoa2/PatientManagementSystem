@@ -52,7 +52,7 @@
             @Html.DisplayFor(modelItem => item.FilePath)
         </td>
         <td>
-            @Html.ActionLink("Open", "GetDocFile", "Documents", new { id = item.CommId }, null) |
+            @Html.ActionLink("Open", "GetCommFile", "Communications", new { id = item.CommId }, null) |
             @Html.ActionLink("Edit", "Edit", new { id=item.CommId }) |
             @Html.ActionLink("Details", "Details", new { id=item.CommId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.CommId })

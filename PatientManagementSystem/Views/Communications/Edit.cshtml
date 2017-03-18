@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Edit";
+    ViewBag.FileName = Model.FilePath;
 }
 
 <h2>Edit</h2>
@@ -49,8 +50,15 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FilePath, htmlAttributes: new { @class = "control-Label col-md-2" })
-            <div class="col-md-10 form-control-static">
+            @Html.Label("Current File Path", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10  form-control-static">
+                @Model.FilePath
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FilePath, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
                 <input type="file" id="CommFile" name="file" style="width:1000px" />
                 @Html.ValidationMessageFor(model => model.FilePath, "", new { @class = "text-danger" })
             </div>

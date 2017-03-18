@@ -18,8 +18,7 @@ namespace PatientManagementSystem.Controllers
         // GET: Immunizations
         public ActionResult Index()
         {
-            var immunization = db.Immunizations.Include(i => i.PatientId);
-            return View(immunization.ToList());
+            return View(db.Immunizations.ToList());
         }
 
         // GET: Immunizations/Details/5
@@ -58,7 +57,7 @@ namespace PatientManagementSystem.Controllers
             {
                 List<Immunizations> immunizations = db.Immunizations.ToList();
                 var iList = immunizations.Where(i => i.PatientId == id)
-                            .OrderByDescending(ImmDate => ImmDate);
+                            .OrderByDescending(ImmDate => ImmDate.ImmDate);
                 return View("Index", iList);
             }
             else
@@ -72,14 +71,20 @@ namespace PatientManagementSystem.Controllers
             string fileName = (from i in db.Immunizations
                                where i.ImmId == id
                                select i.FilePath).SingleOrDefault();
+            if (fileName != null)
+            {
+                var fileStream = new FileStream(fileName,
+                                FileMode.Open,
+                                FileAccess.Read
+                                );
 
-            var fileStream = new FileStream(fileName,
-                            FileMode.Open,
-                            FileAccess.Read
-                            );
-
-            var fsResult = new FileStreamResult(fileStream, "application/pdf");
-            return fsResult;
+                var fsResult = new FileStreamResult(fileStream, "application/pdf");
+                return fsResult;
+            }
+            else
+            {
+                return RedirectToAction("ImmIndex", "Immunizations", new { id = id });
+            }
         }
 
         public ActionResult ImmDocs(int id)
@@ -106,15 +111,16 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ImmId,ImmDate,Notes,FilePath")] Immunizations immunizations, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "ImmId,PatientId,ImmDate,Notes,FilePath")] Immunizations immunizations, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                try {
+                try
+                {
                     immunizations.FilePath = Path.GetFullPath(file.FileName);
                     db.Immunizations.Add(immunizations);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Immunizations", new { id = immunizations.PatientId });
+                    return RedirectToAction("ImmIndex", "Immunizations", new { id = immunizations.PatientId });
                 }
                 catch(Exception ex)
                 {
@@ -145,7 +151,7 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ImmId,ImmDate,Notes,FilePath")] Immunizations immunizations, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "ImmId,PatientId,ImmDate,Notes,FilePath")] Immunizations immunizations, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -154,7 +160,7 @@ namespace PatientManagementSystem.Controllers
                     immunizations.FilePath = Path.GetFullPath(file.FileName);
                     db.Entry(immunizations).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Immunizations", new { id = immunizations.PatientId });
+                    return RedirectToAction("ImmIndex", "Immunizations", new { id = immunizations.PatientId });
                 }
                 catch(Exception ex)
                 {
@@ -187,7 +193,15 @@ namespace PatientManagementSystem.Controllers
             Immunizations immunizations = db.Immunizations.Find(id);
             db.Immunizations.Remove(immunizations);
             db.SaveChanges();
-            return RedirectToAction("ImmIndex", "Immunizations", new { id = immunizations.PatientId });
+
+            if (CheckforImmunizations(id) == true)
+            {
+                return RedirectToAction("ImmIndex", "Immunizations", new { id = immunizations.PatientId });
+            }
+            else
+            {
+                return RedirectToAction("Index", "Immunizations");
+            }
         }
 
         protected override void Dispose(bool disposing)

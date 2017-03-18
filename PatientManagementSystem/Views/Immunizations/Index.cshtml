@@ -3,17 +3,19 @@
 @{
     ViewBag.Title = "Index";
 }
+
 @{ int? paid = 0; }
 @{ foreach (var p in Model)
     {
         paid = p.PatientId;
-    }}
+    }
+ }
 
 
 <h2>Immunizations List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { id = paid })
+    @Html.ActionLink("Add new Immunization", "Create", new { id = paid })
 </p>
 <table class="table">
     <tr>

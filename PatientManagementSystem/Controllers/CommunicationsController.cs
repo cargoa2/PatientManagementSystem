@@ -58,7 +58,7 @@ namespace PatientManagementSystem.Controllers
             {
                 List<Communication> Communications = db.Communication.ToList();
                 var cList = Communications.Where(p => p.PatientId == id)
-                                            .OrderByDescending(CommDate => CommDate);
+                                            .OrderByDescending(CommDate => CommDate.CommDate);
                 return View("Index", cList);
             }
             else
@@ -73,12 +73,20 @@ namespace PatientManagementSystem.Controllers
                                where d.CommId == id
                                select d.FilePath).SingleOrDefault();
 
-            var fileStream = new FileStream(fileName,
-                                            FileMode.Open,
-                                            FileAccess.Read
-                                            );
-            var fsResult = new FileStreamResult(fileStream, "application/pdf");
-            return fsResult;
+            if (fileName != null)
+            {
+
+                var fileStream = new FileStream(fileName,
+                                                FileMode.Open,
+                                                FileAccess.Read
+                                                );
+                var fsResult = new FileStreamResult(fileStream, "application/pdf");
+                return fsResult;
+            }
+            else
+            {
+                return RedirectToAction("Index", "Communications", new { id = id });
+            }
         }
 
         public ActionResult CommDocs(int id)
@@ -206,7 +214,16 @@ namespace PatientManagementSystem.Controllers
             Communication communication = db.Communication.Find(id);
             db.Communication.Remove(communication);
             db.SaveChanges();
-            return RedirectToAction("CommIndex", "Communication", new { id = communication.PatientId });
+
+            if (CheckforCommunications(id) == true)
+            {
+                return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });
+            }
+            else
+            {
+                return RedirectToAction("Index", "Communications");
+            }
+
         }
 
         protected override void Dispose(bool disposing)

@@ -197,10 +197,17 @@ namespace PatientManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Visits visit = db.Visits.Find(id);
-            db.Visits.Remove(visit);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (CheckVisits(id) == true)
+            {
+                Visits visit = db.Visits.Find(id);
+                db.Visits.Remove(visit);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Visits");
+            }
         }
 
         private IEnumerable<VisitTypes> PopulateVisitTypes()

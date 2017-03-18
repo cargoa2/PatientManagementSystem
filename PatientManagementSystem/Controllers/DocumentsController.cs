@@ -18,8 +18,7 @@ namespace PatientManagementSystem.Controllers
         // GET: Documents
         public ActionResult Index()
         {
-            var documents = db.Documents.Include(d => d.Patient);
-            return View(documents.ToList());            
+            return View(db.Documents.ToList());
         }
 
         // GET: Documents/Details/5
@@ -76,13 +75,20 @@ namespace PatientManagementSystem.Controllers
                                where l.DocFileId == id
                                select l.FilePath).SingleOrDefault();
 
+            if (fileName != null)
+            {
 
-            var fileStream = new FileStream(fileName,
-                                    FileMode.Open,
-                                    FileAccess.Read
-                                  );
-            var fsResult = new FileStreamResult(fileStream, "application/pdf");
-            return fsResult;
+                var fileStream = new FileStream(fileName,
+                                        FileMode.Open,
+                                        FileAccess.Read
+                                      );
+                var fsResult = new FileStreamResult(fileStream, "application/pdf");
+                return fsResult;
+            }
+            else
+            {
+                return RedirectToAction("Index", "Documents", new { id = id });
+            }
 
         }
 
@@ -191,10 +197,17 @@ namespace PatientManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Documents documents = db.Documents.Find(id);
-            db.Documents.Remove(documents);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Documents", new { id = documents.PatientId });
+            if (CheckForDocuments(id) == true)
+            {
+                Documents documents = db.Documents.Find(id);
+                db.Documents.Remove(documents);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Documents", new { id = documents.PatientId });
+            }
+            else
+            {
+                return RedirectToAction("Index", "Documents");
+            }
         }
 
         protected override void Dispose(bool disposing)

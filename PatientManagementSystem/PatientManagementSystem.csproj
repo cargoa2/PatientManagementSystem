@@ -170,7 +170,6 @@
     <Compile Include="Controllers\CommunicationsController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\HIVManagementsController.cs" />
-    <Compile Include="Controllers\HIVManagementsController_bkup.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImmunizationsController.cs" />
     <Compile Include="Controllers\OtherManagementsController.cs" />
