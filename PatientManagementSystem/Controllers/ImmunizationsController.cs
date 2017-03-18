@@ -39,9 +39,7 @@ namespace PatientManagementSystem.Controllers
         public bool CheckforImmunizations(int id)
         {
             List<Immunizations> im = db.Immunizations.ToList();
-            var recordexists = im.Find(i => i.PatientId == id);
-
-            if(recordexists != null)
+            if(im.FindAll(p => p.PatientId == id).Count > 0)
             {
                 return true;
             }
@@ -193,15 +191,7 @@ namespace PatientManagementSystem.Controllers
             Immunizations immunizations = db.Immunizations.Find(id);
             db.Immunizations.Remove(immunizations);
             db.SaveChanges();
-
-            if (CheckforImmunizations(id) == true)
-            {
-                return RedirectToAction("ImmIndex", "Immunizations", new { id = immunizations.PatientId });
-            }
-            else
-            {
-                return RedirectToAction("Index", "Immunizations");
-            }
+            return RedirectToAction("ImmIndex", "Immunizations", new { id = immunizations.PatientId });
         }
 
         protected override void Dispose(bool disposing)

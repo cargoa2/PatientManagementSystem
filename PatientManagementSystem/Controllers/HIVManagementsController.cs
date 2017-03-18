@@ -161,17 +161,10 @@ namespace PatientManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (CheckForHIVRecords(id) == true)
-            {
                 HIVManagement hIVManagement = db.HIVManegements.Find(id);
                 db.HIVManegements.Remove(hIVManagement);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return RedirectToAction("Index", "HIVManagement");
-            }
+            return RedirectToAction("HIVIndex", "HIVManagements", new { id = hIVManagement.VisitId });
         }
 
         protected override void Dispose(bool disposing)

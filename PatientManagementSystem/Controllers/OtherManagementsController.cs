@@ -161,19 +161,11 @@ namespace PatientManagementSystem.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
-        {
-            if(CheckForOtherManagementRecords(id) == true)
-            {
-                OtherManagement otherManagement = db.OtherManagements.Find(id);
-                db.OtherManagements.Remove(otherManagement);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return RedirectToAction("Index", "OtherManagement");
-            }
-           
+        {          
+            OtherManagement otherManagement = db.OtherManagements.Find(id);
+            db.OtherManagements.Remove(otherManagement);
+            db.SaveChanges();
+            return RedirectToAction("OtherIndex", "OtherManagements", new { id = otherManagement.VisitId });
         }
 
         protected override void Dispose(bool disposing)

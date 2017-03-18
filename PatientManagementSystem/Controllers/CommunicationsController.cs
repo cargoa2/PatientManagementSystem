@@ -40,9 +40,8 @@ namespace PatientManagementSystem.Controllers
         public bool CheckforCommunications(int id)
         {
             List<Communication> comm = db.Communication.ToList();
-            var recordsexists = comm.Find(i => i.PatientId == id);
-
-            if(recordsexists != null)
+            int recordsExists = comm.FindAll(p => p.PatientId == id).Count();
+            if(recordsExists > 0)           
             {
                 return true;
             }
@@ -125,7 +124,7 @@ namespace PatientManagementSystem.Controllers
                         communication.FilePath = Path.GetFullPath(file.FileName);
                         db.Communication.Add(communication);
                         db.SaveChanges();
-                        return RedirectToAction("Index", "Communications", new { id = communication.PatientId });
+                        return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });
                     }
                     catch (Exception ex)
                     {
@@ -136,7 +135,7 @@ namespace PatientManagementSystem.Controllers
                 {
                     db.Communication.Add(communication);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Communications", new { id = communication.PatientId });
+                    return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });
                 }
             }            
             return View(communication);
@@ -174,7 +173,7 @@ namespace PatientManagementSystem.Controllers
                         communication.FilePath = Path.GetFullPath(file.FileName);
                         db.Entry(communication).State = EntityState.Modified;
                         db.SaveChanges();
-                        return RedirectToAction("Index", "Communications", new { id = communication.PatientId });
+                        return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });
                     }
                     catch (Exception ex)
                     {
@@ -185,7 +184,7 @@ namespace PatientManagementSystem.Controllers
                 {
                     db.Entry(communication).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Communications", new { id = communication.PatientId });
+                    return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });
                 }
             }
             return View(communication);
@@ -214,16 +213,7 @@ namespace PatientManagementSystem.Controllers
             Communication communication = db.Communication.Find(id);
             db.Communication.Remove(communication);
             db.SaveChanges();
-
-            if (CheckforCommunications(id) == true)
-            {
-                return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });
-            }
-            else
-            {
-                return RedirectToAction("Index", "Communications");
-            }
-
+            return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });
         }
 
         protected override void Dispose(bool disposing)

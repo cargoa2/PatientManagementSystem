@@ -34,16 +34,12 @@ namespace PatientManagementSystem.Controllers
                 return HttpNotFound();
             }
             return View(documents);
-        }
-
-       
+        }        
 
         public bool CheckForDocuments(int id)
         {
             List<Documents> files = db.Documents.ToList();
-            var recordsxists = files.Find(i => i.PatientId == id);
-
-            if (recordsxists != null)
+            if(files.FindAll(p => p.PatientId == id).Count > 0)            
             {
                 return true;
             }
@@ -126,7 +122,7 @@ namespace PatientManagementSystem.Controllers
                         Documents.FilePath = Path.GetFullPath(file.FileName);
                         db.Documents.Add(Documents);
                         db.SaveChanges();
-                        return RedirectToAction("Index", "Documents", new { id = Documents.PatientId });
+                        return RedirectToAction("DocFileIndex", "Documents", new { id = Documents.PatientId });
                     }
                     catch(Exception ex)
                     {
@@ -166,7 +162,7 @@ namespace PatientManagementSystem.Controllers
                     documents.FilePath = Path.GetFullPath(file.FileName);
                     db.Entry(documents).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Documents", new { id = documents.PatientId });
+                    return RedirectToAction("DocFileIndex", "Documents", new { id = documents.PatientId });
                 }
                 catch(Exception ex)
                 {
@@ -196,18 +192,11 @@ namespace PatientManagementSystem.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
-        {
-            if (CheckForDocuments(id) == true)
-            {
-                Documents documents = db.Documents.Find(id);
-                db.Documents.Remove(documents);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Documents", new { id = documents.PatientId });
-            }
-            else
-            {
-                return RedirectToAction("Index", "Documents");
-            }
+        {          
+            Documents documents = db.Documents.Find(id);
+            db.Documents.Remove(documents);
+            db.SaveChanges();
+            return RedirectToAction("DocFileIndex", "Documents", new { id = documents.PatientId });           
         }
 
         protected override void Dispose(bool disposing)
