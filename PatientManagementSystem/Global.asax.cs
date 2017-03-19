@@ -15,7 +15,7 @@ namespace PatientManagementSystem
         protected void Application_Start()
         {
 
-            Database.SetInitializer<PatientContext>(new PatientInitializer());
+            //Database.SetInitializer<PatientContext>(new PatientInitializer());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
