@@ -70,18 +70,23 @@
             @Html.ActionLink("Visits", "PatientIndex", "Visits", new { id = item.Id }, null) |
             @Html.ActionLink("Notes", "CommIndex", "Communications", new { id = item.Id }, null) |
             @Html.ActionLink("Documents", "DocFileIndex", "Documents", new { id = item.Id}, null) |  
-            @Html.ActionLink("Immunizations", "ImmIndex", "Immunizations", new { id = item.Id }, null) |                      
+            @Html.ActionLink("Immunizations", "ImmIndex", "Immunizations", new { id = item.Id }, null) |              
             @if (item.IsOtherManagement(item.Id))
             {
                 @Html.ActionLink("Other Management", "PatientOtherManagement", "OtherManagements", new { id = item.Id }, null)
             }
-            else if (item.IsHIVManagement(item.Id))
+            @if (item.IsOtherManagement(item.Id) && item.IsHIVManagement(item.Id))
+            {
+                @Html.Encode("|")
+            }
+            @if (item.IsHIVManagement(item.Id))
             {
                 @Html.ActionLink("HIV Management", "PatientHIVManagement", "HIVManagements", new { id = item.Id }, null)
-            } 
-            else{                
-                @Html.Encode("Add management type")
             }
+            @if(!item.IsOtherManagement(item.Id) && !item.IsHIVManagement(item.Id))
+            {
+                @Html.Encode("Add management type")
+            }            
             | @Html.ActionLink("Delete", "Delete", new { id = item.Id })           
              
                     

@@ -11,6 +11,10 @@ namespace PatientManagementSystem.Models
 {
     public class PatientContext : DbContext
     {
+        public PatientContext() : base("PatientContext")
+        {
+            Database.SetInitializer<PatientContext>(null);
+        }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Visits> Visits { get; set; }
         public DbSet<Communication> Communication { get; set; }

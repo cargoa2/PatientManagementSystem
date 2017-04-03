@@ -39,7 +39,7 @@ namespace PatientManagementSystem.Models
         [Display(Name = "Hgb")]
         public decimal Hemoglobin { get; set; }
 
-        [Display(Name = "PIT")]
+        [Display(Name = "PLT")]
         public decimal PlasmaIronTurnover { get; set; }
 
         [Display(Name = "Weight")]

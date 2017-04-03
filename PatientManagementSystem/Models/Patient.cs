@@ -270,7 +270,9 @@ namespace PatientManagementSystem.Models
         [Display(Name = "Male")]
         M,
         [Display(Name = "Female")]
-        F
+        F,
+        [Display(Name = "Other")]
+        O
     }
 
     public enum MaritalStatus

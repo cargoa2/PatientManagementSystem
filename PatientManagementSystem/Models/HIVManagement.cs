@@ -50,8 +50,8 @@ namespace PatientManagementSystem.Models
         public string Medication { get; set; }
 
         [Display(Name = "D/C")]
-        [MaxLength(10)]
-        public string DiagnosisCode { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime MedDiscDate { get; set; }
 
         public virtual Visits Visit { get; set; }
 
