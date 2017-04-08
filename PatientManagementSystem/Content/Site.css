@@ -20,7 +20,7 @@
 input,
 select,
 textarea {
-    max-width: 580px;
+    max-width: 840px;
 }
 
 .form-control-multi {

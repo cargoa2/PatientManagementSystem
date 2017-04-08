@@ -86,7 +86,7 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,LastName,FirstName,MiddleInitial,StreetAddress,City,State,PostalCode,PatientPhone,PatientPhoneType,OtherPatientPhone, OtherPhoneType," +
+        public ActionResult Create([Bind(Include = "Id,Active,LastName,FirstName,MiddleInitial,StreetAddress,City,State,PostalCode,PatientPhone,PatientPhoneType,OtherPatientPhone, OtherPhoneType," +
             " BirthDate,SOC,Gender,Status,Employed,EmployerName,EmployerPhone,Relation,SubscriberLastName,SubscriberFirstName,SubscriberMiddleInitial,SubscriberBirthDate,SubscriberSOC, " +
             " SubscriberGender,ReferingPhysician,ReferingPhysicianPhone,EmergencyContact,EmergencyPhone,PrimaryInsurance,SecondaryInsurance,PharmacyPhone,HIVDiagnosisDate,TCellAtDiagnosis,ViralLoadAtDiagnosis,Signature,DateSigned")] Patient patient)
         {
@@ -120,7 +120,7 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,LastName,FirstName,MiddleInitial,StreetAddress,City,State,PostalCode,PatientPhone,PatientPhoneType,OtherPatientPhone,OtherPhoneType," +
+        public ActionResult Edit([Bind(Include = "Id,Active,LastName,FirstName,MiddleInitial,StreetAddress,City,State,PostalCode,PatientPhone,PatientPhoneType,OtherPatientPhone,OtherPhoneType," +
                                         "BirthDate,SOC,Gender,Status,Employed,EmployerName,EmployerPhone,Relation,SubscriberLastName,SubscriberMiddleInitial,SubscriberBirthDate,SubscriberSOC," +
                                         "SubscriberGender,ReferingPhysician,ReferingPhysicianPhone,EmergencyContact,EmergencyPhone,PrimaryInsurance,SecondaryInsurance,PharmacyPhone,HIVDiagnosisDate,TCellAtDiagnosis,ViralLoadAtDiagnosis,Signature,DateSigned")] Patient patient)
         {

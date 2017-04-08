@@ -62,9 +62,7 @@ namespace PatientManagementSystem.Controllers
                 return HttpNotFound();
             }
             return View(visit);
-        }
-
-        
+        }    
 
 
         // GET: Visits/Details/5
@@ -95,10 +93,10 @@ namespace PatientManagementSystem.Controllers
                 Visits visit = new Visits();
                 visit.PatientId = Convert.ToInt32(id);
                 visit.FullName = patient.FullName;
-                visit.VisitDate = DateTime.Now;
+                visit.VisitDate = DateTime.Now;           
 
             if (listVisits.Count() > 0)
-            {                
+            {
                 Visits lastVisit = visits.Where(v => v.PatientId == id).OrderByDescending(v => v.VisitDate).FirstOrDefault();
 
                 visit.History = lastVisit.History;
@@ -108,11 +106,7 @@ namespace PatientManagementSystem.Controllers
                 visit.SocialHistory = lastVisit.SocialHistory;
                 visit.MedicalAllergy = lastVisit.MedicalAllergy;
                 visit.Medications = lastVisit.Medications;
-            }           
-
-            if (CheckVisits(id) == true)
-            {
-                if (patient.Active == false)
+                if ((DateTime.Now.Date.AddMonths(-24) > lastVisit.VisitDate))
                 {
                     visit.Initial = true;
                 }
@@ -120,12 +114,9 @@ namespace PatientManagementSystem.Controllers
                 {
                     visit.Initial = false;
                 }
+
             }
-            else
-            {
-                visit.Initial = true;
-            }
-                return View(visit);
+            return View(visit);
         }
 
         // POST: Visits/Create
@@ -134,7 +125,7 @@ namespace PatientManagementSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AcceptVerbs("Post")]
-        public ActionResult Create([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,MedicalAllergy,ReferralReason,History,PastHistory,Epidemiology,FamilyHitory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Documentsoratory,Assessment,Plan,IsHIVManagement,IsOtherManagement")] Visits visit)
+        public ActionResult Create([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,MedicalAllergy,ReferralReason,History,PastHistory,Epidemiology,FamilyHitory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Documentsoratory,Assessment,Plan,IsHIVManagement,IsOtherManagement,ProblemList")] Visits visit)
         {
             if (ModelState.IsValid)
             {
@@ -165,7 +156,7 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,MedicalAllergy,ReferralReason,History,PastHistory,Epidemiology,FamilyHitory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Documentsoratory,Assessment,Plan,IsHIVManagement,IsOtherManagement")] Visits visit)
+        public ActionResult Edit([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,MedicalAllergy,ReferralReason,History,PastHistory,Epidemiology,FamilyHitory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Documentsoratory,Assessment,Plan,IsHIVManagement,IsOtherManagement,ProblemList")] Visits visit)
         {
             if (ModelState.IsValid)
             {   

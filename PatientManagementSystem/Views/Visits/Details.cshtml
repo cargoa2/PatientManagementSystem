@@ -4,11 +4,25 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Visit Details</h2>
+<h4>KENTUCKIANA INFECTIOUS DISEASE CONSULTANCTS, PSC</h4>
+<h5>Barbara Wojda, M.D</h5>
+<h5>125 Fairfax Avenue, Louisville, KY 40207</h5>
+<h5>Phone (502) 895-6155 Fax (502) 895-6156</h5>
+<h5>drbarbarawojda.com</h5>
+<br />
 
 <div>
     <hr />
+    @if (Model.Initial == true)
+    {
+        <h2>Office Consultation</h2>
+    }
+    else
+    {
+        <H2>Follow Up</H2>
+    }
     <dl class="dl-horizontal">
+       
         <dt>
             @Html.DisplayNameFor(model => model.PatientId)
         </dt>
@@ -78,6 +92,17 @@
             @Html.DisplayFor(model => model.TotalPaid)
         </dd>
 
+        @if (Model.Initial != true)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.ProblemList)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProblemList)
+            </dd>
+        }
+
         <dt>
             @Html.DisplayNameFor(model => model.MedicalAllergy)
         </dt>
@@ -117,15 +142,17 @@
 
         <dd>
             @Html.DisplayFor(model => model.PastHistory)
-        </dd>
+        </dd>        
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Epidemiology)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Epidemiology)
-        </dd>
+        @if (Model.Initial == true)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Epidemiology)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Epidemiology)
+            </dd>
+        }        
 
         <dt>
             @Html.DisplayNameFor(model => model.FamilyHistory)

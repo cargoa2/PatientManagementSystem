@@ -34,7 +34,7 @@ namespace PatientManagementSystem.Models
 
         [Display(Name = "Diagnosis Code")]
         [Required(ErrorMessage = "ICD10 Diagnosis Codes is required.")]
-        [MaxLength(10)]
+        [MaxLength(255)]
         public string DiagnosisCode { get; set; }
 
         [Display(Name = "Co-Pay Amount")]
@@ -49,6 +49,10 @@ namespace PatientManagementSystem.Models
 
         [Display(Name = "Total Paid Today")]
         public decimal TotalPaid { get; set; }
+
+        [Display(Name = "Problem List")]
+        [DataType(DataType.MultilineText)]
+        public string ProblemList { get; set; }
 
         [Display(Name = "Medical Allergy")]
         [DataType(DataType.MultilineText)]
@@ -83,7 +87,7 @@ namespace PatientManagementSystem.Models
         [MaxLength(50)]
         public string RosGeneral { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(255)]
         [Display(Name = "HEENT")]      
         public string RosHeent { get; set; } // head, eye, ear, nose, and throat
 
@@ -128,9 +132,10 @@ namespace PatientManagementSystem.Models
 
         public decimal Tempurature { get; set; }
 
-        public decimal Weight { get; set; }
-
         [MaxLength(50)]
+        public string Weight { get; set; }
+
+        [MaxLength(255)]
         [Display(Name = "HEENT")]
         public string PeHeent { get; set; }
 
@@ -161,6 +166,7 @@ namespace PatientManagementSystem.Models
         public string Additional { get; set; }
 
         #endregion
+        [Display(Name = "Laboratory Results")]
         [DataType(DataType.MultilineText)]
         public string Documentsoratory { get; set; }
 

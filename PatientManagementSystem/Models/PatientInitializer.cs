@@ -7,7 +7,8 @@ using System.Web;
 namespace PatientManagementSystem.Models
 {
     //public class PatientInitializer : DropCreateDatabaseIfModelChanges<PatientContext>
-    public class PatientInitializer : DropCreateDatabaseAlways<PatientContext>
+    //public class PatientInitializer : DropCreateDatabaseAlways<PatientContext>
+    public class PatientInitializer : DropCreateDatabaseIfModelChanges<PatientContext>
     {
         protected override void Seed(PatientContext context)
         {

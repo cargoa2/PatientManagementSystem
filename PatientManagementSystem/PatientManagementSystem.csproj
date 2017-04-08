@@ -267,7 +267,6 @@
     <Content Include="Views\HIVManagements\Index.cshtml" />
     <Content Include="Views\HIVManagements\PatientHIVIndex.cshtml" />
     <Content Include="Views\Visits\BillingDetails.cshtml" />
-    <Content Include="Views\Visits\PatientVisits.cshtml" />
     <Content Include="Views\Documents\Create.cshtml" />
     <Content Include="Views\Documents\Delete.cshtml" />
     <Content Include="Views\Documents\Details.cshtml" />
