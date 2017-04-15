@@ -26,7 +26,7 @@ namespace PatientManagementSystem.Models
         [NotMapped]
         public int TCellAtDiagnosis { get; set; }
 
-        [NotMapped]
+        [Display(Name = "Viral Load at Diagnosis")]
         public int ViralLoadAtDiagnosis { get; set; }
 
         [Display(Name = "Date")]
@@ -50,7 +50,7 @@ namespace PatientManagementSystem.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<DateTime> MedDiscDate { get; set; }
 
-        public virtual Visits Visit { get; set; }
+        //public virtual Visits Visit { get; set; }
 
         public IEnumerable<Visits> Visits { get; set; }
 

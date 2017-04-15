@@ -17,9 +17,7 @@ namespace PatientManagementSystem.Controllers
         // GET: HIVManagements
         public ActionResult Index()
         {
-            return View(db.HIVManegements.ToList());
-            //var hIVManegements = db.HIVManegements.Include(h => h.Visit);
-            //return View(hIVManegements.ToList());
+            return View(db.HIVManegements.ToList());           
         }
 
         public bool CheckForHIVRecords(int id)
@@ -42,7 +40,9 @@ namespace PatientManagementSystem.Controllers
             if (CheckForHIVRecords(id) == true)
             {
                 List<HIVManagement> hivMan = db.HIVManegements.ToList();
-                var hList = hivMan.Where(h => h.PatientId == id).OrderByDescending(h => h.VisitDate);
+                List<Visits> visits = db.Visits.ToList();
+                var hList = hivMan.Where(h => h.PatientId == id).OrderByDescending(h => h.VisitDate);            
+
                 return View("Index", hList);                
             }
             else

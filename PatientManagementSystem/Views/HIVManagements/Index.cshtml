@@ -16,11 +16,9 @@
 @{ var Phone = "";}
 @{ var PharmacyPhone = "";}
 @{ string BirthDate = Convert.ToString("1/1/1900");}
-@{ var Allergies = "";}
 @{ string DateOfDiag = Convert.ToString("1/1/1900");}
 @{ var TCell = 0; }
 @{ var ViralLoad = 0; }
-
 
 @foreach (var item in Model)
 {
@@ -30,15 +28,54 @@
             @{ Phone = item.Patient.PatientPhone; }
             @{ PharmacyPhone = item.Patient.PharmacyPhone; }
             @{ BirthDate = Convert.ToDateTime(item.Patient.BirthDate).ToString("MM/dd/yyyy"); }
-            @*@{ Allergies = item.Patient.MedicalAllergy; }*@
             @{ DateOfDiag = Convert.ToDateTime(item.Patient.HIVDiagnosisDate).ToString("MM/dd/yyyy"); }
             @{ TCell = Convert.ToInt32(item.Patient.TCellAtDiagnosis); }
             @{ ViralLoad = Convert.ToInt32(item.Patient.ViralLoadAtDiagnosis); }
         </td>
     </tr>
 }
-
-@Html.ActionLink("Add New Problem", "Create", new { id = paid })
+<div>
+    <table>
+        <colgroup>
+            <col width="300" />
+            <col width="300" />
+        </colgroup>
+        <tr>
+            <td>
+                Name:  <u>@PatientName</u>
+            </td>
+            <td>
+                Allergies: <u>See last visit</u>  
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Home Phone:  <u>@Phone</u>
+            </td>
+            <td>
+                DATE OF HIV DIAGNOSIS:  <u>@DateOfDiag</u>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Pharmacy Phone:  <u>@PharmacyPhone</u>
+            </td>
+            <td>
+                T-CELL at Diagnosis:  <u>@TCell</u>                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Date Of Birth:  <u>@BirthDate</u>
+            </td>
+            <td>
+                VIRAL LOAD at Diagnosis:  <u>@ViralLoad</u>
+            </td>
+        </tr>
+    </table>
+</div>
+<br />
+    @Html.ActionLink("Add New Problem", "Create", new { id = paid })
 
 <table class="table">
     <tr>      
