@@ -16,44 +16,12 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">        
-        <h2 id="office">Create Office Consulation</h2>        
-        <h2 id="follow">Create Follow Up</h2>              
-
+       
         <script src="~/Scripts/jquery-1.10.2.js"></script>
-        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                if ($('#initial').is(':checked')) {
-                    $('#office').show();
-                    $('#epi').show();
-                    $('#problem').hide();
-                    $('#follow').hide();
-                } else {
-                    $('#follow').show();
-                    $('#problem').show();
-                    $('#office').hide();
-                    $('#epi').hide();
-                }
-            })
-        </script>
-        <script type="text/javascript">
-
-            function mycheck() {
-                var chkBox = document.getElementById('initial');
-                if (chkBox.checked) {
-                    $('#follow').hide();
-                    $('#problem').hide();
-                    $('#office').show();
-                    $('#epi').show();
-                }
-                else {
-                    $('#office').hide();
-                    $('#epi').hide();
-                    $('#follow').show();
-                    $('#problem').show();
-                }               
-            }            
-        </script>       
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>        
+        
+        <h2 id="office">Create Office Consulation</h2>
+        <h2 id="follow">Create Follow Up</h2>
 
         <h4>Add New Visit</h4>
         <hr />
@@ -420,4 +388,38 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+            $(document).ready(function () {
+                if ($('#initial').is(':checked')) {
+                    $('#office').show();
+                    $('#epi').show();
+                    $('#problem').hide();
+                    $('#follow').hide();
+                } else {
+                    $('#follow').show();
+                    $('#problem').show();
+                    $('#office').hide();
+                    $('#epi').hide();
+                }
+            })
+</script>
+<script type="text/javascript">
+            function mycheck() {
+                var chkBox = document.getElementById('initial');
+                if (chkBox.checked) {
+                    $('#follow').hide();
+                    $('#problem').hide();
+                    $('#office').show();
+                    $('#epi').show();
+                }
+                else {
+                    $('#office').hide();
+                    $('#epi').hide();
+                    $('#follow').show();
+                    $('#problem').show();
+                }
+            }
+</script>       
 }
+
+
