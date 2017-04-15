@@ -12,13 +12,8 @@ namespace PatientManagementSystem.Models
         [Key]
         public int  OtherId { get; set; }
 
-        [Display(Name = "Visit Id")]
-        public int VisitId { get; set; }
-
-        [NotMapped]
         public int PatientId { get; set; }
 
-        [NotMapped]
         [Display(Name = "Visit Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime VisitDate { get; set; }
@@ -43,7 +38,8 @@ namespace PatientManagementSystem.Models
         public decimal PlasmaIronTurnover { get; set; }
 
         [Display(Name = "Weight")]
-        public decimal OtherWeight { get; set; }
+        [MaxLength(100)]
+        public string OtherWeight { get; set; }
 
         [Display(Name = "Trigly")]
         public int Triglycerides { get; set; }
@@ -54,9 +50,9 @@ namespace PatientManagementSystem.Models
         [Display(Name = "Other Important Documents Results")]
         public string OtherDocuments { get; set; }
 
-        public virtual Visits Visit { get; set; }
+        //public virtual Visits Visit { get; set; }
 
-        public IEnumerable<Visits> Visits { get; set; }
+        //public IEnumerable<Visits> Visits { get; set; }
 
         public virtual Patient Patient { get; set; }
 

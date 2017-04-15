@@ -4,22 +4,54 @@
     ViewBag.Title = "HIV management record for selected visit";
 }
 
-<h2>HIV Management Record for Selected Visit</h2>
+@{ int? paid = 0; }
+@{ foreach (var p in Model)
+    {
+        paid = p.PatientId;
+    }}
+
+<h2>HIV Management Chart</h2>
+
+@{ var PatientName = "";}
+@{ var Phone = "";}
+@{ var PharmacyPhone = "";}
+@{ string BirthDate = Convert.ToString("1/1/1900");}
+@{ var Allergies = "";}
+@{ string DateOfDiag = Convert.ToString("1/1/1900");}
+@{ var TCell = 0; }
+@{ var ViralLoad = 0; }
+
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @{ PatientName = item.Patient.FullName; }
+            @{ Phone = item.Patient.PatientPhone; }
+            @{ PharmacyPhone = item.Patient.PharmacyPhone; }
+            @{ BirthDate = Convert.ToDateTime(item.Patient.BirthDate).ToString("MM/dd/yyyy"); }
+            @*@{ Allergies = item.Patient.MedicalAllergy; }*@
+            @{ DateOfDiag = Convert.ToDateTime(item.Patient.HIVDiagnosisDate).ToString("MM/dd/yyyy"); }
+            @{ TCell = Convert.ToInt32(item.Patient.TCellAtDiagnosis); }
+            @{ ViralLoad = Convert.ToInt32(item.Patient.ViralLoadAtDiagnosis); }
+        </td>
+    </tr>
+}
+
+@Html.ActionLink("Add New Problem", "Create", new { id = paid })
 
 <table class="table">
-    <tr>
+    <tr>      
         <th>
-            @Html.DisplayNameFor(model => model.Visit.VisitId)
+            @Html.DisplayNameFor(model => model.Patient.FullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Visit.patient.FullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Visit.DiagnosisCode)
+            @Html.DisplayNameFor(model => model.VisitDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Problem)
-        </th>
+        </th>        
+       
         <th>
             @Html.DisplayNameFor(model => model.ICD10)
         </th>
@@ -36,19 +68,16 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr>       
         <td>
-            @Html.DisplayFor(modelItem => item.Visit.VisitId)
+            @Html.DisplayFor(modelItem => item.Patient.FullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Visit.patient.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Visit.DiagnosisCode)
+            @Html.DisplayFor(modelItem => item.VisitDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Problem)
-        </td>
+        </td>        
         <td>
             @Html.DisplayFor(modelItem => item.ICD10)
         </td>

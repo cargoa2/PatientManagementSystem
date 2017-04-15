@@ -20,14 +20,14 @@
 {
     <tr>
         <td>                      
-            @{ PatientName = item.Visit.patient.FullName; }
-            @{ Phone = item.Visit.patient.PatientPhone; }
-            @{ PharmacyPhone = item.Visit.patient.PharmacyPhone; }
-            @{ BirthDate = Convert.ToDateTime(item.Visit.patient.BirthDate).ToString("MM/dd/yyyy"); }
-            @{ Allergies = item.Visit.MedicalAllergy; }
-            @{ DateOfDiag = Convert.ToDateTime(item.Visit.patient.HIVDiagnosisDate).ToString("MM/dd/yyyy"); }
-            @{ TCell = Convert.ToInt32(item.Visit.patient.TCellAtDiagnosis); }
-            @{ ViralLoad = Convert.ToInt32(item.Visit.patient.ViralLoadAtDiagnosis); }
+            @{ PatientName = item.Patient.FullName; }
+            @{ Phone = item.Patient.PatientPhone; }
+            @{ PharmacyPhone = item.Patient.PharmacyPhone; }
+            @{ BirthDate = Convert.ToDateTime(item.Patient.BirthDate).ToString("MM/dd/yyyy"); }
+            @*@{ Allergies = item.Patient.MedicalAllergy; }*@
+            @{ DateOfDiag = Convert.ToDateTime(item.Patient.HIVDiagnosisDate).ToString("MM/dd/yyyy"); }
+            @{ TCell = Convert.ToInt32(item.Patient.TCellAtDiagnosis); }
+            @{ ViralLoad = Convert.ToInt32(item.Patient.ViralLoadAtDiagnosis); }
         </td>
         </tr>
 }
@@ -60,10 +60,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Visit.patient.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Visit.DiagnosisCode)
+                @Html.DisplayNameFor(model => model.Patient.FullName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Problem)
@@ -87,10 +84,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Visit.patient.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Visit.DiagnosisCode)
+                    @Html.DisplayFor(modelItem => item.Patient.FullName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Problem)

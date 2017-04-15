@@ -10,22 +10,50 @@
 <h5>Phone (502) 895-6155 Fax (502) 895-6156</h5>
 <h5>drbarbarawojda.com</h5>
 <br />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+            $(document).ready(function () {
+                if ($('#initial').is(':checked')) {
+                    $('#office').show();
+                    $('#epi').show();
+                    $('#problem').hide();
+                    $('#follow').hide();
+                } else {
+                    $('#follow').show();
+                    $('#problem').show();
+                    $('#office').hide();
+                    $('#epi').hide();
+                }
+            })
+</script>
+<script type="text/javascript">
+
+            function mycheck() {
+                var chkBox = document.getElementById('initial');
+                if (chkBox.checked) {
+                    $('#follow').hide();
+                    $('#problem').hide();
+                    $('#office').show();
+                    $('#epi').show();
+                }
+                else {
+                    $('#office').hide();
+                    $('#epi').hide();
+                    $('#follow').show();
+                    $('#problem').show();
+                }
+            }
+</script>       
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        @if (Model.Initial)
-        {
-            <h2>Edit Office Consultation</h2>
-        }
-        else
-        {
-            <h2>Edit Follow Up</h2>
-        }
-
+    <div class="form-horizontal">       
+            <h2 id="office">Edit Office Consultation</h2>       
+            <h2 id="follow">Edit Follow Up</h2>
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.VisitId)
@@ -44,7 +72,7 @@
             @Html.LabelFor(model => model.Initial, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.Initial)
+                    @Html.CheckBoxFor(model => model.Initial, new { @id = "initial", @onclick = "mycheck.call(this)" })
                     @Html.ValidationMessageFor(model => model.Initial, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -105,16 +133,14 @@
                 @Html.ValidationMessageFor(model => model.TotalPaid, "", new { @class = "text-danger" })
             </div>
         </div>
-        @if (!Model.Initial)
-        {
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProblemList, htmlAttributes: new { @class = "control-Label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ProblemList, new { htmlAttributes = new { @class = "form-control-multi" } })
-                    @Html.ValidationMessageFor(model => model.ProblemList, "", new { @class = "text-danger" })
-                </div>
+       
+        <div id="problem" class="form-group">
+            @Html.LabelFor(model => model.ProblemList, htmlAttributes: new { @class = "control-Label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProblemList, new { htmlAttributes = new { @class = "form-control-multi" } })
+                @Html.ValidationMessageFor(model => model.ProblemList, "", new { @class = "text-danger" })
             </div>
-        }       
+        </div>      
 
         <div class="form-group">
             @Html.LabelFor(model => model.MedicalAllergy, htmlAttributes: new { @class = "control-Label col-md-2" })
@@ -147,16 +173,14 @@
                 @Html.ValidationMessageFor(model => model.PastHistory, "", new { @class = "text-danger" })
             </div>
         </div>
-        @if (Model.Initial)
-        {
-            <div class="form-group">
-                @Html.LabelFor(model => model.Epidemiology, htmlAttributes: new { @class = "control-Label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Epidemiology, new { htmlAttributes = new { @class = "form-control-multi" } })
-                    @Html.ValidationMessageFor(model => model.Epidemiology, "", new { @class = "text-danger" })
-                </div>
+
+        <div id="epi" class="form-group">
+            @Html.LabelFor(model => model.Epidemiology, htmlAttributes: new { @class = "control-Label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Epidemiology, new { htmlAttributes = new { @class = "form-control-multi" } })
+                @Html.ValidationMessageFor(model => model.Epidemiology, "", new { @class = "text-danger" })
             </div>
-        }
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.FamilyHistory, htmlAttributes: new { @class = "control-Label col-md-2" })
@@ -243,7 +267,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Medications, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Medications, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Medications, new { htmlAttributes = new { @class = "form-control-multi" } })
                 @Html.ValidationMessageFor(model => model.Medications, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -381,26 +405,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Plan, new { htmlAttributes = new { @class = "form-control-multi" } })
                 @Html.ValidationMessageFor(model => model.Plan, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsHIVManagement, htmlAttributes: new { @class = "control-Label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsHIVManagement)
-                    @Html.ValidationMessageFor(model => model.IsHIVManagement, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsOtherManagement, htmlAttributes: new { @class = "control-Label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsOtherManagement)
-                    @Html.ValidationMessageFor(model => model.IsOtherManagement, "", new { @class = "text-danger" })
-                </div>
             </div>
         </div>
 

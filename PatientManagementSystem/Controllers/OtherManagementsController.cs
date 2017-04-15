@@ -23,7 +23,7 @@ namespace PatientManagementSystem.Controllers
         public bool CheckForOtherManagementRecords(int id)
         {
             List<OtherManagement> otherMan = db.OtherManagements.ToList();
-            var recordsExists = otherMan.Find(o => o.VisitId == id);
+            var recordsExists = otherMan.Find(o => o.PatientId == id);
 
             if(recordsExists != null)
             {
@@ -38,12 +38,9 @@ namespace PatientManagementSystem.Controllers
         public ActionResult OtherIndex(int id)
         {
             if (CheckForOtherManagementRecords(id) == true)
-            {                
-                var oList = (from o in db.OtherManagements
-                            join v in db.Visits on o.VisitId equals v.VisitId
-                            where v.VisitId == id
-                            select o).ToList();                            
-
+            {
+                List<OtherManagement> othMan = db.OtherManagements.ToList();
+                var oList = othMan.Where(o => o.PatientId == id).OrderByDescending(o => o.VisitDate);
                 return View("Index", oList);
             }
             else
@@ -54,9 +51,8 @@ namespace PatientManagementSystem.Controllers
 
         public ActionResult PatientOtherManagement(int id)
         {
-            var pList = (from o in db.OtherManagements
-                         join v in db.Visits on o.VisitId equals v.VisitId
-                         join p in db.Patients on v.PatientId equals p.Id
+            var pList = (from o in db.OtherManagements                         
+                         join p in db.Patients on o.PatientId equals p.Id
                          where p.Id == id
                          select o).ToList();
             return View("PatientOtherIndex", pList);
@@ -72,8 +68,8 @@ namespace PatientManagementSystem.Controllers
             }
             
             OtherManagement otherManagement = db.OtherManagements.Find(id);
-            var visit = db.Visits.Find(otherManagement.VisitId);
-            otherManagement.FullName = visit.patient.FullName;
+            var patient = db.Patients.Find(otherManagement.PatientId);
+            otherManagement.FullName = patient.FullName;
             if (otherManagement == null)
             {
                 return HttpNotFound();
@@ -85,12 +81,11 @@ namespace PatientManagementSystem.Controllers
         // GET: OtherManagements/Create
         public ActionResult Create(int id)
         {
-            var visit = db.Visits.Find(id);
+            var patient = db.Patients.Find(id);
             OtherManagement otherManagement = new OtherManagement();
-            otherManagement.VisitId = id;
-            otherManagement.FullName = visit.patient.FullName;
-            otherManagement.VisitDate = visit.VisitDate;
-            otherManagement.PatientId = visit.PatientId;            
+            otherManagement.PatientId = id;
+            otherManagement.FullName = patient.FullName;
+            otherManagement.VisitDate = DateTime.Now;                      
             return View(otherManagement);
         }
 
@@ -99,13 +94,13 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OtherId,VisitId,TCell,ViralLoad,WhiteBloodCell,Hemoglobin,PlasmaIronTurnover,OtherWeight,Triglycerides,TotalCholesterol,OtherDocuments")] OtherManagement otherManagement)
+        public ActionResult Create([Bind(Include = "OtherId,PatientId,VisitDate,TCell,ViralLoad,WhiteBloodCell,Hemoglobin,PlasmaIronTurnover,OtherWeight,Triglycerides,TotalCholesterol,OtherDocuments")] OtherManagement otherManagement)
         {
             if (ModelState.IsValid)
             {
                 db.OtherManagements.Add(otherManagement);
                 db.SaveChanges();               
-                return RedirectToAction("OtherIndex", "OtherManagements", new { id = otherManagement.VisitId });
+                return RedirectToAction("OtherIndex", "OtherManagements", new { id = otherManagement.PatientId });
             }
 
             return View(otherManagement);
@@ -131,13 +126,13 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OtherId,VisitId,TCell,ViralLoad,WhiteBloodCell,Hemoglobin,PlasmaIronTurnover,OtherWeight,Triglycerides,TotalCholesterol,OtherDocuments")] OtherManagement otherManagement)
+        public ActionResult Edit([Bind(Include = "OtherId,PatientId,VisitDate,TCell,ViralLoad,WhiteBloodCell,Hemoglobin,PlasmaIronTurnover,OtherWeight,Triglycerides,TotalCholesterol,OtherDocuments")] OtherManagement otherManagement)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(otherManagement).State = EntityState.Modified;
                 db.SaveChanges();                
-                return RedirectToAction("OtherIndex", "OtherManagements", new {id = otherManagement.VisitId } );              
+                return RedirectToAction("OtherIndex", "OtherManagements", new {id = otherManagement.PatientId } );              
             }
             return View(otherManagement);
         }
@@ -165,7 +160,7 @@ namespace PatientManagementSystem.Controllers
             OtherManagement otherManagement = db.OtherManagements.Find(id);
             db.OtherManagements.Remove(otherManagement);
             db.SaveChanges();
-            return RedirectToAction("OtherIndex", "OtherManagements", new { id = otherManagement.VisitId });
+            return RedirectToAction("OtherIndex", "OtherManagements", new { id = otherManagement.PatientId });
         }
 
         protected override void Dispose(bool disposing)

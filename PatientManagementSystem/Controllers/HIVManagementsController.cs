@@ -17,14 +17,15 @@ namespace PatientManagementSystem.Controllers
         // GET: HIVManagements
         public ActionResult Index()
         {
-            var hIVManegements = db.HIVManegements.Include(h => h.Visit);
-            return View(hIVManegements.ToList());
+            return View(db.HIVManegements.ToList());
+            //var hIVManegements = db.HIVManegements.Include(h => h.Visit);
+            //return View(hIVManegements.ToList());
         }
 
         public bool CheckForHIVRecords(int id)
         {
             List<HIVManagement> hivMan = db.HIVManegements.ToList();
-            var recordsExists = hivMan.Find(i => i.VisitId == id);
+            var recordsExists = hivMan.Find(i => i.PatientId == id);
 
             if (recordsExists != null)
             {
@@ -40,11 +41,8 @@ namespace PatientManagementSystem.Controllers
         {
             if (CheckForHIVRecords(id) == true)
             {
-                var hList = (from h in db.HIVManegements
-                             join v in db.Visits on h.VisitId equals v.VisitId
-                             where v.VisitId == id
-                             select h).ToList();
-
+                List<HIVManagement> hivMan = db.HIVManegements.ToList();
+                var hList = hivMan.Where(h => h.PatientId == id).OrderByDescending(h => h.VisitDate);
                 return View("Index", hList);                
             }
             else
@@ -55,9 +53,8 @@ namespace PatientManagementSystem.Controllers
 
         public ActionResult PatientHIVManagement(int id)
         {
-            var pList = (from h in db.HIVManegements
-                         join v in db.Visits on h.VisitId equals v.VisitId
-                         join p in db.Patients on v.PatientId equals p.Id
+            var pList = (from h in db.HIVManegements                        
+                         join p in db.Patients on h.PatientId equals p.Id
                          where p.Id == id
                          select h).ToList();
 
@@ -72,8 +69,8 @@ namespace PatientManagementSystem.Controllers
             }
 
             HIVManagement hIVManagement = db.HIVManegements.Find(id);
-            var visit = db.Visits.Find(hIVManagement.VisitId);
-            hIVManagement.FullName = visit.patient.FullName;
+            var patient = db.Patients.Find(hIVManagement.PatientId);
+            hIVManagement.FullName = patient.FullName;
             if (hIVManagement == null)
             {
                 return HttpNotFound();
@@ -84,12 +81,11 @@ namespace PatientManagementSystem.Controllers
         // GET: HIVManagements/Create
         public ActionResult Create(int id)
         {
-            var visit = db.Visits.Find(id);
+            var patient = db.Patients.Find(id);
             HIVManagement hivManagement = new HIVManagement();
-            hivManagement.VisitId = id;
-            hivManagement.FullName = visit.patient.FullName;
-            hivManagement.VisitDate = visit.VisitDate;
-            hivManagement.PatientId = visit.PatientId;
+            hivManagement.PatientId = id;
+            hivManagement.FullName = patient.FullName;
+            hivManagement.VisitDate = DateTime.Now;
             return View(hivManagement);
         }
 
@@ -98,14 +94,14 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "HIVManagmentId,VisitId,Problem,ICD10,MedicationStart,Medication,DiagnosisCode")] HIVManagement hIVManagement)
+        public ActionResult Create([Bind(Include = "HIVManagmentId,PatientId,Problem,VisitDate,ICD10,MedicationStart,Medication,MedDiscDate")] HIVManagement hIVManagement)
         {
             if (ModelState.IsValid)
             {
                 db.HIVManegements.Add(hIVManagement);
                 db.SaveChanges();
                 //return RedirectToAction("Index");
-                return RedirectToAction("HIVIndex", "HIVManagements", new { id = hIVManagement.VisitId });
+                return RedirectToAction("HIVIndex", "HIVManagements", new { id = hIVManagement.PatientId });
             }           
             return View(hIVManagement);
         }
@@ -130,13 +126,13 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "HIVManagmentId,VisitId,Problem,ICD10,MedicationStart,Medication,DiagnosisCode")] HIVManagement hIVManagement)
+        public ActionResult Edit([Bind(Include = "HIVManagmentId,PatientId,Problem,VisitDate,ICD10,MedicationStart,Medication,MedDiscDate")] HIVManagement hIVManagement)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(hIVManagement).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("HIVIndex", "HIVManagements", new { id = hIVManagement.VisitId } );
+                return RedirectToAction("HIVIndex", "HIVManagements", new { id = hIVManagement.PatientId } );
             }
             return View(hIVManagement);
         }
@@ -164,7 +160,7 @@ namespace PatientManagementSystem.Controllers
                 HIVManagement hIVManagement = db.HIVManegements.Find(id);
                 db.HIVManegements.Remove(hIVManagement);
                 db.SaveChanges();
-            return RedirectToAction("HIVIndex", "HIVManagements", new { id = hIVManagement.VisitId });
+            return RedirectToAction("HIVIndex", "HIVManagements", new { id = hIVManagement.PatientId });
         }
 
         protected override void Dispose(bool disposing)

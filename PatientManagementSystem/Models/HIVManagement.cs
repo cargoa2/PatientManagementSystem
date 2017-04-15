@@ -12,10 +12,8 @@ namespace PatientManagementSystem.Models
         [Key]
         public int HIVManagmentId { get; set; }
 
-        [Display(Name = "Visit Id")]
-        public int VisitId { get; set; }
-
-        [NotMapped]
+        //[NotMapped]
+        [Display(Name = "Patient Id")]
         public int PatientId { get; set; }
 
         [NotMapped]
@@ -31,27 +29,26 @@ namespace PatientManagementSystem.Models
         [NotMapped]
         public int ViralLoadAtDiagnosis { get; set; }
 
-        [NotMapped]
-        [Display(Name = "Problem Date")]
+        [Display(Name = "Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime VisitDate { get; set; }
 
         [MaxLength(100)]
         public string Problem { get; set; }
 
-        [MaxLength(10)]
+        [MaxLength(100)]
         public string ICD10 { get; set; }
 
         [Display(Name = "Medication Start Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime MedicationStart { get; set; }
+        public Nullable<DateTime> MedicationStart { get; set; }
 
-        [MaxLength(50)]       
+        [DataType(DataType.MultilineText)]
         public string Medication { get; set; }
 
         [Display(Name = "D/C")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime MedDiscDate { get; set; }
+        public Nullable<DateTime> MedDiscDate { get; set; }
 
         public virtual Visits Visit { get; set; }
 

@@ -206,37 +206,37 @@ namespace PatientManagementSystem.Models
         public virtual List<Immunizations> Immunizations { get; set; }
 
         [ReadOnly(true)]
-        public bool IsOtherManagement(int? id)
-        {
-            var checkOtherVisits = from v in Visits
-                                   where v.IsOtherManagement == true
-                                   select v;
+        //public bool IsOtherManagement(int? id)
+        //{
+        //    var checkOtherVisits = from v in Visits
+        //                           where v.IsOtherManagement == true
+        //                           select v;
 
-            if (checkOtherVisits.Count() > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //    if (checkOtherVisits.Count() > 0)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
-        public bool IsHIVManagement(int? id)
-        {
-            var checkOtherVisits = from v in Visits
-                                   where v.IsHIVManagement == true
-                                   select v;
+        //public bool IsHIVManagement(int? id)
+        //{
+        //    var checkOtherVisits = from v in Visits
+        //                           where v.IsHIVManagement == true
+        //                           select v;
 
-            if (checkOtherVisits.Count() > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //    if (checkOtherVisits.Count() > 0)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
         [Display(Name = "Date of HIV Diagnosis")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]

@@ -189,6 +189,7 @@
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\PatientContext.cs" />
     <Compile Include="Models\Documents.cs" />
+    <Compile Include="Models\PatientInitializer.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Models\Visit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

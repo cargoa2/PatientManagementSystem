@@ -84,33 +84,33 @@ namespace PatientManagementSystem.Models
         #region Review of Systems ROS
 
         [Display(Name = "General")]
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string RosGeneral { get; set; }
 
         [MaxLength(255)]
         [Display(Name = "HEENT")]      
         public string RosHeent { get; set; } // head, eye, ear, nose, and throat
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Respiratory { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Display(Name = "CV")]
         public string Cardiovascular { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Display(Name = "GI")]
         public string Gastrointestinal { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Display(Name = "GU")]
         public string Genitourniary { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Display(Name = "Neurological")]
         public string RosNeurological { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string psychosocial { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -119,11 +119,11 @@ namespace PatientManagementSystem.Models
 
         #region Physical Exam PE
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Display(Name = "General")]
         public string PeGeneral { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Display(Name = "BP")]
         public string BloodPressure { get; set; }
 
@@ -132,29 +132,29 @@ namespace PatientManagementSystem.Models
 
         public decimal Tempurature { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Weight { get; set; }
 
         [MaxLength(255)]
         [Display(Name = "HEENT")]
         public string PeHeent { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Neck { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Skin { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Lungs { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Heart { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Abdomen { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Musculoskeletal { get; set; }
 
         [MaxLength(100)]
@@ -180,11 +180,11 @@ namespace PatientManagementSystem.Models
 
         public IEnumerable<Patient> Patients { get; set; }
         
-        [Display(Name = "HIV Management")]
-        public bool IsHIVManagement { get; set; }
+        //[Display(Name = "HIV Management")]
+        //public bool IsHIVManagement { get; set; }
 
-        [Display(Name = "Other Management")]
-        public bool IsOtherManagement { get; set; }
+        //[Display(Name = "Other Management")]
+        //public bool IsOtherManagement { get; set; }
 
 
     }
@@ -206,7 +206,9 @@ namespace PatientManagementSystem.Models
     public enum PaymentType
     {
         Cash,
-        Check
+        Check,
+        Credit,
+        Debit
     }
 
 }
