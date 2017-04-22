@@ -5,6 +5,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
+using System.Collections.Generic;
+using System.ServiceProcess;
 using PatientManagementSystem.Models;
 
 namespace PatientManagementSystem
@@ -63,6 +65,25 @@ namespace PatientManagementSystem
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+            //string SqlServiceEngine = "MSSQLSERVER";
+            //ServiceController svSqlEng = new ServiceController(SqlServiceEngine);
+
+            //if(svSqlEng.Status.Equals(ServiceControllerStatus.Stopped) || svSqlEng.Status.Equals(ServiceControllerStatus.StopPending))
+            //{
+            //    svSqlEng.Start();
+            //    svSqlEng.WaitForStatus(ServiceControllerStatus.Running);
+            //}
+
+            //string SqlServiceBrowser = "SQLBrowser";
+            //ServiceController svSqlBrowse = new ServiceController(SqlServiceBrowser);
+
+            //if(svSqlBrowse.Status.Equals(ServiceControllerStatus.Stopped) || svSqlBrowse.Status.Equals(ServiceControllerStatus.StopPending))
+            //{
+            //    svSqlBrowse.Start();
+            //    svSqlBrowse.WaitForStatus(ServiceControllerStatus.Running);
+            //}
+
         }
     }
 }

@@ -22,14 +22,14 @@ namespace PatientManagementSystem.Models
         [Display(Name = "Patient Name")]
         public string FullName { get; set; }            
 
-        [Display(Name ="T-Cell")]
+        [Display(Name ="T-Cell")] //ToDo change to string
         public int TCell { get; set; }
 
         [Display(Name ="Viral Load")]
-        public int ViralLoad { get; set; }
+        public int ViralLoad { get; set; } //todo change to string
 
         [Display(Name = "WBC")]
-        public int WhiteBloodCell { get; set; }
+        public int WhiteBloodCell { get; set; }  //todo change to string
 
         [Display(Name = "Hgb")]
         public decimal Hemoglobin { get; set; }

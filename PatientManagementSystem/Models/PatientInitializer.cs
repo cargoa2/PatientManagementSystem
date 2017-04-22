@@ -42,8 +42,8 @@ namespace PatientManagementSystem.Models
                                             SecondaryInsurance = "Alex Secondary Insurance",
                                             PharmacyPhone = "5025010101",
                                             HIVDiagnosisDate = Convert.ToDateTime("2012-12-01 00:00:00.000"),
-                                            TCellAtDiagnosis = 250,
-                                            ViralLoadAtDiagnosis = 500,
+                                            TCellAtDiagnosis = "250",
+                                            ViralLoadAtDiagnosis = "500",
                                             Signature = true,
                                             DateSigned = DateTime.Now
                                         },

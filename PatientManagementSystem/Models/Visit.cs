@@ -176,6 +176,10 @@ namespace PatientManagementSystem.Models
         [DataType(DataType.MultilineText)]
         public string Plan { get; set; }
 
+        [Display(Name = "Date signed by Physician")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DateSignedByPhys { get; set; }
+        
         public virtual Patient patient { get; set; }
 
         public IEnumerable<Patient> Patients { get; set; }

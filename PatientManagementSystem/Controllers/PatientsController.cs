@@ -45,7 +45,11 @@ namespace PatientManagementSystem.Controllers
         // GET: Patients
         public ActionResult Index()
         {
-            return View(db.Patients.ToList()); 
+           var patients = from p in db.Patients
+                            orderby p.LastName
+                            orderby p.FirstName
+                            select p;
+            return View("Index", patients.ToList()); 
         }
 
         // GET: Patients/Details/5

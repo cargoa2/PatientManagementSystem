@@ -210,10 +210,10 @@ namespace PatientManagementSystem.Models
         public DateTime? HIVDiagnosisDate { get; set; }
 
         [Display(Name = "T-Cell at Diagnsosis")]
-        public int? TCellAtDiagnosis { get; set; }
+        public string TCellAtDiagnosis { get; set; }
 
         [Display(Name = "Viral Load at Diagnosis")]
-        public int? ViralLoadAtDiagnosis { get; set; }
+        public string ViralLoadAtDiagnosis { get; set; }
         public bool Signature { get; set; }
 
         [Display(Name = "Date Signed")]

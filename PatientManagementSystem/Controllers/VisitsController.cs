@@ -93,7 +93,8 @@ namespace PatientManagementSystem.Controllers
                 Visits visit = new Visits();
                 visit.PatientId = Convert.ToInt32(id);
                 visit.FullName = patient.FullName;
-                visit.VisitDate = DateTime.Now;           
+                visit.VisitDate = DateTime.Now;
+            visit.DateSignedByPhys = DateTime.Now;
 
             if (listVisits.Count() > 0)
             {
@@ -105,7 +106,7 @@ namespace PatientManagementSystem.Controllers
                 visit.FamilyHistory = lastVisit.FamilyHistory;
                 visit.SocialHistory = lastVisit.SocialHistory;
                 visit.MedicalAllergy = lastVisit.MedicalAllergy;
-                visit.Medications = lastVisit.Medications;
+                visit.Medications = lastVisit.Medications;                
             }
             return View(visit);
         }
@@ -116,7 +117,7 @@ namespace PatientManagementSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AcceptVerbs("Post")]
-        public ActionResult Create([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,MedicalAllergy,ReferralReason,History,PastHistory,Epidemiology,FamilyHitory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Documentsoratory,Assessment,Plan,ProblemList")] Visits visit)
+        public ActionResult Create([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,MedicalAllergy,ReferralReason,History,PastHistory,Epidemiology,FamilyHistory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Documentsoratory,Assessment,Plan,ProblemList,DateSignedByPhys")] Visits visit)
         {
             if (ModelState.IsValid)
             {
@@ -147,11 +148,10 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,MedicalAllergy,ReferralReason,History,PastHistory,Epidemiology,FamilyHitory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Documentsoratory,Assessment,Plan,ProblemList")] Visits visit)
+        public ActionResult Edit([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,MedicalAllergy,ReferralReason,History,PastHistory,Epidemiology,FamilyHistory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Documentsoratory,Assessment,Plan,ProblemList,DateSignedByPhys")] Visits visit)
         {
             if (ModelState.IsValid)
-            {   
-                     
+            {        
                 db.Entry(visit).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("PatientIndex", new { id = visit.PatientId });

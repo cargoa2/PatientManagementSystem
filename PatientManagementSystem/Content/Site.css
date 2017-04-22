@@ -15,6 +15,10 @@
 .dl-horizontal dt {
     white-space: normal;
 }
+  dd {
+    /*margin: 0 0 0 110px;*/
+    padding: 0 0 0.5em 0;
+  }
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
@@ -24,6 +28,7 @@ textarea {
 }
 
 .form-control-multi {
+  white-space: pre-wrap;
   display: block;
   width: 100%;
   height: 150px;
@@ -39,6 +44,18 @@ textarea {
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
           transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.display-control-multi {
+  white-space: pre-line;
+  display: block;
+  width: 100%;
+   height: 100%;
+  /*height: 150px;*/
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;  
 }
 
 .form-control-multi:focus {

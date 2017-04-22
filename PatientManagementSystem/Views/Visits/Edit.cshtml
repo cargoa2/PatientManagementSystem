@@ -116,7 +116,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div id="ref" class="form-group">
             @Html.LabelFor(model => model.ReferralReason, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ReferralReason, new { htmlAttributes = new { @class = "form-control-multi" } })
@@ -375,6 +375,15 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.DateSignedByPhys, htmlAttributes: new { @class = "control-Label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateSignedByPhys, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateSignedByPhys, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
@@ -389,6 +398,7 @@
                 if ($('#initial').is(':checked')) {
                     $('#office').show();
                     $('#epi').show();
+                    $('#ref').show();
                     $('#problem').hide();
                     $('#follow').hide();
                 } else {
@@ -396,6 +406,7 @@
                     $('#problem').show();
                     $('#office').hide();
                     $('#epi').hide();
+                    $('#ref').hide();
                 }
             })
 </script>
@@ -408,10 +419,12 @@
                     $('#problem').hide();
                     $('#office').show();
                     $('#epi').show();
+                    $('#ref').show();
                 }
                 else {
                     $('#office').hide();
                     $('#epi').hide();
+                    $('#ref').hide();
                     $('#follow').show();
                     $('#problem').show();
                 }

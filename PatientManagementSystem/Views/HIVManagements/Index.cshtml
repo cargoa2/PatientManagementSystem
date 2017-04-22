@@ -17,8 +17,8 @@
 @{ var PharmacyPhone = "";}
 @{ string BirthDate = Convert.ToString("1/1/1900");}
 @{ string DateOfDiag = Convert.ToString("1/1/1900");}
-@{ var TCell = 0; }
-@{ var ViralLoad = 0; }
+@{ var TCell = ""; }
+@{ var ViralLoad = ""; }
 
 @foreach (var item in Model)
 {
@@ -29,8 +29,8 @@
             @{ PharmacyPhone = item.Patient.PharmacyPhone; }
             @{ BirthDate = Convert.ToDateTime(item.Patient.BirthDate).ToString("MM/dd/yyyy"); }
             @{ DateOfDiag = Convert.ToDateTime(item.Patient.HIVDiagnosisDate).ToString("MM/dd/yyyy"); }
-            @{ TCell = Convert.ToInt32(item.Patient.TCellAtDiagnosis); }
-            @{ ViralLoad = Convert.ToInt32(item.Patient.ViralLoadAtDiagnosis); }
+            @{ TCell = item.Patient.TCellAtDiagnosis; }
+            @{ ViralLoad = item.Patient.ViralLoadAtDiagnosis; }
         </td>
     </tr>
 }
@@ -136,3 +136,5 @@
 }
 
 </table>
+<br />
+@Html.ActionLink("Go back to patient", "Index", "Patients", new { id = paid }, null)
