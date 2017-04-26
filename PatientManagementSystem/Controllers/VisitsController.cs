@@ -98,15 +98,42 @@ namespace PatientManagementSystem.Controllers
 
             if (listVisits.Count() > 0)
             {
-                Visits lastVisit = visits.Where(v => v.PatientId == id).OrderByDescending(v => v.VisitDate).FirstOrDefault();
+                Visits lastVisit = visits.Where(v => v.PatientId == id).OrderBy(v => v.VisitId).LastOrDefault();
 
+                visit.DiagnosisCode = lastVisit.DiagnosisCode;
+                visit.ProblemList = lastVisit.ProblemList;
+                visit.MedicalAllergy = lastVisit.MedicalAllergy;
+                visit.ReferralReason = lastVisit.ReferralReason;
                 visit.History = lastVisit.History;
-                visit.PastHistory = lastVisit.PastHistory;
-                visit.Epidemiology = lastVisit.Epidemiology;
+                visit.PastHistory = lastVisit.PastHistory;                
                 visit.FamilyHistory = lastVisit.FamilyHistory;
                 visit.SocialHistory = lastVisit.SocialHistory;
-                visit.MedicalAllergy = lastVisit.MedicalAllergy;
-                visit.Medications = lastVisit.Medications;                
+                visit.RosGeneral = lastVisit.RosGeneral;
+                visit.RosHeent = lastVisit.RosHeent;
+                visit.Respiratory = lastVisit.Respiratory;
+                visit.Cardiovascular = lastVisit.Cardiovascular;
+                visit.Gastrointestinal = lastVisit.Gastrointestinal;
+                visit.Genitourniary = lastVisit.Genitourniary;
+                visit.RosNeurological = lastVisit.RosNeurological;
+                visit.psychosocial = lastVisit.psychosocial;
+                visit.Medications = lastVisit.Medications;
+                visit.PeGeneral = lastVisit.PeGeneral;
+                visit.BloodPressure = lastVisit.BloodPressure;
+                visit.HeartRate = lastVisit.HeartRate;
+                visit.Tempurature = lastVisit.Tempurature;
+                visit.Weight = lastVisit.Weight;
+                visit.PeHeent = lastVisit.PeHeent;
+                visit.Neck = lastVisit.Neck;
+                visit.Skin = lastVisit.Skin;
+                visit.Lungs = lastVisit.Lungs;
+                visit.Heart = lastVisit.Heart;
+                visit.Abdomen = lastVisit.Abdomen;
+                visit.Musculoskeletal = lastVisit.Musculoskeletal;
+                visit.PeNeurological = lastVisit.PeNeurological;
+                visit.Additional = lastVisit.Additional;
+                visit.Documentsoratory = lastVisit.Documentsoratory;
+                visit.Assessment = lastVisit.Assessment;
+                visit.Plan = lastVisit.Plan;
             }
             return View(visit);
         }

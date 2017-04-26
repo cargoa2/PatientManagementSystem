@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Edit";
 }
+@{ int? paid = Model.PatientId; }
+
 
 <h4>KENTUCKIANA INFECTIOUS DISEASE CONSULTANCTS, PSC</h4>
 <h5>Barbara Wojda, M.D</h5>
@@ -390,6 +392,8 @@
         </div>
     </div>
 }
+
+@Html.ActionLink("Go back to visit list", "PatientIndex", "Visits", new { id = paid }, null)
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

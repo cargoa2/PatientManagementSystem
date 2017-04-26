@@ -22,15 +22,17 @@ namespace PatientManagementSystem.Models
         [Display(Name = "Patient Name")]
         public string FullName { get; set; }            
 
-        [Display(Name ="T-Cell")] //ToDo change to string
-        public int TCell { get; set; }
+        [Display(Name ="T-Cell")]
+        [MaxLength(100)]
+        public string TCell { get; set; }
 
         [Display(Name ="Viral Load")]
-        public int ViralLoad { get; set; } //todo change to string
+        [MaxLength(100)]
+        public string ViralLoad { get; set; }
 
         [Display(Name = "WBC")]
-        public int WhiteBloodCell { get; set; }  //todo change to string
-
+        [MaxLength(100)]
+        public string WhiteBloodCell { get; set; }
         [Display(Name = "Hgb")]
         public decimal Hemoglobin { get; set; }
 
@@ -42,22 +44,17 @@ namespace PatientManagementSystem.Models
         public string OtherWeight { get; set; }
 
         [Display(Name = "Trigly")]
-        public int Triglycerides { get; set; }
+        public int? Triglycerides { get; set; }
 
         [Display(Name = "T-Cholesterol")]
-        public int TotalCholesterol { get; set; }
+        public int? TotalCholesterol { get; set; }
 
         [Display(Name = "Other Important Documents Results")]
         public string OtherDocuments { get; set; }
 
-        //public virtual Visits Visit { get; set; }
-
-        //public IEnumerable<Visits> Visits { get; set; }
-
         public virtual Patient Patient { get; set; }
 
         public IEnumerable<Patient> Patients { get; set; }
-
 
     }
 }

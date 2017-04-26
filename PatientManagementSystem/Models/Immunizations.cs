@@ -24,6 +24,7 @@ namespace PatientManagementSystem.Models
         public DateTime ImmDate { get; set; }
 
         [MaxLength(255)]
+        [Display(Name = "Immunization")]
         public string Notes { get; set; }
 
         [Display(Name = "File Path")]

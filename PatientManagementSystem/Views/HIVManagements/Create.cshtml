@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Add New HIV Management Records";
 }
+@{ int? paid = Model.PatientId; }
 
 <h2>Add New HIV Management Record</h2>
 
@@ -77,3 +78,4 @@
         </div>
     </div>
 }
+@Html.ActionLink("Go back to HIV Chart", "HIVIndex", "HIVManagements", new { id = paid }, null)

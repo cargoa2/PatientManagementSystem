@@ -4,6 +4,8 @@
     ViewBag.Title = "Edit";
 }
 
+@{ int? paid = Model.Id; }
+
 <h2>Edit Patient Info</h2>
 
 
@@ -344,7 +346,7 @@
 }
 
 <div>
-    @Html.ActionLink("Go back to patient", "Index")
+    @Html.ActionLink("Go back to patient", "PatientIndex", "Patients", new { id = paid }, null)
 </div>
 
 @section Scripts {

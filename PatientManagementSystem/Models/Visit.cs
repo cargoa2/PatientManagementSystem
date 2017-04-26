@@ -184,13 +184,6 @@ namespace PatientManagementSystem.Models
 
         public IEnumerable<Patient> Patients { get; set; }
         
-        //[Display(Name = "HIV Management")]
-        //public bool IsHIVManagement { get; set; }
-
-        //[Display(Name = "Other Management")]
-        //public bool IsOtherManagement { get; set; }
-
-
     }
 
     public enum VisitTypes

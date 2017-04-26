@@ -115,16 +115,22 @@ namespace PatientManagementSystem.Controllers
             {
                 try
                 {
-                    immunizations.FilePath = Path.GetFullPath(file.FileName);
+                    if (Path.GetFullPath(file.FileName) != null)
+                    {
+                        immunizations.FilePath = Path.GetFullPath(file.FileName);
+                        db.Immunizations.Add(immunizations);
+                        db.SaveChanges();
+                        //return RedirectToAction("ImmIndex", "Immunizations", new { id = immunizations.PatientId });
+                    }
+                    return RedirectToAction("ImmIndex", "Immunizations", new { id = immunizations.PatientId });
+                }
+                catch (Exception ex)
+                {
                     db.Immunizations.Add(immunizations);
                     db.SaveChanges();
                     return RedirectToAction("ImmIndex", "Immunizations", new { id = immunizations.PatientId });
-                }
-                catch(Exception ex)
-                {
-
-                }
-            }           
+                }                
+            }
 
             return View(immunizations);
         }
@@ -164,6 +170,12 @@ namespace PatientManagementSystem.Controllers
                 {
 
                 }
+                finally
+                {
+                    db.Immunizations.Add(immunizations);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("ImmIndex", "Immunizations", new { id = immunizations.PatientId });
             }
             return View(immunizations);
         }

@@ -4,20 +4,29 @@
     ViewBag.Title = "Patient Other Management Records";
 }
 @{ int? paid = 0; }
+@{ string pn = ""; }
 @{ foreach (var p in Model)
     {
         paid = p.PatientId;
+        pn = p.Patient.FullName;
     }}
 
 <h2>Patient Other Management Records</h2>
+<div>
+    <table>
+        <tr>
+            <td>
+                <b>Patient Name:  @pn</b>
+            </td>
+        </tr>
+    </table>
+</div>
+<br />
 
 @Html.ActionLink("Add New Problem", "Create", new { id = paid })
 
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Patient.FullName)
-        </th>        
+    <tr>             
         <th>
             @Html.DisplayNameFor(model => model.VisitDate)
         </th>
@@ -53,9 +62,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelitem => item.Patient.FullName)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.VisitDate)
         </td>       
@@ -97,4 +103,4 @@
 </table>
 
 <br />
-@Html.ActionLink("Go back to patient", "Index", "Patients", new { id = paid }, null)
+@Html.ActionLink("Go back to patient", "PatientIndex", "Patients", new { id = paid }, null)

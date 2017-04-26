@@ -5,19 +5,28 @@
 }
 
 @{ int? paid = 0; }
+@{ string pn = ""; }
 @{ foreach (var p in Model)
     {
         paid = p.PatientId;
+        pn = p.Patient.FullName;
     }}
 <h2>Documents File Path List</h2>
+
+<table>
+    <tr>
+        <td>
+            <b>Patient Name:  @pn</b>
+        </td>
+    </tr>
+</table>
+<br />
+
 <p>
     @Html.ActionLink("Add New Documents File", "Create", new { id = paid })
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Patient.FullName)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.DocDate)
         </th>
@@ -30,14 +39,10 @@
         <th>
             @Html.DisplayNameFor(model => model.FilePath)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Patient.FullName)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.DocDate)
         </td>
@@ -62,4 +67,4 @@
 </table>
 
 <br />
-@Html.ActionLink("Go back to patient", "Index", "Patients", new { id = paid }, null)
+@Html.ActionLink("Go back to patient", "PatientIndex", "Patients", new { id = paid }, null)

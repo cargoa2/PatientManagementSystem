@@ -4,9 +4,13 @@
     ViewBag.Title = "Edit Other Management Record";
 }
 
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+@{ int? paid = Model.PatientId; }
 <h2>Edit Other Management Record</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "frm", id = "frm" }))
 {
     @Html.AntiForgeryToken()
     
@@ -111,7 +115,26 @@
         </div>
     </div>
 }
+@Html.ActionLink("Go back to other management list", "OtherIndex", "OtherManagements", new { id = paid }, null)
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+@*<script type='text/javascript'>
+    var somethingChanged=false;
+    $('#frm').change(function() { 
+        somethingChanged = true; 
+    }); 
+    $(window).bind('beforeunload', function(e){
+        if(somethingChanged)
+            return "You made some changes and it's not saved?";
+        else 
+            e=null; // i.e; if form state change show warning box, else don't show it.
+    });
+    function saveData() {
+        $('#frm').data('serialize', $('#frm').serialize());
+        // and save the same in your database through ajax call. So that you won't have prompt once you save the data
+    }
+    
+</script>*@
 }

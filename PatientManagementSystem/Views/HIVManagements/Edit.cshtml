@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Edit HIV Management Record";
 }
+@{ int? paid = Model.PatientId; }
 
 <h2>Edit HIV Management Record</h2>
 
@@ -78,6 +79,8 @@
         </div>
     </div>
 }
+@Html.ActionLink("Go back to HIV Chart", "HIVIndex", "HIVManagements", new { id = paid }, null)
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

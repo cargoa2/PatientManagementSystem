@@ -66,28 +66,6 @@ namespace PatientManagementSystem.Controllers
             }
         }
 
-        public ActionResult GetCommFile(int id)
-        {
-            string fileName = (from d in db.Communication
-                               where d.CommId == id
-                               select d.FilePath).SingleOrDefault();
-
-            if (fileName != null)
-            {
-
-                var fileStream = new FileStream(fileName,
-                                                FileMode.Open,
-                                                FileAccess.Read
-                                                );
-                var fsResult = new FileStreamResult(fileStream, "application/pdf");
-                return fsResult;
-            }
-            else
-            {
-                return RedirectToAction("Index", "Communications", new { id = id });
-            }
-        }
-
         public ActionResult CommDocs(int id)
         {
             List<Communication> comm = db.Communication.ToList();
@@ -103,6 +81,7 @@ namespace PatientManagementSystem.Controllers
             Communication comm = new Communication();
             comm.PatientId = id;
             comm.FullName = patient.FullName;
+            comm.BirthDate = patient.BirthDate;
             comm.CommDate = DateTime.Now;
             return View(comm);
            
@@ -113,30 +92,15 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CommId,PatientId,Type,CommDate,Notes,FilePath")] Communication communication, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "CommId,PatientId,CommDate,Notes")] Communication communication, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
-            {
-                if (file != null)
-                {
-                    try
-                    {
-                        communication.FilePath = Path.GetFullPath(file.FileName);
-                        db.Communication.Add(communication);
-                        db.SaveChanges();
-                        return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });
-                    }
-                    catch (Exception ex)
-                    {
+            {               
+                
+                db.Communication.Add(communication);
+                db.SaveChanges();
+                return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });
 
-                    }
-                }
-                else
-                {
-                    db.Communication.Add(communication);
-                    db.SaveChanges();
-                    return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });
-                }
             }            
             return View(communication);
         }
@@ -161,31 +125,13 @@ namespace PatientManagementSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CommId,PatientId,Type,CommDate,Notes,FilePath")] Communication communication, HttpPostedFileBase file)
+        public ActionResult Edit([Bind(Include = "CommId,PatientId,CommDate,Notes")] Communication communication, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                if (file != null)
-                {
-
-                    try
-                    {
-                        communication.FilePath = Path.GetFullPath(file.FileName);
-                        db.Entry(communication).State = EntityState.Modified;
-                        db.SaveChanges();
-                        return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-                }
-                else
-                {
-                    db.Entry(communication).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });
-                }
+                db.Entry(communication).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });
             }
             return View(communication);
         }

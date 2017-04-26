@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Create";
 }
+@{ int? paid = Model.PatientId; }
 
 <h2>Add New Immunization Record</h2>
 
@@ -54,7 +55,4 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    @Html.ActionLink("Go back to immunization list", "ImmIndex", "Immunizations", new { id = paid }, null)

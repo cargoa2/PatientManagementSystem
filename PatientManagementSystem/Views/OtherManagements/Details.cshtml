@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Details";
 }
+@{ int? paid = Model.PatientId; }
 
 <h2>Patient Other Management Details</h2>
 
@@ -100,5 +101,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OtherId }) 
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OtherId }) |
+    @Html.ActionLink("Go back to other management list", "OtherIndex", "OtherManagements", new { id = paid }, null)
 </p>

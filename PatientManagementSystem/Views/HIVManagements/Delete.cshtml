@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Delete";
 }
+@{ int? paid = Model.PatientId; }
 
 <h2>Delete HIV Management Record ?</h2>
 
@@ -68,3 +69,4 @@
         </div>
     }
 </div>
+@Html.ActionLink("Go back to HIV Chart", "HIVIndex", "HIVManagements", new { id = paid }, null)

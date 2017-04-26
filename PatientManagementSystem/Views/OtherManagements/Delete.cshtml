@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Delete";
 }
+@{ int? paid = Model.PatientId; }
 
 <h2>Delete Other Managemnt Record</h2>
 
@@ -100,3 +101,4 @@
         </div>
     }
 </div>
+@Html.ActionLink("Go back to other management list", "OtherIndex", "OtherManagements", new { id = paid }, null)

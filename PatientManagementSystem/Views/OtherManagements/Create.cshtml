@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Add Other Management Records";
 }
-
+@{ int? paid = Model.PatientId; }
 <h2>Add New Other Management Record</h2>
 
 
@@ -112,6 +112,8 @@
         </div>
     </div>
 }
+@Html.ActionLink("Go back to other management list", "OtherIndex", "OtherManagements", new { id = paid }, null)
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

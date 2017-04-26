@@ -4,6 +4,7 @@
     ViewBag.Title = "Edit";
     ViewBag.FileName = Model.FilePath;
 }
+@{ int? paid = Model.PatientId; }
 
 <h2>Edit Immunizations</h2>
 
@@ -62,7 +63,4 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    @Html.ActionLink("Go back to immunization list", "ImmIndex", "Immunizations", new { id = paid }, null)

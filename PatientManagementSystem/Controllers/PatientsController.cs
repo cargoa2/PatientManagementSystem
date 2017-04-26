@@ -47,9 +47,17 @@ namespace PatientManagementSystem.Controllers
         {
            var patients = from p in db.Patients
                             orderby p.LastName
-                            orderby p.FirstName
                             select p;
             return View("Index", patients.ToList()); 
+        }
+
+        public ActionResult PatientIndex(int id)
+        {
+            var patients = from p in db.Patients
+                           where p.Id == id
+                           select p;
+
+            return View("Index", patients);
         }
 
         // GET: Patients/Details/5

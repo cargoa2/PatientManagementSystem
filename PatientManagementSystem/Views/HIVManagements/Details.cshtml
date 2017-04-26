@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Details";
 }
+@{ int? paid = Model.PatientId; }
 
 <h2>HIV Management Records</h2>
 
@@ -68,5 +69,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.HIVManagmentId })
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HIVManagmentId }) |
+    @Html.ActionLink("Go back to HIV Chart", "HIVIndex", "HIVManagements", new { id = paid }, null)
 </p>
