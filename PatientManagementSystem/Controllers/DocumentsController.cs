@@ -103,6 +103,7 @@ namespace PatientManagementSystem.Controllers
             Documents Documents = new Documents();
             Documents.PatientId = id;
             Documents.FullName = patient.FullName;
+            Documents.BirthDate = patient.BirthDate;
             Documents.DocDate = DateTime.Now;
             return View(Documents);
 

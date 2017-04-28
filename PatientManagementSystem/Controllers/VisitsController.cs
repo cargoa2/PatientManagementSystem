@@ -93,6 +93,7 @@ namespace PatientManagementSystem.Controllers
                 Visits visit = new Visits();
                 visit.PatientId = Convert.ToInt32(id);
                 visit.FullName = patient.FullName;
+                visit.BirthDate = patient.BirthDate;
                 visit.VisitDate = DateTime.Now;
             visit.DateSignedByPhys = DateTime.Now;
 

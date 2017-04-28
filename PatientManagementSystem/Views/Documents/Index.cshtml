@@ -28,6 +28,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Patient.BirthDate)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.DocDate)
         </th>
         <th>
@@ -43,6 +46,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient.BirthDate)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.DocDate)
         </td>

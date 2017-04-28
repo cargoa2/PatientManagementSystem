@@ -85,6 +85,7 @@ namespace PatientManagementSystem.Controllers
             HIVManagement hivManagement = new HIVManagement();
             hivManagement.PatientId = id;
             hivManagement.FullName = patient.FullName;
+            hivManagement.BirthDate = patient.BirthDate;
             hivManagement.VisitDate = DateTime.Now;
             return View(hivManagement);
         }

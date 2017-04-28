@@ -1,5 +1,10 @@
 ﻿@model PatientManagementSystem.Models.Patient
 
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@Html.Hidden("UnsavedChanges", "0");
+
+
 @{
     ViewBag.Title = "Create";
 }
@@ -25,7 +30,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,7 +38,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MiddleInitial, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MiddleInitial, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.MiddleInitial, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.MiddleInitial, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,7 +46,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StreetAddress, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.StreetAddress, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.StreetAddress, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -49,7 +54,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -57,7 +62,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -65,7 +70,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -80,7 +85,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PatientPhoneType, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.PatientPhoneType, htmlAttributes: new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.PatientPhoneType, htmlAttributes: new { @class = "form-control", onchange = "HandleFieldChange()" })
                 @Html.ValidationMessageFor(model => model.PatientPhoneType, "", new { @class = "text-danger" })
             </div>
         </div>    
@@ -88,7 +93,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.OtherPatientPhone, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.OtherPatientPhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.OtherPatientPhone, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.OtherPatientPhone, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -96,14 +101,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.OtherPhoneType, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.OtherPhoneType, htmlAttributes: new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.OtherPhoneType, htmlAttributes: new { @class = "form-control", onchange = "HandleFieldChange()" })
                 @Html.ValidationMessageFor(model => model.OtherPhoneType, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -111,7 +116,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SOC, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SOC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SOC, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.SOC, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -119,7 +124,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Gender, htmlAttributes: new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.Gender, htmlAttributes: new { @class = "form-control", onchange = "HandleFieldChange()" })
                 @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -127,7 +132,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control", onchange = "HandleFieldChange()" })
                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -145,7 +150,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EmployerName, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EmployerName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.EmployerName, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.EmployerName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -153,7 +158,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EmployerPhone, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EmployerPhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.EmployerPhone, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.EmployerPhone, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -161,7 +166,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Relation, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Relation, htmlAttributes: new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.Relation, htmlAttributes: new { @class = "form-control", onchange = "HandleFieldChange()" })
                 @Html.ValidationMessageFor(model => model.Relation, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -169,7 +174,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SubscriberLastName, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SubscriberLastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SubscriberLastName, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.SubscriberLastName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -177,7 +182,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SubscriberFirstName, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SubscriberFirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SubscriberFirstName, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.SubscriberFirstName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -185,7 +190,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SubscriberMiddleInitial, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SubscriberMiddleInitial, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SubscriberMiddleInitial, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.SubscriberMiddleInitial, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -193,7 +198,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SubscriberMiddleInitial, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SubscriberMiddleInitial, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SubscriberMiddleInitial, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.SubscriberMiddleInitial, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -201,7 +206,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SubscriberBirthDate, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SubscriberBirthDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SubscriberBirthDate, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.SubscriberBirthDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -209,7 +214,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SubscriberSOC, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SubscriberSOC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SubscriberSOC, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.SubscriberSOC, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -217,7 +222,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SubscriberGender, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.SubscriberGender, htmlAttributes: new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.SubscriberGender, htmlAttributes: new { @class = "form-control", onchange = "HandleFieldChange()" })
                 @Html.ValidationMessageFor(model => model.SubscriberGender, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -225,14 +230,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ReferingPhysician, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ReferingPhysician, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ReferingPhysician, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.ReferingPhysician, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.ReferingPhysicianPhone, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ReferingPhysicianPhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ReferingPhysicianPhone, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.ReferingPhysicianPhone, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -240,7 +245,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EmergencyContact, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EmergencyContact, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.EmergencyContact, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.EmergencyContact, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -248,7 +253,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EmergencyPhone, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EmergencyPhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.EmergencyPhone, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.EmergencyPhone, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -256,7 +261,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PrimaryInsurance, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PrimaryInsurance, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PrimaryInsurance, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.PrimaryInsurance, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -264,7 +269,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SecondaryInsurance, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SecondaryInsurance, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.SecondaryInsurance, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.SecondaryInsurance, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -272,7 +277,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PharmacyPhone, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PharmacyPhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PharmacyPhone, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.PharmacyPhone, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -280,7 +285,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HIVDiagnosisDate, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HIVDiagnosisDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.HIVDiagnosisDate, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.HIVDiagnosisDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -288,7 +293,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TCellAtDiagnosis, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TCellAtDiagnosis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.TCellAtDiagnosis, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.TCellAtDiagnosis, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -296,7 +301,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ViralLoadAtDiagnosis, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ViralLoadAtDiagnosis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ViralLoadAtDiagnosis, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.ViralLoadAtDiagnosis, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -314,14 +319,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DateSigned, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateSigned, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DateSigned, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.DateSigned, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" onclick="HandleSaveEvent()" />
             </div>
         </div>
     </div>
@@ -333,4 +338,28 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+
+        })
+
+        $("input:checkbox").click(function () {
+            HandleFieldChange();
+        })
+
+        function HandleFieldChange() {
+            $("#UnsavedChanges").val("1");
+        }
+
+        function HandleSaveEvent() {
+            $("#UnsavedChanges").val("0");
+        }
+
+        window.onbeforeunload = function () {
+            if ($("#UnsavedChanges").val() == "1") {
+                var _message = "You currently have unsaved changes!!!\n\nAre you sure you want to exit without saving.\n\nChoose ‘Leave this page’ to exit without saving changes.\nChoose ‘Stay on this page’ to return to the billing profile.";
+                return _message;
+            }
+        }
+    </script>
 }

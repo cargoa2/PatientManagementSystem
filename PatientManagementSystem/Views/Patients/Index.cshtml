@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<PatientManagementSystem.Models.Patient>
 
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@Html.Hidden("UnsavedChanges", "0");
+
 @{
     ViewBag.Title = "Patients";
 }

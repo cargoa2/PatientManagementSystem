@@ -21,6 +21,11 @@ namespace PatientManagementSystem.Models
         public string FullName { get; set; }
 
         [NotMapped]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Birth Date")]
+        public DateTime BirthDate { get; set; }
+
+        [NotMapped]
         public DateTime HIVDiagnosisDate { get; set; }
         
         [NotMapped]

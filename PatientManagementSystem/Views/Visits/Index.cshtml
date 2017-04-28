@@ -31,6 +31,9 @@
 <table class="table">
     <tr>        
         <th>
+            @Html.DisplayNameFor(model => model.patient.BirthDate)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Initial)
         </th>
         <th>
@@ -39,7 +42,10 @@
     </tr>
     
 @foreach (var item in Model) {
-    <tr>       
+    <tr>  
+        <td>
+            @Html.DisplayFor(modelItem => item.patient.BirthDate)
+        </td>     
         <td>
             @Html.DisplayFor(modelItem => item.Initial)
         </td>

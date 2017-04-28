@@ -16,7 +16,7 @@
     <table>
         <tr>
             <td>
-                <b>Patient Name:  @pn</b>
+                <b>Patient Name:  @pn</b>                
             </td>
         </tr>
     </table>
@@ -26,7 +26,10 @@
 @Html.ActionLink("Add New Problem", "Create", new { id = paid })
 
 <table class="table">
-    <tr>             
+    <tr>  
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.BirthDate)
+        </th>           
         <th>
             @Html.DisplayNameFor(model => model.VisitDate)
         </th>
@@ -62,6 +65,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient.BirthDate)
+        </td> 
         <td>
             @Html.DisplayFor(modelItem => item.VisitDate)
         </td>       

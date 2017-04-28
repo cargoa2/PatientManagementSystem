@@ -32,7 +32,10 @@
             @Html.ActionLink("Add new Immunization", "Create", new { id = paid })
         </p>
         <table class="table">
-            <tr>                    
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Patient.BirthDate)
+                </th>                    
                 <th>
                     @Html.DisplayNameFor(model => model.ImmDate)
                 </th>
@@ -47,7 +50,10 @@
 
             @foreach (var item in Model)
             {
-                <tr>                        
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Patient.BirthDate)
+                    </td>                        
                     <td>
                         @Html.DisplayFor(modelItem => item.ImmDate)
                     </td>

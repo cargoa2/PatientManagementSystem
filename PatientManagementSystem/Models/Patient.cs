@@ -34,7 +34,7 @@ namespace PatientManagementSystem.Models
         public string MiddleInitial { get; set; }
 
         [Display(Name = "Patient Name")]
-        public string FullName { get { return FirstName + " " + LastName.ToString(); } }
+        public string FullName { get { return LastName + ", " + FirstName.ToString(); } }
         public string FullLastName {  get { return LastName + ", " + FirstName.ToString(); } }
 
         [Required(ErrorMessage = "Street address is required.")]

@@ -100,6 +100,7 @@ namespace PatientManagementSystem.Controllers
             Immunizations imm = new Immunizations();
             imm.PatientId = id;
             imm.FullName = patient.FullName;
+            imm.BirthDate = patient.BirthDate;
             imm.ImmDate = DateTime.Now;
             return View(imm);
         }

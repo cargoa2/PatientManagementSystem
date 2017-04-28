@@ -85,6 +85,7 @@ namespace PatientManagementSystem.Controllers
             OtherManagement otherManagement = new OtherManagement();
             otherManagement.PatientId = id;
             otherManagement.FullName = patient.FullName;
+            otherManagement.BirthDate = patient.BirthDate;
             otherManagement.VisitDate = DateTime.Now;                      
             return View(otherManagement);
         }
