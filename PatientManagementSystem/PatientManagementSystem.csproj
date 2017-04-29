@@ -289,6 +289,7 @@
     <Content Include="Views\Immunizations\Details.cshtml" />
     <Content Include="Views\Immunizations\Edit.cshtml" />
     <Content Include="Views\Immunizations\Index.cshtml" />
+    <Content Include="Views\Visits\PrintDetails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

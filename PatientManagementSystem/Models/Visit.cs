@@ -139,15 +139,15 @@ namespace PatientManagementSystem.Models
 
         [MaxLength(100)]
         public string Weight { get; set; }
-
-        [MaxLength(255)]
+       
         [Display(Name = "HEENT")]
+        [DataType(DataType.MultilineText)]
         public string PeHeent { get; set; }
 
         [MaxLength(100)]
         public string Neck { get; set; }
 
-        [MaxLength(100)]
+        [DataType(DataType.MultilineText)]
         public string Skin { get; set; }
 
         [MaxLength(100)]
@@ -159,15 +159,15 @@ namespace PatientManagementSystem.Models
         [MaxLength(100)]
         public string Abdomen { get; set; }
 
-        [MaxLength(100)]
+        [DataType(DataType.MultilineText)]
         public string Musculoskeletal { get; set; }
 
         [MaxLength(100)]
         [Display(Name = "Neurological")]
         public string PeNeurological { get; set; }
 
-        [MaxLength(100)]
         [Display(Name = "Additional Findings")]
+        [DataType(DataType.MultilineText)]
         public string Additional { get; set; }
 
         #endregion

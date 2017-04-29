@@ -50,6 +50,21 @@ namespace PatientManagementSystem.Controllers
            
         }
 
+        public ActionResult PrintDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Visits visit = db.Visits.Find(id);
+            if (visit == null)
+            {
+                return HttpNotFound();
+            }
+            return View(visit);
+
+        }
+
         public ActionResult BillingDetails(int? id)
         {
             if (id == null)

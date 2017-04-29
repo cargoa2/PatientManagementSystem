@@ -1,0 +1,194 @@
+﻿@model PatientManagementSystem.Models.Visits
+
+@{
+    ViewBag.Title = "PrintDetails";
+}
+
+<header>
+    <h4>KENTUCKIANA INFECTIOUS DISEASE CONSULTANCTS, PSC</h4>
+    <h5>Barbara Wojda, M.D</h5>
+    <h5>125 Fairfax Avenue, Louisville, KY 40207</h5>
+    <h5>Phone (502) 895-6155 Fax (502) 895-6156</h5>
+
+
+    @if (Model.Initial == true)
+    {
+        <h4><b>Initial Consultation</b></h4>
+    }
+    else {
+        <h4><b>Follow Up Visit</b></h4>
+    }
+</header>
+<div>
+    <table>
+        <colgroup>
+            <col width="250" />
+            <col width="650" />
+        </colgroup>
+        
+        <thead>             
+            <tr class="spaceUnder">
+                <td><b>Name:</b>  @Html.DisplayFor(model => model.patient.FullName) </td>
+                <td><b>Date of Birth:</b> @Html.DisplayFor(model => model.patient.BirthDate) </td>                
+            </tr>  
+            <tr class="spaceUnder">
+                <td><b>Date of Service:</b>  @Html.DisplayFor(model => model.VisitDate)</td>
+            </tr>          
+        </thead> 
+        @if (Model.Initial != true)
+        {
+            <tr class="spaceUnder">               
+                <td valign="top"><b>Problem List:</b></td>
+                <td valign="top">@Html.DisplayFormattedFor(model => model.ProblemList)</td>
+            </tr>
+        }
+        <tr class="spaceUnder">
+            <td valign="top"><b>Medical Allergy</b></td>
+            <td valign="top">@Html.DisplayFormattedFor(model => model.MedicalAllergy)</td>
+        </tr>
+        @if (Model.Initial == true)
+        {
+            <tr class="spaceUnder">
+                <td valign="top"><b>Referral Reason:</b></td>
+                <td valign="top">@Html.DisplayFormattedFor(model => model.ReferralReason)</td>
+            </tr>            
+        }
+        <tr class="spaceUnder">
+            <td valign="top"><b>History of present illness:</b></td>
+            <td valign="top">@Html.DisplayFormattedFor(model => model.History)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>PMH:</b></td>
+            <td valign="top">@Html.DisplayFormattedFor(model => model.PastHistory)</td>
+        </tr>
+        @if (Model.Initial == true)
+        {
+            <tr class="spaceUnder">
+                <td valign="top"><b>Epidemiology:</b></td>
+                <td valign="top">@Html.DisplayFormattedFor(model => model.Epidemiology)</td>
+            </tr>
+        }
+        <tr class="spaceUnder">
+            <td valign="top"><b>Fhx:</b></td>
+            <td valign="top">@Html.DisplayFormattedFor(model => model.FamilyHistory)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Shx:</b></td>
+            <td valign="top">@Html.DisplayFormattedFor(model => model.SocialHistory)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td><b><u>Review of Symptoms</u></b></td>
+        </tr>        
+        <tr class="spaceUnder">
+            <td valign="top"><b>General:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.RosGeneral)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>HEENT</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.RosHeent)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Respiratory:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.Respiratory)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>CV:</b></td>            
+            <td valign="top">@Html.DisplayFor(model => model.Cardiovascular)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>GI:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.Gastrointestinal)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>GU:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.Genitourniary)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Neurological:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.RosNeurological)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>psychosocial:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.psychosocial)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Medications:</b></td>
+            <td valign="top">@Html.DisplayFormattedFor(model => model.Medications)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td><b><u>Physical Exam</u></b></td>
+        </tr>        
+        <tr class="spaceUnder">
+            <td valign="top"><b>General:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.PeGeneral)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>BP:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.BloodPressure)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Heart Rate:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.HeartRate)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Tempurature:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.Tempurature)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Weight:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.Weight)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>HEENT:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.PeHeent)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Neck:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.Neck)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Skin:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.Skin)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Lungs:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.Lungs)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Heart:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.Heart)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Abdomen:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.Abdomen)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Musculoskeletal:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.Musculoskeletal)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Neurological:</b></td>
+            <td valign="top">@Html.DisplayFor(model => model.PeNeurological)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top">Additional Findings:</td>
+            <td valign="top">@Html.DisplayFor(model => model.Additional)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Laboratory Results:</b></td>
+            <td valign="top">@Html.DisplayFormattedFor(model => model.Documentsoratory)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Assessment:</b></td>
+            <td valign="top">@Html.DisplayFormattedFor(model => model.Assessment)</td>
+        </tr>
+        <tr class="spaceUnder">
+            <td valign="top"><b>Plan:</b></td>
+            <td valign="top">@Html.DisplayFormattedFor(model => model.Plan)</td>
+        </tr>
+    </table>
+    <footer>
+        <b>Barbara Wojda, MD:  @Html.DisplayFor(model => model.DateSignedByPhys)</b>
+    </footer>
+</div>
+
