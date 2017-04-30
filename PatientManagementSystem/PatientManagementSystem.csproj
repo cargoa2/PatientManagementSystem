@@ -258,7 +258,6 @@
     <Content Include="Views\Patients\Index.cshtml" />
     <Content Include="Views\Visits\Create.cshtml" />
     <Content Include="Views\Visits\Delete.cshtml" />
-    <Content Include="Views\Visits\Details.cshtml" />
     <Content Include="Views\Visits\Edit.cshtml" />
     <Content Include="Views\Visits\Index.cshtml" />
     <Content Include="Views\OtherManagements\Create.cshtml" />
@@ -289,7 +288,7 @@
     <Content Include="Views\Immunizations\Details.cshtml" />
     <Content Include="Views\Immunizations\Edit.cshtml" />
     <Content Include="Views\Immunizations\Index.cshtml" />
-    <Content Include="Views\Visits\PrintDetails.cshtml" />
+    <Content Include="Views\Visits\Details.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
