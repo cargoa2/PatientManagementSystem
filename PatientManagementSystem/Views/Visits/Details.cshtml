@@ -27,13 +27,25 @@
         </colgroup>
         
         <thead>             
-            <tr class="spaceUnder">
+            <tr>
                 <td><b>Name:</b>  @Html.DisplayFor(model => model.patient.FullName) </td>
                 <td><b>Date of Birth:</b> @Html.DisplayFor(model => model.patient.BirthDate) </td>                
-            </tr>  
+            </tr> 
+            <tr>
+                <td>@Html.DisplayFor(model => model.patient.StreetAddress)</td>                
+            </tr> 
+            <tr>
+                <td>@Html.DisplayFor(model => model.patient.City), @Html.DisplayFor(model => model.patient.State) @Html.DisplayFor(model => model.patient.PostalCode) </td>             
+            </tr>
+            <tr class="spaceUnder">
+                <td>
+                    @String.Format("{0: (###) ###-####}", Model.PatientPhone)
+                </td>
+            </tr>       
             <tr class="spaceUnder">
                 <td><b>Date of Service:</b>  @Html.DisplayFor(model => model.VisitDate)</td>
-            </tr>          
+            </tr> 
+              
         </thead> 
         @if (Model.Initial != true)
         {
@@ -124,19 +136,19 @@
         </tr>
         <tr class="spaceUnder">
             <td valign="top"><b>BP:</b></td>
-            <td valign="top">@Html.DisplayFor(model => model.BloodPressure)</td>
+            <td valign="top">@Html.DisplayFor(model => model.BloodPressure) mm/Hg</td>            
         </tr>
         <tr class="spaceUnder">
             <td valign="top"><b>Heart Rate:</b></td>
-            <td valign="top">@Html.DisplayFor(model => model.HeartRate)</td>
+            <td valign="top">@Html.DisplayFor(model => model.HeartRate)/min</td>
         </tr>
         <tr class="spaceUnder">
             <td valign="top"><b>Tempurature:</b></td>
-            <td valign="top">@Html.DisplayFor(model => model.Tempurature)</td>
+            <td valign="top">@Html.DisplayFor(model => model.Tempurature) F</td>
         </tr>
         <tr class="spaceUnder">
             <td valign="top"><b>Weight:</b></td>
-            <td valign="top">@Html.DisplayFor(model => model.Weight)</td>
+            <td valign="top">@Html.DisplayFor(model => model.Weight) kg/m<sup>2</sup></td>
         </tr>
         <tr class="spaceUnder">
             <td valign="top"><b>HEENT:</b></td>
@@ -189,6 +201,10 @@
     </table>
     <footer>
         <b>Barbara Wojda, MD:  @Html.DisplayFor(model => model.DateSignedByPhys)</b>
+        <div>
+            <img src="~/Images/ElectronicSignature.png" height="30" />
+        </div>
+       
     </footer>
 </div>
 

@@ -88,11 +88,23 @@ namespace PatientManagementSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Visits visit = db.Visits.Find(id);
+
+            visit.PatientPhone = FormatPhoneNumber(visit.patient.PatientPhone);
+
             if (visit == null)
             {
                 return HttpNotFound();
             }
             return View(visit);
+        }
+
+        public static string FormatPhoneNumber(string number)
+        {
+            string formatNumber = "(" + number.Substring(0, 3) + ")" +
+                                  " " + number.Substring(3, 3) + "-" +
+                                        number.Substring(6, 4);
+
+            return formatNumber;
         }
 
 
@@ -109,6 +121,7 @@ namespace PatientManagementSystem.Controllers
                 visit.PatientId = Convert.ToInt32(id);
                 visit.FullName = patient.FullName;
                 visit.BirthDate = patient.BirthDate;
+                visit.PatientPhone = patient.PatientPhone;
                 visit.VisitDate = DateTime.Now;
             visit.DateSignedByPhys = DateTime.Now;
 

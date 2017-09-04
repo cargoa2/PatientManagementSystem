@@ -68,23 +68,46 @@ namespace PatientManagementSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Patient patient = db.Patients.Find(id);
+            
+            patient.PatientPhone = FormatPhoneNumber(patient.PatientPhone);
+            patient.OtherPatientPhone = FormatPhoneNumber(patient.OtherPatientPhone);
+            patient.EmployerPhone = FormatPhoneNumber(patient.EmployerPhone);            
+            patient.ReferingPhysicianPhone = FormatPhoneNumber(patient.ReferingPhysicianPhone);
+            patient.EmergencyPhone = FormatPhoneNumber(patient.EmergencyPhone);
+            patient.PharmacyPhone = FormatPhoneNumber(patient.PharmacyPhone);
 
-            if(patient.OtherPatientPhone == null)
+            if (patient.OtherPatientPhone == null)
             {
                 patient.OtherPatientPhone = "None";
-                patient.OtherPhoneType = PhoneNumberTypes.None;
-                var age = DateTime.Now - patient.BirthDate;
-                if(patient.Employed == false)
-                {
-                    patient.EmployerName = "None";
-                    patient.EmployerPhone = "None";
-                }
+                patient.OtherPhoneType = PhoneNumberTypes.None;               
+            }
+            var age = DateTime.Now - patient.BirthDate;
+            if (patient.Employed == false)
+            {
+                patient.EmployerName = "None";
+                patient.EmployerPhone = "None";
             }
             if (patient == null)
             {
                 return HttpNotFound();
             }
             return View(patient);
+        }
+
+        public static string FormatPhoneNumber(string number)
+        {
+            if (number != null)
+            {
+                string formatNumber = "(" + number.Substring(0, 3) + ")" +
+                                  " " + number.Substring(3, 3) + "-" +
+                                        number.Substring(6, 4);
+                return formatNumber;
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
         // GET: Patients/Create

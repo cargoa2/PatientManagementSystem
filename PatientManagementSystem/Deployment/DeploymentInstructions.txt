@@ -1,0 +1,10 @@
+First after installing Sql Express run the PMS script.
+
+Install in C:\inetpub\wwwroot.
+Open IIS and then uncolapse Default Web Site.  The folder PatientManagementSystem should be there.  Right click and click Add Application.
+In IIS add an application pool named PMS.  Set the idenity in the advanced setting for the pool as LocalService.
+Click on PatientManagementSystem and then click on Basic Setting (on the right).  Change the application pool to PMS.
+
+Try browsing the application.  If there is a permissions error, check and make sure that the account has permission to Sql Server or set it up as owner.
+
+ 

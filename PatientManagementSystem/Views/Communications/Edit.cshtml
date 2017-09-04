@@ -48,7 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control-multi", onchange = "HandleFieldChange()" } })
+                @Html.TextAreaFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control-multi", onchange = "HandleFieldChange()" } })                
                 @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -63,6 +63,18 @@
 @Html.ActionLink("Go back to communication list", "CommIndex", "Communications", new { id = paid }, null)
 
 @section Scripts {
+        @Scripts.Render("~/bundles/jquery")   
+        <script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript">
+            tinymce.init({
+                selector: "textarea",
+                width: 820,
+                height: 850,
+                statusbar: false,
+                menubar: false                
+            });
+</script>
+
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {

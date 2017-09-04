@@ -373,9 +373,9 @@ namespace PatientManagementSystem.Models
                             new OtherManagement
                             {
                             PatientId = 1,
-                            TCell = 500,
-                            ViralLoad = 20,
-                            WhiteBloodCell = 500,
+                            TCell = "500",
+                            ViralLoad = "20",
+                            WhiteBloodCell = "500",
                             Hemoglobin = Convert.ToDecimal(100.2),
                             PlasmaIronTurnover = Convert.ToDecimal(80.8),
                             OtherWeight = "160.6",
@@ -386,9 +386,9 @@ namespace PatientManagementSystem.Models
                             new OtherManagement
                             {
                             PatientId = 1,
-                            TCell = 300,
-                            ViralLoad = 200,
-                            WhiteBloodCell = 100,
+                            TCell = "300",
+                            ViralLoad = "200",
+                            WhiteBloodCell = "100",
                             Hemoglobin = Convert.ToDecimal(100.0),
                             PlasmaIronTurnover = Convert.ToDecimal(90),
                             OtherWeight ="135",

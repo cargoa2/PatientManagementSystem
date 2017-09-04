@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using PatientManagementSystem.Models;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace PatientManagementSystem.Controllers
 {
@@ -51,11 +52,25 @@ namespace PatientManagementSystem.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
         public ActionResult CommIndex(int id)
-        {
+        {            
             if (CheckforCommunications(id) == true)
             {
+
                 List<Communication> Communications = db.Communication.ToList();
+
+                // Needed to strip out the HTML in the string saved in the rich text control.  This is a summary.
+                foreach (var item in Communications)
+                {                   
+                    item.Notes = Regex.Replace(item.Notes, @"<[^>]+>|&nbsp;", String.Empty);                    
+                }
+
                 var cList = Communications.Where(p => p.PatientId == id)
                                             .OrderByDescending(CommDate => CommDate.CommDate);
                 return View("Index", cList);
@@ -95,8 +110,7 @@ namespace PatientManagementSystem.Controllers
         public ActionResult Create([Bind(Include = "CommId,PatientId,CommDate,Notes")] Communication communication, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
-            {               
-                
+            {   
                 db.Communication.Add(communication);
                 db.SaveChanges();
                 return RedirectToAction("CommIndex", "Communications", new { id = communication.PatientId });

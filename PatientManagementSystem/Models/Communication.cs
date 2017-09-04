@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace PatientManagementSystem.Models
 {
@@ -29,6 +30,7 @@ namespace PatientManagementSystem.Models
         public DateTime CommDate { get; set; }
 
         [DataType(DataType.MultilineText)]
+        [AllowHtml]
         public string Notes { get; set; }
 
         public virtual Patient Patient { get; set; }

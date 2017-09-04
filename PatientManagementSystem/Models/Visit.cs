@@ -27,6 +27,10 @@ namespace PatientManagementSystem.Models
         [Display(Name = "Birth Date")]
         public DateTime BirthDate { get; set; }
 
+        [NotMapped]
+        [Display(Name = "Patient Phone")]
+        public string PatientPhone { get; set; }
+
         public bool Initial { get; set; }
 
         [Required(ErrorMessage = "Visit type is required")]
@@ -135,6 +139,7 @@ namespace PatientManagementSystem.Models
         [Display(Name ="Heart Rate")]
         public int HeartRate { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:##.#}")]
         public decimal Tempurature { get; set; }
 
         [MaxLength(100)]

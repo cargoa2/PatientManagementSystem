@@ -47,19 +47,13 @@
         </dt>
 
         <dd>
-            @Html.DisplayFormattedFor(model => model.Notes)
+            @Html.Raw(Model.Notes.ToString())
         </dd>
-        <dt>
-            Barbara Wojda, MD
-        </dt>
-        <dd>
-                
-        </dd>
-
     </dl>
+    Barbara Wojda, MD
+    <div>
+        <img src="~/Images/ElectronicSignature.png" height="30" />
+    </div>   
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CommId }) |
-    @Html.ActionLink("Go back to communication list", "CommIndex", "Communications", new { id = paid }, null)
     
-</p>
+

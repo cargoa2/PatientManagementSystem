@@ -1,0 +1,65 @@
+﻿@model PatientManagementSystem.Models.Documents
+
+@{
+    ViewBag.Title = "Details";
+}
+@{ int? paid = Model.PatientId; }
+
+<h2> Document Details</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FilePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FilePath)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DocFileId }) |
+    @Html.ActionLink("Go back to document list", "DocFileIndex", "Documents", new { id = paid }, null)  
+</p>

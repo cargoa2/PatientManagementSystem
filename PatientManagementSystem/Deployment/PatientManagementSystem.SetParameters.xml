@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="PatientManagementSystem" />
+  <setParameter name="PatientContext-Web.config Connection String" value="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=&quot;C:\PatientManagementSystem\App_Data\PatientManagementSystem.mdf&quot;;Initial Catalog=PatientManagementSystem.mdf;Integrated Security=True" />
+  <setParameter name="DefaultConnection-Web.config Connection String" value="Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True" />
+</parameters>

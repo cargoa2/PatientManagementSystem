@@ -1,0 +1,354 @@
+﻿@model PatientManagementSystem.Models.Visits
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@{ int? paid = Model.PatientId; }
+@{ string name = Model.FullName; }
+@{ DateTime bd = Model.BirthDate; }
+
+    <h4>KENTUCKIANA INFECTIOUS DISEASE CONSULTANCTS, PSC</h4>
+    <h5>Barbara Wojda, M.D</h5>
+    <h5>125 Fairfax Avenue, Louisville, KY 40207</h5>
+    <h5>Phone (502) 895-6155 Fax (502) 895-6156</h5>
+    <h5>drbarbarawojda.com</h5>
+    <div>
+        <hr />
+        @if (Model.Initial == true)
+        {
+            <h4>Office Consultation</h4>
+        }
+        else
+        {
+            <h4>Office follow up visit</h4>
+        }
+        
+    </div>    
+        <dl class="dl-horizontal">
+            <dt>
+                 @Html.DisplayNameFor(model => model.patient.FullName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.patient.FullName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.patient.BirthDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.patient.BirthDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Initial)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Initial)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.VisitDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VisitDate)
+            </dd>
+
+
+            @if (Model.Initial != true)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProblemList)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFormattedFor(model => model.ProblemList)
+                </dd>
+            }
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MedicalAllergy)
+            </dt>
+            <dd>
+                @Html.DisplayFormattedFor(model => model.MedicalAllergy)
+            </dd>
+
+            @if (Model.Initial == true)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.ReferralReason)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFormattedFor(model => model.ReferralReason)
+                </dd>
+            }
+            <dt>
+                @Html.DisplayNameFor(model => model.History)
+            </dt>
+
+            <dd>
+                @Html.DisplayFormattedFor(model => model.History)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PastHistory)
+            </dt>
+
+            <dd>
+                @Html.DisplayFormattedFor(model => model.PastHistory)
+            </dd>
+
+            @if (Model.Initial == true)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Epidemiology)
+                </dt>
+                <dd>
+                    @Html.DisplayFormattedFor(model => model.Epidemiology)
+                </dd>
+            }
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FamilyHistory)
+            </dt>
+
+            <dd>
+                @Html.DisplayFormattedFor(model => model.FamilyHistory)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SocialHistory)
+            </dt>
+
+            <dd>
+                @Html.DisplayFormattedFor(model => model.SocialHistory)
+            </dd>
+
+            <dd> Review of Symptoms</dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RosGeneral)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RosGeneral)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RosHeent)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RosHeent)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Respiratory)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Respiratory)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Cardiovascular)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cardiovascular)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Gastrointestinal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Gastrointestinal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Genitourniary)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Genitourniary)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RosNeurological)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RosNeurological)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.psychosocial)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.psychosocial)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Medications)
+            </dt>
+
+            <dd>
+                @Html.DisplayFormattedFor(model => model.Medications)
+            </dd>
+
+            <dd>Physical Exam</dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PeGeneral)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PeGeneral)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BloodPressure)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BloodPressure)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HeartRate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HeartRate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Tempurature)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Tempurature)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Weight)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Weight)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PeHeent)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PeHeent)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Neck)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Neck)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Skin)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Skin)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Lungs)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Lungs)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Heart)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Heart)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Abdomen)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Abdomen)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Musculoskeletal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Musculoskeletal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PeNeurological)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PeNeurological)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Additional)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Additional)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Documentsoratory)
+            </dt>
+
+            <dd>
+                @Html.DisplayFormattedFor(model => model.Documentsoratory)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Assessment)
+            </dt>
+
+            <dd>
+                @Html.DisplayFormattedFor(model => model.Assessment)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Plan)
+            </dt>
+
+            <dd>
+                @Html.DisplayFormattedFor(model => model.Plan)
+            </dd>
+            <dt>
+                Barbara Wojda, MD
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateSignedByPhys)
+            </dd>
+
+        </dl>    
+
+@*@{ string dt = DateTime.Now.ToShortDateString(); }*@
+
+@*@Html.ActionLink("Edit", "Edit", new { id = Model.VisitId }) |
+@Html.ActionLink("Go back to visit list", "PatientIndex", "Visits", new { id = paid }, null)*@

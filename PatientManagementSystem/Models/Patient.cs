@@ -70,6 +70,7 @@ namespace PatientManagementSystem.Models
         [DataType(DataType.PhoneNumber, ErrorMessage = "The entered phone number is not valid.")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
         [MaxLength(10, ErrorMessage = "Please enter the phone number without symbols.")]
+        //[DisplayFormat(DataFormatString = "{0: (###) ###-####}", ApplyFormatInEditMode = true)]
         public string OtherPatientPhone { get; set; }
 
         [Display(Name = "Phone Type")]
@@ -111,6 +112,7 @@ namespace PatientManagementSystem.Models
         [DataType(DataType.PhoneNumber, ErrorMessage = "The entered phone number is not valid.")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
         [MaxLength(10, ErrorMessage = "Please enter the phone number without symbols.")]
+        //[DisplayFormat(DataFormatString = "{0: (###) ###-####}", ApplyFormatInEditMode = true)]
         public string EmployerPhone { get; set; }
 
         [Required(ErrorMessage = "Please choose a relation to patient.")]
@@ -168,7 +170,7 @@ namespace PatientManagementSystem.Models
         [DataType(DataType.PhoneNumber, ErrorMessage = "The entered phone number is not valid.")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
         [MaxLength(10, ErrorMessage = "Please enter the phone number without symbols.")]
-        
+        //[DisplayFormat(DataFormatString = "{0: (###) ###-####}", ApplyFormatInEditMode = true)]
         public string ReferingPhysicianPhone { get; set; }
         
         [Display(Name = "Emergency Contact")]
@@ -180,6 +182,7 @@ namespace PatientManagementSystem.Models
         [DataType(DataType.PhoneNumber, ErrorMessage = "The entered phone number is not valid.")]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
         [MaxLength(10, ErrorMessage = "Please enter the phone number without symbols.")]
+        //[DisplayFormat(DataFormatString = "{0: (###) ###-####}", ApplyFormatInEditMode = true)]
         public string EmergencyPhone { get; set; }
         #endregion
 
@@ -196,6 +199,7 @@ namespace PatientManagementSystem.Models
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
         [MaxLength(10, ErrorMessage = "Please enter the phone number without symbols.")]
         [Display(Name = "Pharmacy Phone")]
+        //[DisplayFormat(DataFormatString = "{0: (###) ###-####}", ApplyFormatInEditMode = true)]
         public string PharmacyPhone { get; set; }           
 
         public virtual List<Visits> Visits { get; set; }
@@ -218,9 +222,7 @@ namespace PatientManagementSystem.Models
 
         [Display(Name = "Date Signed")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime DateSigned { get; set; }
-
-       
+        public DateTime DateSigned { get; set; }       
 
     }
 
@@ -257,7 +259,7 @@ namespace PatientManagementSystem.Models
     public enum Relation
     {
         Self,
-        Spouce,
+        Spouse,
         Dependant,
         Other
     }

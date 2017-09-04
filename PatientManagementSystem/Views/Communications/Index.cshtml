@@ -9,6 +9,7 @@
     {
         paid = p.PatientId;
         pn = p.Patient.FullName;
+        
     }}
 
 <h2>Communications List</h2>
@@ -38,7 +39,8 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Patient.BirthDate)
@@ -46,8 +48,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.CommDate)
         </td>        
-        <td>
-            @Html.DisplayFor(modelItem => item.Notes)
+        <td>                                 
+            @Html.DisplayFor(modelItem => item.Notes)            
         </td>
         <td>            
             @Html.ActionLink("Edit", "Edit", new { id=item.CommId }) |
