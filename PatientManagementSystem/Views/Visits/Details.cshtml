@@ -198,13 +198,10 @@
             <td valign="top"><b>Plan:</b></td>
             <td valign="top">@Html.DisplayFormattedFor(model => model.Plan)</td>
         </tr>
-    </table>
-    <footer>
-        <b>Barbara Wojda, MD:  @Html.DisplayFor(model => model.DateSignedByPhys)</b>
-        <div>
-            <img src="~/Images/ElectronicSignature.png" height="30" />
-        </div>
-       
-    </footer>
+    </table>    
+    <div>
+        <img src="~/Images/ElectronicSignature.png" height="30" />
+    </div>
+    <b>Barbara Wojda, MD:  @Html.DisplayFor(model => model.DateSignedByPhys)</b>
 </div>
 

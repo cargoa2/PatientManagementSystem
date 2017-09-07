@@ -94,6 +94,10 @@ header {
 
 @media print {
 
+    .noPrint {
+        display:none;
+    }
+
     table.print-friendly tr td, table.print-friendly tr th {
         font-size: small;
         page-break-inside: avoid;
@@ -113,7 +117,7 @@ header {
     #thead {
         top: 25px;
     }
-
+   
     #footer {
         display: block;
         position: fixed;
