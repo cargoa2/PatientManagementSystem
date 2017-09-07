@@ -1,8 +1,6 @@
 ﻿@model PatientManagementSystem.Models.Communication
 
-<script src="~/Scripts/jquery-1.10.2.js"></script>
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-@Html.Hidden("UnsavedChanges", "0");
+@Html.Hidden("UnsavedChanges", "0")
 
 
 @{
@@ -64,25 +62,33 @@
 @Html.ActionLink("Go back to communication list", "CommIndex", "Communications", new { id = paid }, null)
 
 @section Scripts {
-@Scripts.Render("~/bundles/jquery")
-       <script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>
-        <script type="text/javascript">
-            tinymce.init({
-                selector: 'textarea',
-                width: 1000,
-                height: 1000,
-                statusbar: false,
-                menubar: false
-            });
-        </script>
 
-    @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>   
+    <script type="text/javascript">
+        tinyMCE.init({
+            selector: 'textarea',
+            width: 1000,
+            height: 1000,
+            statusbar: false,
+            menubar: false,
+            setup : function(ed) {
+                ed.on("NodeChange", function(e){
+                    $("#UnsavedChanges").val("1");
+                });                
+            }
+        });
+    </script>  
+         
+    @Scripts.Render("~/bundles/jqueryval")    
     <script>
         $(document).ready(function () {
 
         })
-        function HandleFieldChange() {
-            $("#UnsavedChanges").val("1");
+        
+        function HandleFieldChange() {           
+             $("#UnsavedChanges").val("1");               
         }
 
         function HandleSaveEvent() {
@@ -94,6 +100,8 @@
                 var _message = "You currently have unsaved changes!!!\n\nAre you sure you want to exit without saving.\n\nChoose ‘Leave this page’ to exit without saving changes.\nChoose ‘Stay on this page’ to return to the billing profile.";
                 return _message;
             }
-        }
+        }        
     </script>
+   
+
 }

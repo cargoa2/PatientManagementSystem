@@ -95,7 +95,13 @@ header {
 @media print {
 
     table.print-friendly tr td, table.print-friendly tr th {
+        font-size: small;
         page-break-inside: avoid;
+    }
+
+    textarea.print-friendly{
+        font-family:cursive;
+        font-size: small;
     }
 
     #header {

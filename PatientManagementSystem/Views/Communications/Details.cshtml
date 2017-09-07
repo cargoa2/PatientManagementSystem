@@ -46,13 +46,13 @@
             @Html.DisplayNameFor(model => model.Notes)
         </dt>
 
-        <dd>
+        <dd style="font-size:small">
             @Html.Raw(Model.Notes.ToString())
         </dd>
     </dl>
     Barbara Wojda, MD
-    <div>
-        <img src="~/Images/ElectronicSignature.png" height="30" />
+    <div>        
+        <img src="@Url.Content("~/Content/Images/ElectronicSignature.png")"  height="30" />
     </div>   
 </div>
     

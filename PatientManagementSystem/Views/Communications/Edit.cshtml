@@ -1,7 +1,5 @@
 ﻿@model PatientManagementSystem.Models.Communication
 
-<script src="~/Scripts/jquery-1.10.2.js"></script>
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 @Html.Hidden("UnsavedChanges", "0");
 
 @{
@@ -63,17 +61,25 @@
 @Html.ActionLink("Go back to communication list", "CommIndex", "Communications", new { id = paid }, null)
 
 @section Scripts {
-        @Scripts.Render("~/bundles/jquery")   
-        <script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>
-        <script type="text/javascript">
-            tinymce.init({
-                selector: "textarea",
-                width: 820,
-                height: 850,
-                statusbar: false,
-                menubar: false                
-            });
-</script>
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+                    tinyMCE.init({
+                        selector: 'textarea',
+                        width: 1000,
+                        height: 1000,
+                        statusbar: false,
+                        menubar: false,
+                        site : "~\Content\Site.css",
+                        setup: function (ed) {
+                            ed.on("NodeChange", function (e) {
+                                $("#UnsavedChanges").val("1");
+                            });
+                        }
+                    });
+    </script>  
 
     @Scripts.Render("~/bundles/jqueryval")
     <script>
