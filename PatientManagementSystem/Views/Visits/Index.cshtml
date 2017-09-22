@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Patient Visit List";
 }
-<h4>KENTUCKIANA INFECTIOUS DISEASE CONSULTANCTS, PSC</h4>
+<h4>KENTUCKIANA INFECTIOUS DISEASE CONSULTANTS, PSC</h4>
 <h5>Barbara Wojda, M.D</h5>
 <h5>125 Fairfax Avenue, Louisville, KY 40207</h5>
 <h5>Phone (502) 895-6155 Fax (502) 895-6156</h5>
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.VisitDate)
         </td>
         <td>               
-            @Html.ActionLink("Edit", "Edit", new { id=item.VisitId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.VisitId }) | 
-            @Html.ActionLink("Billing Details", "BillingDetails", new { id = item.VisitId}) |           
+            @Html.ActionLink("Edit", "Edit", new { id = item.VisitId })&nbsp;|
+            @Html.ActionLink("Details", "Details", new { id = item.VisitId })&nbsp;| 
+            @Html.ActionLink("Billing Details", "BillingDetails", new { id = item.VisitId })&nbsp;|           
             @Html.ActionLink("Delete", "Delete", new { id = item.VisitId })
         </td>
     </tr>

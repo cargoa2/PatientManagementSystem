@@ -74,7 +74,8 @@
                         menubar: false,
                         site : "~\Content\Site.css",
                         setup: function (ed) {
-                            ed.on("NodeChange", function (e) {
+                            $("#UnsavedChanges").val("0");
+                            ed.on("change", function (e) {
                                 $("#UnsavedChanges").val("1");
                             });
                         }

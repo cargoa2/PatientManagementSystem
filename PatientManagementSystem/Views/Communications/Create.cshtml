@@ -73,13 +73,14 @@
             height: 1000,
             statusbar: false,
             menubar: false,
-            setup : function(ed) {
-                ed.on("NodeChange", function(e){
-                    $("#UnsavedChanges").val("1");
-                });                
+            setup : function(ed) {               
+                        $("#UnsavedChanges").val("0");                    
+                        ed.on("change", function (e) {
+                            $("#UnsavedChanges").val("1");
+                        });
             }
         });
-    </script>  
+    </script> 
          
     @Scripts.Render("~/bundles/jqueryval")    
     <script>
