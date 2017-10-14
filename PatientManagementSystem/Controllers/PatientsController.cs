@@ -75,13 +75,31 @@ namespace PatientManagementSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Patient patient = db.Patients.Find(id);
-            
-            patient.PatientPhone = FormatPhoneNumber(patient.PatientPhone);
-            patient.OtherPatientPhone = FormatPhoneNumber(patient.OtherPatientPhone);
-            patient.EmployerPhone = FormatPhoneNumber(patient.EmployerPhone);            
-            patient.ReferingPhysicianPhone = FormatPhoneNumber(patient.ReferingPhysicianPhone);
-            patient.EmergencyPhone = FormatPhoneNumber(patient.EmergencyPhone);
-            patient.PharmacyPhone = FormatPhoneNumber(patient.PharmacyPhone);
+
+            if (patient.PatientPhone != null)
+            {
+                patient.PatientPhone = FormatPhoneNumber(patient.PatientPhone);
+            }
+            if (patient.OtherPatientPhone != null)
+            {
+                patient.OtherPatientPhone = FormatPhoneNumber(patient.OtherPatientPhone);
+            }
+            if (patient.EmployerPhone != null)
+            {
+                patient.EmployerPhone = FormatPhoneNumber(patient.EmployerPhone);
+            }
+            if (patient.ReferingPhysicianPhone != null)
+            {
+                patient.ReferingPhysicianPhone = FormatPhoneNumber(patient.ReferingPhysicianPhone);
+            }
+            if (patient.EmployerPhone != null)
+            {
+                patient.EmergencyPhone = FormatPhoneNumber(patient.EmergencyPhone);
+            }
+            if (patient.PharmacyPhone != null)
+            {
+                patient.PharmacyPhone = FormatPhoneNumber(patient.PharmacyPhone);
+            }
 
             if (patient.OtherPatientPhone == null)
             {
@@ -105,21 +123,24 @@ namespace PatientManagementSystem.Controllers
 
         public static string FormatPhoneNumber(string number)
         {
-            Logger.Log(LogLevel.Debug, "Starting PatientsController FormatPhoneNumber.", "String number = " + number.ToString(), "", "");
+            string formatNumber = "";
+            Logger.Log(LogLevel.Debug, "Starting PatientsController FormatPhoneNumber.", "String number = " + number.ToString(), "", "formatPhoneNumber");
             if (number != null)
             {
-                string formatNumber = "(" + number.Substring(0, 3) + ")" +
+                formatNumber = "(" + number.Substring(0, 3) + ")" +
                                   " " + number.Substring(3, 3) + "-" +
                                         number.Substring(6, 4);
                 Logger.Log(LogLevel.Debug, "Returning PatientsController FormatPhoneNumber.", "String number = " + number.ToString(), "", formatNumber);
-                return formatNumber;
+                //return formatNumber;
             }
-            else
-            {
-                Logger.Log(LogLevel.Debug, "Returning PatientsController FormatPhoneNumber.", "String number = " + number.ToString(), "", "null");
-                return null;
-            }
-            
+            return formatNumber;
+
+            //else
+            //{
+            //    Logger.Log(LogLevel.Debug, "Returning PatientsController FormatPhoneNumber.", "String number = " + number.ToString(), "", "null");
+            //    return null;
+            //}
+
         }
 
         // GET: Patients/Create

@@ -185,7 +185,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RosGeneral, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RosGeneral, new { htmlAttributes = new { @class = "form-control-multi", onchange = "HandleFieldChange()" } })
+                @Html.EditorFor(model => model.RosGeneral, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.RosGeneral, "", new { @class = "text-danger" })
             </div>
         </div>
