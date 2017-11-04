@@ -193,7 +193,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OtherManagement.cs" />
     <Compile Include="Models\Patient.cs" />
-    <Compile Include="Models\PatientContext.cs" />
+    <Compile Include="PatientContext.cs" />
     <Compile Include="Models\Documents.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Models\Visit.cs" />

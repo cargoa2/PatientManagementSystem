@@ -35,6 +35,8 @@ namespace PatientManagementSystem.Models
         [Display(Name = "File Path")]
         public string FilePath { get; set; }
 
+        public Byte[] FileContent { get; set; }
+
         public virtual Patient Patient { get; set; }
 
     }

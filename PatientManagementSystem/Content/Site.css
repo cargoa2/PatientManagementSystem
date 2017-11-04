@@ -8,7 +8,6 @@ tr.spaceUnder > td
     padding-bottom: 1em;
     }
 
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -27,11 +26,13 @@ tr.spaceUnder > td
   }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
-    max-width: 840px;
-}
+    width: 200px;
+    height: 35px
+}*/
+
 
 .form-control-multi {
   white-space: pre-wrap;
@@ -57,7 +58,6 @@ textarea {
   display: block;
   width: 100%;
    height: 100%;
-  /*height: 150px;*/
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.428571429;
@@ -78,6 +78,7 @@ fieldset[disabled] .form-control-multi {
   background-color: #eeeeee;
 }
 
+
 header {
   font-size: 9px;
   color: black;
@@ -94,18 +95,18 @@ header {
 
 @media print {
 
+    body{
+        font-size: 8pt
+    }
+
     .noPrint {
         display:none;
     }
 
-    table.print-friendly tr td, table.print-friendly tr th {
-        font-size: small;
-        page-break-inside: avoid;
-    }
 
     textarea.print-friendly{
-        font-family:cursive;
-        font-size: small;
+        font-family:Arial;
+        font-size: 8pt;
     }
 
     #header {
@@ -116,7 +117,13 @@ header {
 
     #thead {
         top: 25px;
+        border-bottom: 1px solid black;
     }
+
+    #nav, #sidebar {
+        display:none;
+    }
+    
    
     #footer {
         display: block;

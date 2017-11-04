@@ -51,7 +51,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Initial, htmlAttributes: new { @class = "control-Label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
+                <div class="checkbox-inline">
                     @Html.CheckBoxFor(model => model.Initial, new { @id = "initial", @onclick = "mycheck.call(this)"})                   
                     @Html.ValidationMessageFor(model => model.Initial, "", new { @class = "text-danger"})
                     

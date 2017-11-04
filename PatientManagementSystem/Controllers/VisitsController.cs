@@ -23,34 +23,34 @@ namespace PatientManagementSystem.Controllers
 
         public bool CheckVisits(int id)
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController CheckVisits.", "Patient Id = " + id.ToString(), "", "");
+          //  Logger.Log(LogLevel.Debug, "Starting VisitsController CheckVisits.", "Patient Id = " + id.ToString(), "", "");
             List<Visits> visits = db.Visits.ToList();
             var visitsExists = visits.Find(i => i.PatientId == id);
 
             if (visitsExists != null)
             {
-                Logger.Log(LogLevel.Debug, "Returning VisitsController CheckVisits.", "Patient Id = " + id.ToString(), "", "True");
+       //         Logger.Log(LogLevel.Debug, "Returning VisitsController CheckVisits.", "Patient Id = " + id.ToString(), "", "True");
                 return true;                
             }
             else
             {
-                Logger.Log(LogLevel.Debug, "Returning VisitsController CheckVisits.", "Patient Id = " + id.ToString(), "", "False");
+       //         Logger.Log(LogLevel.Debug, "Returning VisitsController CheckVisits.", "Patient Id = " + id.ToString(), "", "False");
                 return false;                
             }
         }
         public ActionResult PatientIndex(int id)
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController PatientIndex.", "Patient Id = " + id.ToString(), "", "");
+      //      Logger.Log(LogLevel.Debug, "Starting VisitsController PatientIndex.", "Patient Id = " + id.ToString(), "", "");
             if (CheckVisits(id) == true)
             {
                 List<Visits> visits = db.Visits.ToList();
                 var vList = visits.Where(v => v.PatientId == id).OrderByDescending(v => v.VisitDate);
-                Logger.Log(LogLevel.Debug, "Returning VisitsController PatientIndex.", "Patient Id = " + id.ToString(), "", "vList");
+      //          Logger.Log(LogLevel.Debug, "Returning VisitsController PatientIndex.", "Patient Id = " + id.ToString(), "", "vList");
                 return View("Index", vList);
             }
             else
             {
-                Logger.Log(LogLevel.Debug, "Returning VisitsController PatientIndex.", "Patient Id = " + id.ToString(), "", "New");
+      //          Logger.Log(LogLevel.Debug, "Returning VisitsController PatientIndex.", "Patient Id = " + id.ToString(), "", "New");
                 return RedirectToAction("Create", new { id = id });             
             }
            
@@ -58,37 +58,37 @@ namespace PatientManagementSystem.Controllers
 
         public ActionResult PrintDetails(int? id)
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController PrintDetails.", "Patient Id = " + id.ToString(), "", "");
+      //      Logger.Log(LogLevel.Debug, "Starting VisitsController PrintDetails.", "Patient Id = " + id.ToString(), "", "");
             if (id == null)
             {
-                Logger.Log(LogLevel.Debug, "Returning VisitsController PrintDetails.", "Patient Id = " + id.ToString(), "", "BadRequest");
+      //          Logger.Log(LogLevel.Debug, "Returning VisitsController PrintDetails.", "Patient Id = " + id.ToString(), "", "BadRequest");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Visits visit = db.Visits.Find(id);
             if (visit == null)
             {
-                Logger.Log(LogLevel.Debug, "Returning VisitsController PrintDetails.", "Patient Id = " + id.ToString(), "", "HttpNotFound");
+      //          Logger.Log(LogLevel.Debug, "Returning VisitsController PrintDetails.", "Patient Id = " + id.ToString(), "", "HttpNotFound");
                 return HttpNotFound();
             }
-            Logger.Log(LogLevel.Debug, "Returning VisitsController PrintDetails.", "Patient Id = " + id.ToString(), "", "");
+     //       Logger.Log(LogLevel.Debug, "Returning VisitsController PrintDetails.", "Patient Id = " + id.ToString(), "", "");
             return View(visit);
         }
 
         public ActionResult BillingDetails(int? id)
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController BillingDetails.", "Patient Id = " + id.ToString(), "", "");
+      //      Logger.Log(LogLevel.Debug, "Starting VisitsController BillingDetails.", "Patient Id = " + id.ToString(), "", "");
             if (id == null)
             {
-                Logger.Log(LogLevel.Debug, "Returning VisitsController BillingDetails.", "Patient Id = " + id.ToString(), "", "BadRequest");
+      //          Logger.Log(LogLevel.Debug, "Returning VisitsController BillingDetails.", "Patient Id = " + id.ToString(), "", "BadRequest");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Visits visit = db.Visits.Find(id);
             if (visit == null)
             {
-                Logger.Log(LogLevel.Debug, "Returning VisitsController BillingDetails.", "Patient Id = " + id.ToString(), "", "HttpNotFound");
+      //          Logger.Log(LogLevel.Debug, "Returning VisitsController BillingDetails.", "Patient Id = " + id.ToString(), "", "HttpNotFound");
                 return HttpNotFound();
             }
-            Logger.Log(LogLevel.Debug, "Returning VisitsController BillingDetails.", "Patient Id = " + id.ToString(), "", "");
+      //      Logger.Log(LogLevel.Debug, "Returning VisitsController BillingDetails.", "Patient Id = " + id.ToString(), "", "");
             return View(visit);
         }    
 
@@ -96,10 +96,10 @@ namespace PatientManagementSystem.Controllers
         // GET: Visits/Details/5
         public ActionResult Details(int? id)
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController Get Details.", "Patient Id = " + id.ToString(), "", "");
+      //      Logger.Log(LogLevel.Debug, "Starting VisitsController Get Details.", "Patient Id = " + id.ToString(), "", "");
             if (id == null)
             {
-                Logger.Log(LogLevel.Debug, "Returning VisitsController Get Details.", "Patient Id = " + id.ToString(), "", "BadRequest");
+      //          Logger.Log(LogLevel.Debug, "Returning VisitsController Get Details.", "Patient Id = " + id.ToString(), "", "BadRequest");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Visits visit = db.Visits.Find(id);
@@ -108,21 +108,21 @@ namespace PatientManagementSystem.Controllers
 
             if (visit == null)
             {
-                Logger.Log(LogLevel.Debug, "Returning VisitsController Get Details.", "Patient Id = " + id.ToString(), "", "HttpNotFound");
+      //          Logger.Log(LogLevel.Debug, "Returning VisitsController Get Details.", "Patient Id = " + id.ToString(), "", "HttpNotFound");
                 return HttpNotFound();
             }
-            Logger.Log(LogLevel.Debug, "Returning VisitsController Get Details.", "Patient Id = " + id.ToString(), "", "");
+     //       Logger.Log(LogLevel.Debug, "Returning VisitsController Get Details.", "Patient Id = " + id.ToString(), "", "");
             return View(visit);
         }
 
         public static string FormatPhoneNumber(string number)
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController FormatPhoneNumber.", "", "", number.ToString());
+      //      Logger.Log(LogLevel.Debug, "Starting VisitsController FormatPhoneNumber.", "", "", number.ToString());
             string formatNumber = "(" + number.Substring(0, 3) + ")" +
                                   " " + number.Substring(3, 3) + "-" +
                                         number.Substring(6, 4);
 
-            Logger.Log(LogLevel.Debug, "Returning VisitsController FormatPhoneNumber.", "", "", formatNumber);
+      //      Logger.Log(LogLevel.Debug, "Returning VisitsController FormatPhoneNumber.", "", "", formatNumber);
             return formatNumber;
         }
 
@@ -131,7 +131,7 @@ namespace PatientManagementSystem.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Create(int id)
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController Get Create.", "Patient Id = " + id.ToString(), "", "");
+      //      Logger.Log(LogLevel.Debug, "Starting VisitsController Get Create.", "Patient Id = " + id.ToString(), "", "");
 
             List<Visits> visits = db.Visits.ToList();
 
@@ -185,7 +185,7 @@ namespace PatientManagementSystem.Controllers
                 visit.Assessment = lastVisit.Assessment;
                 visit.Plan = lastVisit.Plan;
             }
-            Logger.Log(LogLevel.Debug, "Returning VisitsController Get Create.", "Patient Id = " + id.ToString(), "", "");
+      //      Logger.Log(LogLevel.Debug, "Returning VisitsController Get Create.", "Patient Id = " + id.ToString(), "", "");
             return View(visit);
         }
 
@@ -197,34 +197,34 @@ namespace PatientManagementSystem.Controllers
         [AcceptVerbs("Post")]
         public ActionResult Create([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,MedicalAllergy,ReferralReason,History,PastHistory,Epidemiology,FamilyHistory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Documentsoratory,Assessment,Plan,ProblemList,DateSignedByPhys")] Visits visit)
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController Post Create.", "Patient Id = " + visit.PatientId.ToString(), "", "");
+       //     Logger.Log(LogLevel.Debug, "Starting VisitsController Post Create.", "Patient Id = " + visit.PatientId.ToString(), "", "");
             if (ModelState.IsValid)
             {
                 db.Visits.Add(visit);
                 db.SaveChanges();
-                Logger.Log(LogLevel.Debug, "Returning VisitsController Post Create.", "Patient Id = " + visit.PatientId.ToString(), "", "Saved changes");
+       //         Logger.Log(LogLevel.Debug, "Returning VisitsController Post Create.", "Patient Id = " + visit.PatientId.ToString(), "", "Saved changes");
                 return RedirectToAction("PatientIndex", new { id = visit.PatientId });
             }
-            Logger.Log(LogLevel.Debug, "Returning VisitsController Post Create.", "Patient Id = " + visit.PatientId.ToString(), "", "");
+      //      Logger.Log(LogLevel.Debug, "Returning VisitsController Post Create.", "Patient Id = " + visit.PatientId.ToString(), "", "");
             return View(visit);
         }
 
         // GET: Visits/Edit/5
         public ActionResult Edit(int? id)
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController Get Edit.", "Patient Id = " + id.ToString(), "", "");
+     //       Logger.Log(LogLevel.Debug, "Starting VisitsController Get Edit.", "Patient Id = " + id.ToString(), "", "");
             if (id == null)
             {
-                Logger.Log(LogLevel.Debug, "Returning VisitsController Get Edit.", "Patient Id = " + id.ToString(), "", "BadRequest");
+     //           Logger.Log(LogLevel.Debug, "Returning VisitsController Get Edit.", "Patient Id = " + id.ToString(), "", "BadRequest");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Visits visit = db.Visits.Find(id);
             if (visit == null)
             {
-                Logger.Log(LogLevel.Debug, "Returning VisitsController Get Edit.", "Patient Id = " + id.ToString(), "", "HttpNotFound");
+     //           Logger.Log(LogLevel.Debug, "Returning VisitsController Get Edit.", "Patient Id = " + id.ToString(), "", "HttpNotFound");
                 return HttpNotFound();
             }
-            Logger.Log(LogLevel.Debug, "Returning VisitsController Get Edit.", "Patient Id = " + id.ToString(), "", "");
+    //        Logger.Log(LogLevel.Debug, "Returning VisitsController Get Edit.", "Patient Id = " + id.ToString(), "", "");
             return View(visit);
         }
 
@@ -235,34 +235,34 @@ namespace PatientManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "VisitId,PatientId,Initial,VisitType,VisitDate,DiagnosisCode,CoPay,PaymentType,CheckNumber,TotalPaid,MedicalAllergy,ReferralReason,History,PastHistory,Epidemiology,FamilyHistory,SocialHistory,RosGeneral,RosHeent,Respiratory,Cardiovascular,Gastrointestinal,Genitourniary,RosNeurological,psychosocial,Medications,PeGeneral,BloodPressure,HeartRate,Tempurature,Weight,PeHeent,Neck,Skin,Lungs,Heart,Abdomen,Musculoskeletal,PeNeurological,Additional,Documentsoratory,Assessment,Plan,ProblemList,DateSignedByPhys")] Visits visit)
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController Post Edit.", "Patient Id = " + visit.PatientId.ToString(), "", "");
+     //       Logger.Log(LogLevel.Debug, "Starting VisitsController Post Edit.", "Patient Id = " + visit.PatientId.ToString(), "", "");
             if (ModelState.IsValid)
             {        
                 db.Entry(visit).State = EntityState.Modified;
                 db.SaveChanges();
-                Logger.Log(LogLevel.Debug, "Returning VisitsController Post Edit.", "Patient Id = " + visit.PatientId.ToString(), "", "Saved changes");
+      //          Logger.Log(LogLevel.Debug, "Returning VisitsController Post Edit.", "Patient Id = " + visit.PatientId.ToString(), "", "Saved changes");
                 return RedirectToAction("PatientIndex", new { id = visit.PatientId });
             }
-            Logger.Log(LogLevel.Debug, "Returning VisitsController Post Edit.", "Patient Id = " + visit.PatientId.ToString(), "", "");
+      //      Logger.Log(LogLevel.Debug, "Returning VisitsController Post Edit.", "Patient Id = " + visit.PatientId.ToString(), "", "");
             return View(visit);
         }
 
         // GET: Visits/Delete/5
         public ActionResult Delete(int? id)
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController Get Delete.", "Patient Id = " + id.ToString(), "", "");
+     //       Logger.Log(LogLevel.Debug, "Starting VisitsController Get Delete.", "Patient Id = " + id.ToString(), "", "");
             if (id == null)
             {
-                Logger.Log(LogLevel.Debug, "Returning VisitsController Get Delete.", "Patient Id = " + id.ToString(), "", "BadRequest");
+    //            Logger.Log(LogLevel.Debug, "Returning VisitsController Get Delete.", "Patient Id = " + id.ToString(), "", "BadRequest");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Visits visit = db.Visits.Find(id);
             if (visit == null)
             {
-                Logger.Log(LogLevel.Debug, "Returning VisitsController Get Delete.", "Patient Id = " + id.ToString(), "", "HttpNotFound");
+      //          Logger.Log(LogLevel.Debug, "Returning VisitsController Get Delete.", "Patient Id = " + id.ToString(), "", "HttpNotFound");
                 return HttpNotFound();
             }
-            Logger.Log(LogLevel.Debug, "Returning VisitsController Get Delete.", "Patient Id = " + id.ToString(), "", "");
+     //       Logger.Log(LogLevel.Debug, "Returning VisitsController Get Delete.", "Patient Id = " + id.ToString(), "", "");
             return View(visit);
         }
 
@@ -271,31 +271,31 @@ namespace PatientManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController Post Delete.", "Patient Id = " + id.ToString(), "", "");
+     //       Logger.Log(LogLevel.Debug, "Starting VisitsController Post Delete.", "Patient Id = " + id.ToString(), "", "");
             Visits visit = db.Visits.Find(id);
             db.Visits.Remove(visit);
             db.SaveChanges();
-            Logger.Log(LogLevel.Debug, "Returning VisitsController Post Delete.", "Patient Id = " + id.ToString(), "", "Saved changes");
+    //        Logger.Log(LogLevel.Debug, "Returning VisitsController Post Delete.", "Patient Id = " + id.ToString(), "", "Saved changes");
             return RedirectToAction("PatientIndex", new { id = visit.PatientId });
         }
 
         private IEnumerable<VisitTypes> PopulateVisitTypes()
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController PopulateVisitTypes.", "", "", "");
+     //       Logger.Log(LogLevel.Debug, "Starting VisitsController PopulateVisitTypes.", "", "", "");
             List<VisitTypes> visitType = new List<VisitTypes>();
-            Logger.Log(LogLevel.Debug, "Returning VisitsController PopulateVisitTypes.", "", "", "");
+    //        Logger.Log(LogLevel.Debug, "Returning VisitsController PopulateVisitTypes.", "", "", "");
             return visitType;
         }
 
         protected override void Dispose(bool disposing)
         {
-            Logger.Log(LogLevel.Debug, "Starting VisitsController Dispose.", "", "", "");
+     //       Logger.Log(LogLevel.Debug, "Starting VisitsController Dispose.", "", "", "");
             if (disposing)
             {
                 db.Dispose();
             }
             base.Dispose(disposing);
-            Logger.Log(LogLevel.Debug, "Ending VisitsController Dispose.", "", "", "");
+     //       Logger.Log(LogLevel.Debug, "Ending VisitsController Dispose.", "", "", "");
         }
     }
 }

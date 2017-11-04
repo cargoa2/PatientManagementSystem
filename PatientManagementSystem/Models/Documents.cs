@@ -39,6 +39,7 @@ namespace PatientManagementSystem.Models
         //[Required(ErrorMessage = "You must select a file")]
         public string FilePath { get; set; }
 
+        public Byte[] FileContent { get; set; }
 
         public virtual Patient Patient { get; set; }
 

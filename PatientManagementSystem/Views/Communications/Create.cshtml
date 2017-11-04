@@ -35,7 +35,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.CommDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.CommDate, new { htmlAttributes = new { @class = "form-control", onchange = "HandleFieldChange()" } })
                 @Html.ValidationMessageFor(model => model.CommDate, "", new { @class = "text-danger" })
             </div>
@@ -44,10 +44,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control-multi", onchange = "HandleFieldChange()" } })                
-                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
-
-                
+                @Html.TextAreaFor(model => model.Notes, new { style = "width: 900px; height: 500px", oninput = "HandleFieldChange()" })                               
+                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })                
             </div>
         </div>
 
@@ -65,7 +63,7 @@
 
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>   
+@*<script type="text/javascript" src="~/Scripts/tinymce/tinymce.min.js"></script>   
     <script type="text/javascript">
         tinyMCE.init({
             selector: 'textarea',
@@ -80,7 +78,7 @@
                         });
             }
         });
-    </script> 
+    </script>*@ 
          
     @Scripts.Render("~/bundles/jqueryval")    
     <script>
