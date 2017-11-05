@@ -78,22 +78,16 @@ namespace PatientManagementSystem.Controllers
 
             if (CheckforCommunications(id) == true)
             {
-
+                
                 List<Communication> Communications = db.Communication.ToList();
-
-               // Needed to strip out the HTML in the string saved in the rich text control.  This is a summary.
-                //foreach (var item in Communications)
-                //{
-                //    HtmlDocument note = new HtmlDocument();
-                //    note.LoadHtml(item.Notes);
-                //    string ih = note.DocumentNode.InnerHtml;
-                //    string it = note.DocumentNode.InnerText;
-                //    string newit = HttpUtility.HtmlDecode(it);
-                //    item.Notes = newit;
-                //}
-
                 var cList = Communications.Where(p => p.PatientId == id)
                                             .OrderByDescending(CommDate => CommDate.CommDate);
+
+                foreach (var item in cList)
+                {
+                    string notes = item.Notes.Replace("<br />", "\r");
+                    item.Notes = notes;
+                }
 
                 //Logger.Log(LogLevel.Debug, "Returning Patient CommunicationController Details cList.", "Patient Id = " + id.ToString(), "", "");
 
@@ -212,14 +206,9 @@ namespace PatientManagementSystem.Controllers
             }
             Communication communication = db.Communication.Find(id);
 
-            // Needed to strip out the HTML in the string saved in the rich text control.  This is a summary.          
-                //HtmlDocument note = new HtmlDocument();
-                //note.LoadHtml(communication.Notes);
-                //string ih = note.DocumentNode.InnerHtml;
-                //string it = note.DocumentNode.InnerText;
-                //string newit = HttpUtility.HtmlDecode(it);
-                //communication.Notes = newit;
-          
+            string note = communication.Notes.Replace("<br />", "\r");
+            communication.Notes = note;
+
             if (communication == null)
             {
                 return HttpNotFound();
