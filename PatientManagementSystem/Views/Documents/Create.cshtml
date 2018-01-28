@@ -2,7 +2,7 @@
 
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-@Html.Hidden("UnsavedChanges", "0");
+@Html.Hidden("UnsavedChanges", "0")
 
 @{
     ViewBag.Title = "Create";
@@ -61,7 +61,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FilePath, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" id="DocumentsFile" name="file" style="width:1000px" onchange = "HandleFieldChange()" />
+                <input type="file" id="DocumentsFile" name="file" style="width:1000px; background-color:#fcffc6; border-color:#776a4a;" onchange = "HandleFieldChange()" />
                 @Html.ValidationMessageFor(model => model.FilePath, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -139,6 +139,7 @@ namespace PatientManagementSystem.Models
         [Display(Name ="Heart Rate")]
         public int HeartRate { get; set; }
 
+        [Display(Name = "Temperature")]
         [DisplayFormat(DataFormatString = "{0:##.#}")]
         public decimal Tempurature { get; set; }
 

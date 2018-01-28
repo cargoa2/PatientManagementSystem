@@ -9,7 +9,7 @@
 @{ foreach (var p in Model)
     {
         paid = p.PatientId;
-        pn = p.Patient.FullName;
+        pn = p.FullName;
     }
 }
 <h4>KENTUCKIANA INFECTIOUS DISEASE CONSULTANTS, PSC</h4>
@@ -34,7 +34,7 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Patient.BirthDate)
+                    @Html.DisplayNameFor(model => model.BirthDate)
                 </th>                    
                 <th>
                     @Html.DisplayNameFor(model => model.ImmDate)
@@ -52,7 +52,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Patient.BirthDate)
+                        @Html.DisplayFor(modelItem => item.BirthDate)
                     </td>                        
                     <td>
                         @Html.DisplayFor(modelItem => item.ImmDate)

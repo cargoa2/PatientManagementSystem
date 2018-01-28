@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using PatientManagementSystem.Models;
 using System.Globalization;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace PatientManagementSystem.Controllers
 {
@@ -46,13 +48,33 @@ namespace PatientManagementSystem.Controllers
 
         // GET: Patients
         public ActionResult Index()
-        {
-      //      Logger.Log(LogLevel.Debug, "Starting PatientsController Index.", "", "", "");
-            var patients = from p in db.Patients
-                            orderby p.LastName
-                            select p;
-       //     Logger.Log(LogLevel.Debug, "Returning PatientsController Index.", "", "", "");
-            return View("Index", patients.ToList()); 
+        {            
+            using(var cn = new SqlConnection(ConfigurationManager.ConnectionStrings["PatientContext"].ConnectionString))
+            {
+                using(SqlCommand cmd = new SqlCommand("sp_Get_Patient_List", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cn.Open();
+
+                    var rdr = cmd.ExecuteReader();
+                    List<Patient> model = new List<Patient>();
+                    while(rdr.Read())
+                    {
+                        var patients = new Patient
+                        {
+                            Id = Convert.ToInt32(rdr["Id"]),
+                            LastName = rdr["LastName"].ToString(),
+                            FirstName = rdr["FirstName"].ToString(),
+                            MiddleInitial = rdr["MiddleInitial"].ToString(),
+                            BirthDate = Convert.ToDateTime(rdr["BirthDate"]),
+                            SOC = rdr["SOC"].ToString(),
+                            Gender = (Gender)rdr["Gender"]
+                        };
+                        model.Add(patients);
+                    }
+                    return View("Index", model);
+                }               
+            }       
         }
 
         public ActionResult PatientIndex(int id)

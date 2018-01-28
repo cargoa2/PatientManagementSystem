@@ -32,7 +32,7 @@ namespace PatientManagementSystem.Models
         [Display(Name = "Immunization")]
         public string Notes { get; set; }
 
-        [Display(Name = "File Path")]
+        [Display(Name = "File Name")]
         public string FilePath { get; set; }
 
         public Byte[] FileContent { get; set; }

@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using PatientManagementSystem.Models;
 using System.IO;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace PatientManagementSystem.Controllers
 {
@@ -61,12 +63,36 @@ namespace PatientManagementSystem.Controllers
            // Logger.Log(LogLevel.Debug, "Starting ImmunizationsController ImmIndex.", "Patient Id = " + id.ToString(), "", "");
 
             if (CheckforImmunizations(id) == true)
-            {
-                List<Immunizations> immunizations = db.Immunizations.ToList();
-                var iList = immunizations.Where(i => i.PatientId == id)
-                            .OrderByDescending(ImmDate => ImmDate.ImmDate);
-               // Logger.Log(LogLevel.Debug, "Returning ImmunizationsController ImmIndex.", "Patient Id = " + id.ToString(), "", "iList");
-                return View("Index", iList);
+            {               
+                using(var cn = new SqlConnection(ConfigurationManager.ConnectionStrings["PatientContext"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_Get_Patient_Imm_List", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                        cn.Open();
+
+                        var rdr = cmd.ExecuteReader();
+                        List<Immunizations> model = new List<Immunizations>();
+                        while (rdr.Read())
+                        {
+                            var imms = new Immunizations
+                            {
+                                PatientId = id,
+                                FullName = rdr["FullName"].ToString(),
+                                ImmId = Convert.ToInt32(rdr["ImmId"]),
+                                BirthDate = Convert.ToDateTime(rdr["BirthDate"]),
+                                ImmDate = Convert.ToDateTime(rdr["ImmDate"]),
+                                Notes = rdr["Notes"].ToString(),
+                                FilePath = rdr["FilePath"].ToString()
+                            };
+                            model.Add(imms);
+                                
+                        }
+                        return View("Index", model);
+                    }
+                }     
+                // Logger.Log(LogLevel.Debug, "Returning ImmunizationsController ImmIndex.", "Patient Id = " + id.ToString(), "", "iList");
             }
             else
             {

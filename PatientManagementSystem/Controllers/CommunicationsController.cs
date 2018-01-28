@@ -79,9 +79,8 @@ namespace PatientManagementSystem.Controllers
             if (CheckforCommunications(id) == true)
             {
                 
-                List<Communication> Communications = db.Communication.ToList();
-                var cList = Communications.Where(p => p.PatientId == id)
-                                            .OrderByDescending(CommDate => CommDate.CommDate);
+                List<Communication> Communications = db.Communication.Where(p => p.PatientId == id).ToList();
+                var cList = Communications.OrderByDescending(CommDate => CommDate.CommDate);
 
                 foreach (var item in cList)
                 {

@@ -34,7 +34,7 @@ namespace PatientManagementSystem.Models
         [MaxLength(255)]
         public string Notes { get; set; }
 
-        [Display(Name = "File Path")]
+        [Display(Name = "File Name")]
         [StringLength(255)]
         //[Required(ErrorMessage = "You must select a file")]
         public string FilePath { get; set; }

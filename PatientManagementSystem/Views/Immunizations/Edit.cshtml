@@ -2,7 +2,7 @@
 
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-@Html.Hidden("UnsavedChanges", "0");
+@Html.Hidden("UnsavedChanges", "0")
 
 
 @{
@@ -54,7 +54,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Current File Path", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Current File Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10  form-control-static">
                 @Model.FilePath               
             </div>

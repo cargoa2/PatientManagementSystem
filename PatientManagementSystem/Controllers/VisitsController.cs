@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using PatientManagementSystem.Models;
 using System.IO;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace PatientManagementSystem.Controllers
 {
@@ -42,18 +44,39 @@ namespace PatientManagementSystem.Controllers
         {
       //      Logger.Log(LogLevel.Debug, "Starting VisitsController PatientIndex.", "Patient Id = " + id.ToString(), "", "");
             if (CheckVisits(id) == true)
-            {
-                List<Visits> visits = db.Visits.ToList();
-                var vList = visits.Where(v => v.PatientId == id).OrderByDescending(v => v.VisitDate);
-      //          Logger.Log(LogLevel.Debug, "Returning VisitsController PatientIndex.", "Patient Id = " + id.ToString(), "", "vList");
-                return View("Index", vList);
+            { 
+                using(var cn = new SqlConnection(ConfigurationManager.ConnectionStrings["PatientContext"].ConnectionString))
+                {
+                    using(SqlCommand cmd = new SqlCommand("sp_Get_Patient_Visit_List", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                        cn.Open();
+
+                        var rdr = cmd.ExecuteReader();
+                        List<Visits> model = new List<Visits>();
+                        while(rdr.Read())
+                        {
+                            var visits = new Visits
+                            {
+                                PatientId = id,
+                                FullName = rdr["FullName"].ToString(),
+                                BirthDate = Convert.ToDateTime(rdr["BirthDate"]),
+                                VisitId = Convert.ToInt32(rdr["VisitId"]),
+                                VisitDate = Convert.ToDateTime(rdr["VisitDate"]),
+                                Initial = Convert.ToBoolean(rdr["Initial"])
+                            };
+                            model.Add(visits);
+                        }
+                        return View("Index", model);
+                    }
+                }
             }
             else
             {
       //          Logger.Log(LogLevel.Debug, "Returning VisitsController PatientIndex.", "Patient Id = " + id.ToString(), "", "New");
                 return RedirectToAction("Create", new { id = id });             
-            }
-           
+            }           
         }
 
         public ActionResult PrintDetails(int? id)

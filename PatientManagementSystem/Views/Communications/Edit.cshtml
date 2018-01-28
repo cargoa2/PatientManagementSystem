@@ -1,6 +1,6 @@
 ﻿@model PatientManagementSystem.Models.Communication
 
-@Html.Hidden("UnsavedChanges", "0");
+@Html.Hidden("UnsavedChanges", "0")
 
 @{
     ViewBag.Title = "Edit";
@@ -46,7 +46,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-1">               
-                @Html.TextAreaFor(model => model.Notes, new { style = "width: 900px; height: 500px", oninput = "HandleFieldChange()" } )                               
+                @Html.TextAreaFor(model => model.Notes, new { style = "width: 900px; height: 500px", oninput = "HandleFieldChange()", @class = "form-control" } )                               
                 @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
             </div>
         </div>

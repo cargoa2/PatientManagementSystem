@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using PatientManagementSystem.Models;
 
@@ -44,11 +43,11 @@ namespace PatientManagementSystem.Controllers
           //  Logger.Log(LogLevel.Debug, "Starting HIVManagementsController HIVIndex.", "Patient Id = " + id.ToString(), "", "");
             if (CheckForHIVRecords(id) == true)
             {
-                List<HIVManagement> hivMan = db.HIVManegements.ToList();
+                List<HIVManagement> hivMan = db.HIVManegements.Where(h => h.PatientId == id).ToList();
                 List<Visits> visits = db.Visits.ToList();
-                var hList = hivMan.Where(h => h.PatientId == id).OrderByDescending(h => h.VisitDate);
+                var hList = hivMan.OrderByDescending(h => h.VisitDate);
 
-           //     Logger.Log(LogLevel.Debug, "Returning HIVManagementsController HIVIndex.", "Patient Id = " + id.ToString(), "", "hList");
+                //     Logger.Log(LogLevel.Debug, "Returning HIVManagementsController HIVIndex.", "Patient Id = " + id.ToString(), "", "hList");
                 return View("Index", hList);                
             }
             else

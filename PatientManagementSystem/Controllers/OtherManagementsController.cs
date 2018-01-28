@@ -43,8 +43,8 @@ namespace PatientManagementSystem.Controllers
           //  Logger.Log(LogLevel.Debug, "Starting OtherManagementsController OtherIndex.", "Patient Id = " + id.ToString(), "", "");
             if (CheckForOtherManagementRecords(id) == true)
             {
-                List<OtherManagement> othMan = db.OtherManagements.ToList();
-                var oList = othMan.Where(o => o.PatientId == id).OrderByDescending(o => o.VisitDate);
+                List<OtherManagement> othMan = db.OtherManagements.Where(o => o.PatientId == id).ToList();
+                var oList = othMan.OrderByDescending(o => o.VisitDate);
             //    Logger.Log(LogLevel.Debug, "Returning OtherManagementsController OtherIndex.", "Patient Id = " + id.ToString(), "", "");
                 return View("Index", oList);
             }

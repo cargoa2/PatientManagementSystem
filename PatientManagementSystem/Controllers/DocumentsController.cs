@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using PatientManagementSystem.Models;
 using System.IO;
 using HtmlAgilityPack;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace PatientManagementSystem.Controllers
 {
@@ -60,17 +62,40 @@ namespace PatientManagementSystem.Controllers
             }
         }
 
-
         public ActionResult DocFileIndex(int id)
         {
             //Logger.Log(LogLevel.Debug, "Starting DocumentsController DocFileIndex.", "Patient Id = " + id.ToString(), "", "");
             if (CheckForDocuments(id) == true)
-            {               
-                List<Documents> Documents = db.Documents.ToList();
-                var lList = Documents.Where(p => p.PatientId == id)
-                            .OrderByDescending(DocFile => DocFile.DocDate);
-               // Logger.Log(LogLevel.Debug, "Returning DocumentsController DocFileIndex true.", "Patient Id = " + id.ToString(), "", "");
-                return View("Index", lList);
+            {     
+                using (var cn = new SqlConnection(ConfigurationManager.ConnectionStrings["PatientContext"].ConnectionString))
+                {
+                    using(SqlCommand cmd = new SqlCommand("sp_Get_Patient_Doc_List", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                        cn.Open();
+                        
+                        var rdr = cmd.ExecuteReader();
+                        List<Documents> model = new List<Documents>();
+                        while (rdr.Read())
+                        {
+                            var docs = new Documents
+                            {
+                                PatientId = id,
+                                FullName = rdr["FullName"].ToString(),
+                                BirthDate = Convert.ToDateTime(rdr["BirthDate"]),
+                                DocDate = Convert.ToDateTime(rdr["DocDate"]),
+                                DocFileId = Convert.ToInt32(rdr["DocFileId"]),
+                                DocType = (DocumentType)rdr["DocType"],
+                                Notes = rdr["Notes"].ToString(),
+                                FilePath = rdr["FilePath"].ToString()
+                            };
+                            model.Add(docs);
+                        }
+                        return View("Index", model);
+                    }
+                }
+                // Logger.Log(LogLevel.Debug, "Returning DocumentsController DocFileIndex true.", "Patient Id = " + id.ToString(), "", "");                
             }
             else
             {
