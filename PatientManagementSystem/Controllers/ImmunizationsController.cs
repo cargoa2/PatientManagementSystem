@@ -44,17 +44,25 @@ namespace PatientManagementSystem.Controllers
 
         public bool CheckforImmunizations(int id)
         {
-           // Logger.Log(LogLevel.Debug, "Starting ImmunizationsController CheckforImmunizations.", "Patient Id = " + id.ToString(), "", "");
-            List<Immunizations> im = db.Immunizations.ToList();
-            if(im.FindAll(p => p.PatientId == id).Count > 0)
+            using (var cn = new SqlConnection(ConfigurationManager.ConnectionStrings["PatientContext"].ConnectionString))
             {
-               // Logger.Log(LogLevel.Debug, "Returning ImmunizationsController CheckforImmunizations.", "Patient Id = " + id.ToString(), "", "True");
-                return true;
-            }
-            else
-            {
-               // Logger.Log(LogLevel.Debug, "Returning ImmunizationsController CheckforImmunizations.", "Patient Id = " + id.ToString(), "", "False");
-                return false;
+                using (SqlCommand cmd = new SqlCommand("sp_Imm_Count", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    cn.Open();
+
+                    int count = (Int32)cmd.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
         }
 

@@ -25,20 +25,26 @@ namespace PatientManagementSystem.Controllers
 
         public bool CheckVisits(int id)
         {
-          //  Logger.Log(LogLevel.Debug, "Starting VisitsController CheckVisits.", "Patient Id = " + id.ToString(), "", "");
-            List<Visits> visits = db.Visits.ToList();
-            var visitsExists = visits.Find(i => i.PatientId == id);
+            using (var cn = new SqlConnection(ConfigurationManager.ConnectionStrings["PatientContext"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_Visits_Count", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    cn.Open();
 
-            if (visitsExists != null)
-            {
-       //         Logger.Log(LogLevel.Debug, "Returning VisitsController CheckVisits.", "Patient Id = " + id.ToString(), "", "True");
-                return true;                
-            }
-            else
-            {
-       //         Logger.Log(LogLevel.Debug, "Returning VisitsController CheckVisits.", "Patient Id = " + id.ToString(), "", "False");
-                return false;                
-            }
+                    int count = (Int32)cmd.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }          
         }
         public ActionResult PatientIndex(int id)
         {

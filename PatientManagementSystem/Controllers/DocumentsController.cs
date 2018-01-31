@@ -46,20 +46,28 @@ namespace PatientManagementSystem.Controllers
         }        
 
         public bool CheckForDocuments(int id)
-        {
-            //Logger.Log(LogLevel.Debug, "Starting DocumentsController CheckForDocuments.", "Patient Id = " + id.ToString(), "", "");
+        {            
+            using (var cn = new SqlConnection(ConfigurationManager.ConnectionStrings["PatientContext"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_Doc_Count", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    cn.Open();
 
-            List<Documents> files = db.Documents.ToList();
-            if(files.FindAll(p => p.PatientId == id).Count > 0)            
-            {
-                //Logger.Log(LogLevel.Debug, "Returning DocumentsController CheckForDocuments true.", "Patient Id = " + id.ToString(), "", "");
-                return true;
+                    int count = (Int32)cmd.ExecuteScalar();
+
+                    if(count > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
-            else
-            {
-               // Logger.Log(LogLevel.Debug, "Returning DocumentsController CheckForDocuments false.", "Patient Id = " + id.ToString(), "", "");
-                return false;
-            }
+           
         }
 
         public ActionResult DocFileIndex(int id)

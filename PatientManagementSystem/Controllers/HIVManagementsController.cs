@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using PatientManagementSystem.Models;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace PatientManagementSystem.Controllers
 {
@@ -21,20 +23,25 @@ namespace PatientManagementSystem.Controllers
 
         public bool CheckForHIVRecords(int id)
         {
-           // Logger.Log(LogLevel.Debug, "Starting HIVManagementsController CheckForHIVRecords.", "Patient Id = " + id.ToString(), "", "");
-
-            List<HIVManagement> hivMan = db.HIVManegements.ToList();
-            var recordsExists = hivMan.Find(i => i.PatientId == id);
-
-            if (recordsExists != null)
+            using (var cn = new SqlConnection(ConfigurationManager.ConnectionStrings["PatientContext"].ConnectionString))
             {
-              //  Logger.Log(LogLevel.Debug, "Returning HIVManagementsController CheckForHIVRecords.", "Patient Id = " + id.ToString(), "", "True");
-                return true;
-            }
-            else
-            {
-              //  Logger.Log(LogLevel.Debug, "Returning HIVManagementsController CheckForHIVRecords.", "Patient Id = " + id.ToString(), "", "False");
-                return false;
+                using (SqlCommand cmd = new SqlCommand("sp_Hiv_Count", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    cn.Open();
+
+                    int count = (Int32)cmd.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
         }
 

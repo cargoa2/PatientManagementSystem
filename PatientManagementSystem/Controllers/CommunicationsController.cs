@@ -10,6 +10,8 @@ using PatientManagementSystem.Models;
 using System.IO;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace PatientManagementSystem.Controllers
 {
@@ -50,19 +52,25 @@ namespace PatientManagementSystem.Controllers
 
         public bool CheckforCommunications(int id)
         {
-            //Logger.Log(LogLevel.Debug, "Starting Patient CommunicationController CheckforCommunications.", "Patient Id = " + id.ToString(), "", "");
+            using (var cn = new SqlConnection(ConfigurationManager.ConnectionStrings["PatientContext"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_Comm_Count", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    cn.Open();
 
-            List<Communication> comm = db.Communication.ToList();
-            int recordsExists = comm.FindAll(p => p.PatientId == id).Count();
-            if(recordsExists > 0)           
-            {
-                //Logger.Log(LogLevel.Debug, "Returning Patient CommunicationController CheckforCommunications true.", "Patient Id = " + id.ToString(), "", "");
-                return true;                
-            }
-            else
-            {
-               // Logger.Log(LogLevel.Debug, "Returning Patient CommunicationController CheckforCommunications false.", "Patient Id = " + id.ToString(), "", "");
-                return false;                
+                    int count = (Int32)cmd.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
         }
 

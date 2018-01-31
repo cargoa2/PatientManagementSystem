@@ -68,15 +68,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.Gender)
         </td>
-       
         <td>            
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Visits", "PatientIndex", "Visits", new { id = item.Id }, null) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details",new { id=item.Id }) |
+            @Html.ActionLink("Visits", "PatientIndex", "Visits", new { id = item.Id }, null)
             @Html.ActionLink("HIV Management", "HIVIndex", "HIVManagements", new { id = item.Id }, null) |
             @Html.ActionLink("Other Management", "OtherIndex", "OtherManagements", new { id = item.Id }, null) |
             @Html.ActionLink("Notes", "CommIndex", "Communications", new { id = item.Id }, null) |
-            @Html.ActionLink("Documents", "DocFileIndex", "Documents", new { id = item.Id}, null) |  
+            @Html.ActionLink("Documents", "DocFileIndex", "Documents", new { id = item.Id}, null) | 
             @Html.ActionLink("Immunizations", "ImmIndex", "Immunizations", new { id = item.Id }, null) |
             @Html.ActionLink("Delete", "Delete", new { id = item.Id }) 
         </td>

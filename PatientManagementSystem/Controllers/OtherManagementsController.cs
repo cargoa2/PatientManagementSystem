@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PatientManagementSystem.Models;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace PatientManagementSystem.Controllers
 {
@@ -22,19 +24,25 @@ namespace PatientManagementSystem.Controllers
 
         public bool CheckForOtherManagementRecords(int id)
         {
-           // Logger.Log(LogLevel.Debug, "Starting OtherManagementsController CheckForOtherManagementRecords.", "Patient Id = " + id.ToString(), "", "");
-            List<OtherManagement> otherMan = db.OtherManagements.ToList();
-            var recordsExists = otherMan.Find(o => o.PatientId == id);
+            using (var cn = new SqlConnection(ConfigurationManager.ConnectionStrings["PatientContext"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_Other_Count", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    cn.Open();
 
-            if(recordsExists != null)
-            {
-             //   Logger.Log(LogLevel.Debug, "returning OtherManagementsController CheckForOtherManagementRecords.", "Patient Id = " + id.ToString(), "", "True");
-                return true;
-            }
-            else
-            {
-            //    Logger.Log(LogLevel.Debug, "returning OtherManagementsController CheckForOtherManagementRecords.", "Patient Id = " + id.ToString(), "", "False");
-                return false;
+                    int count = (Int32)cmd.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
         }
 
